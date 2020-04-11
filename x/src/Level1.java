@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
+import java.security.Key;
 
 public class Level1 extends JPanel {
 
@@ -15,11 +17,13 @@ public class Level1 extends JPanel {
     private Timer leftTimer;
     private Timer rightTimer;
     private Timer jumpTimer;
+    private Timer repaintTimer;
 
     //private int dx = 0;
     private float vel_y = 0;
     private final float GRAV = 0.5f;
     private int GroundLevel = 350;
+    private Shape ground;
 
     public Level1() {
 
@@ -27,10 +31,17 @@ public class Level1 extends JPanel {
 
         displayList = new DisplayList();
         setBackground(Color.BLACK);
-
+        ground = new Rectangle2D.Double(0, GroundLevel + 50, 1200, 300);
+        displayList.AddShape(ground);
+        Squirrel squirrel = new Squirrel();
+        squirrel.x = 1000;
+        squirrel.y = 280;
+        displayList.AddEntity(squirrel);
 
         setFocusable(true);
 
+        repaintTimer = new Timer(5, repaintListener);
+        repaintTimer.start();
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -44,7 +55,7 @@ public class Level1 extends JPanel {
                         jumpTimer.start();
                     }
                 }
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     if (leftTimer == null || !leftTimer.isRunning()) {
                         leftTimer = new Timer(10, moveLeft);
                         leftTimer.setInitialDelay(0);/////////////////////
@@ -52,13 +63,14 @@ public class Level1 extends JPanel {
                         leftTimer.start();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-
                     if (rightTimer == null || !rightTimer.isRunning()) {
                         rightTimer = new Timer(10, moveRight);
                         rightTimer.setInitialDelay(0);
                         displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);//aaaaaaaaaaaaa
                         rightTimer.start();
                     }
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    displayList.AddEntity(displayList.cat.generateFluffball());
                 }
             }
 
@@ -69,27 +81,26 @@ public class Level1 extends JPanel {
                     if (leftTimer != null) {
                         leftTimer.stop();
                         displayList.cat.state = (byte)(displayList.cat.state & 101);//aaaaaaaaaaaaa
-                        repaint();
+                        //repaint();//
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     if (rightTimer != null) {
                         rightTimer.stop();
                         displayList.cat.state = (byte)(displayList.cat.state & 101);//aaaaaaaaaaaaa
-                        repaint();
+                        //repaint();//
                     }
                 }
-//                if (moveTimer != null) {
-//                    if (moveTimer.getActionListeners()[0].equals(moveRight) && e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//                        moveTimer.stop();
-//                    } else if (moveTimer.getActionListeners()[0].equals(moveLeft) && e.getKeyCode() == KeyEvent.VK_LEFT) {
-//                        moveTimer.stop();
-//                    }
-//                }
             }
         });
 
     }
 
+    ActionListener repaintListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            repaint();
+        }
+    };
     ActionListener moveRight = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -97,7 +108,7 @@ public class Level1 extends JPanel {
             if (displayList.cat.state >> 2 == 0) {
                 displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);//aaaaaaaaaaaaa
             }
-            repaint();
+            //repaint();//
         }
     };
     ActionListener moveLeft = new ActionListener() {
@@ -107,7 +118,7 @@ public class Level1 extends JPanel {
             if (displayList.cat.state >> 2 == 0) {
                 displayList.cat.state = (byte)(displayList.cat.state | 011);//aaaaaaaaaaaaa
             }
-            repaint();
+            //repaint();//
         }
     };
     ActionListener jumpAction = new ActionListener() {
@@ -115,7 +126,7 @@ public class Level1 extends JPanel {
         public void actionPerformed(ActionEvent e) {
             displayList.cat.IncrementXY(0, Math.round(vel_y));
             vel_y += GRAV;
-            repaint();
+            //repaint();//
             if (displayList.cat.GetY() >= GroundLevel) {
                 displayList.cat.SetY(350);
                 displayList.cat.state = (byte)(displayList.cat.state & 011);//aaaaaaaaaaaaa
@@ -128,10 +139,22 @@ public class Level1 extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D)g;
 
+        g2.setColor(Color.MAGENTA);
+        g2.fill(ground);
+
         displayList.cat.paintComponent(g2);
+        for (Shape shape : displayList.getShapes()) {
+            g2.draw(shape);
+        }
+        for (Entity entity : displayList.getEntities()) {
+            if (!entity.stillMoving) {
+                SwingUtilities.invokeLater(() -> displayList.removeEntity(entity));
+            } else {
+                entity.paintComponent(g2);
+            }
+        }
 
     }
 
