@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -29,5 +30,8 @@ public abstract class Entity {
 
         return bufferedImage;
     }
+
+    public abstract Rectangle2D getHitBox();
+
 
 }

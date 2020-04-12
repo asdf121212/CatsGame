@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Ball extends Entity {
@@ -8,6 +9,10 @@ public class Ball extends Entity {
     public Ball() {
         x = 300;
         y = 300;
+    }
+
+    public Rectangle2D getHitBox() {
+        return null;
     }
 
     public void paintComponent(Graphics g) {

@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
@@ -9,6 +11,7 @@ public class Cat extends Entity {
 
 
     public byte state = 000;
+    private int Health = 100;
     private BufferedImage catImage;
     private int frameCount = 0;
     private int previousDx = 0;
@@ -35,9 +38,18 @@ public class Cat extends Entity {
 
     }
 
+    public Rectangle2D getHitBox() {
+        int xAdd = (state | 110) == 111 ? 4 : 15;
+        return new Rectangle2D.Double(x + xAdd, y + 10, 55, 35);
+    }
+
     public Fluffball generateFluffball() {
-        boolean left = (state | 110) == 111;
-        return new Fluffball(left ? x : x + 75, y + 20, left ? -10 : 10);
+        int vel = (state | 101) == 111 ? 12 + 3 : 12;
+        if ((state | 110) == 111) {
+            return new Fluffball(x, y + 20, vel, -1);
+        } else {
+            return new Fluffball(x + 70, y + 20, vel, 1);
+        }
     }
 
     public void IncrementXY(int dx, int dy) {
@@ -69,7 +81,7 @@ public class Cat extends Entity {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        setSprite();//aaaaaaaaaaaaaaaa
+        setSprite();
         g2.drawImage(catImage, x, y, 75, 50, null);
     }
 

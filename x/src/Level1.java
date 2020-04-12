@@ -1,5 +1,3 @@
-import com.sun.javafx.scene.control.behavior.KeyBinding;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
-import java.beans.PropertyChangeListener;
-import java.security.Key;
 
 public class Level1 extends JPanel {
 
@@ -18,12 +14,13 @@ public class Level1 extends JPanel {
     private Timer rightTimer;
     private Timer jumpTimer;
     private Timer repaintTimer;
+    private Timer hitCheckTimer;
 
-    //private int dx = 0;
     private float vel_y = 0;
     private final float GRAV = 0.5f;
     private int GroundLevel = 350;
     private Shape ground;
+    private boolean spaceReleased = true;
 
     public Level1() {
 
@@ -32,16 +29,19 @@ public class Level1 extends JPanel {
         displayList = new DisplayList();
         setBackground(Color.BLACK);
         ground = new Rectangle2D.Double(0, GroundLevel + 50, 1200, 300);
-        displayList.AddShape(ground);
+        displayList.AddBackgroundShape(ground);
         Squirrel squirrel = new Squirrel();
         squirrel.x = 1000;
         squirrel.y = 280;
-        displayList.AddEntity(squirrel);
+        displayList.AddEnemy(squirrel);
 
         setFocusable(true);
 
+        hitCheckTimer = new Timer(5, hitCheckListener);
+        hitCheckTimer.setInitialDelay(1);
         repaintTimer = new Timer(5, repaintListener);
         repaintTimer.start();
+        hitCheckTimer.start();
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -51,50 +51,64 @@ public class Level1 extends JPanel {
                         jumpTimer = new Timer(10, jumpAction);
                         jumpTimer.setInitialDelay(0);
                         vel_y = -10;
-                        displayList.cat.state = (byte)(displayList.cat.state | 100);//aaaaaaaaaaaaa
+                        displayList.cat.state = (byte)(displayList.cat.state | 100);
                         jumpTimer.start();
                     }
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     if (leftTimer == null || !leftTimer.isRunning()) {
                         leftTimer = new Timer(10, moveLeft);
-                        leftTimer.setInitialDelay(0);/////////////////////
-                        displayList.cat.state = (byte)(displayList.cat.state | 011);//aaaaaaaaaaaaa
+                        leftTimer.setInitialDelay(0);
+                        displayList.cat.state = (byte)(displayList.cat.state | 011);
                         leftTimer.start();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     if (rightTimer == null || !rightTimer.isRunning()) {
                         rightTimer = new Timer(10, moveRight);
                         rightTimer.setInitialDelay(0);
-                        displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);//aaaaaaaaaaaaa
+                        displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
                         rightTimer.start();
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    displayList.AddEntity(displayList.cat.generateFluffball());
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE && spaceReleased) {
+                    spaceReleased = false;
+                    displayList.AddFluffball(displayList.cat.generateFluffball());
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                //check that it's in the right direction
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     if (leftTimer != null) {
                         leftTimer.stop();
-                        displayList.cat.state = (byte)(displayList.cat.state & 101);//aaaaaaaaaaaaa
-                        //repaint();//
+                        displayList.cat.state = (byte)(displayList.cat.state & 101);
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     if (rightTimer != null) {
                         rightTimer.stop();
-                        displayList.cat.state = (byte)(displayList.cat.state & 101);//aaaaaaaaaaaaa
-                        //repaint();//
+                        displayList.cat.state = (byte)(displayList.cat.state & 101);
                     }
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    spaceReleased = true;
                 }
             }
         });
 
     }
 
+    ActionListener hitCheckListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (Enemy enemy : displayList.getEnemies()) {
+                for (Fluffball fluffball : displayList.getFluffballs()) {
+                    if (fluffball.getHitBox().intersects(enemy.getHitBox())) {
+                        fluffball.stop();
+                        SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                        enemy.entityHit();
+                    }
+                }
+            }
+        }
+    };
     ActionListener repaintListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -106,9 +120,8 @@ public class Level1 extends JPanel {
         public void actionPerformed(ActionEvent e) {
             displayList.cat.IncrementXY(3, 0);
             if (displayList.cat.state >> 2 == 0) {
-                displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);//aaaaaaaaaaaaa
+                displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
             }
-            //repaint();//
         }
     };
     ActionListener moveLeft = new ActionListener() {
@@ -116,9 +129,8 @@ public class Level1 extends JPanel {
         public void actionPerformed(ActionEvent e) {
             displayList.cat.IncrementXY(-3, 0);
             if (displayList.cat.state >> 2 == 0) {
-                displayList.cat.state = (byte)(displayList.cat.state | 011);//aaaaaaaaaaaaa
+                displayList.cat.state = (byte)(displayList.cat.state | 011);
             }
-            //repaint();//
         }
     };
     ActionListener jumpAction = new ActionListener() {
@@ -126,10 +138,9 @@ public class Level1 extends JPanel {
         public void actionPerformed(ActionEvent e) {
             displayList.cat.IncrementXY(0, Math.round(vel_y));
             vel_y += GRAV;
-            //repaint();//
             if (displayList.cat.GetY() >= GroundLevel) {
                 displayList.cat.SetY(350);
-                displayList.cat.state = (byte)(displayList.cat.state & 011);//aaaaaaaaaaaaa
+                displayList.cat.state = (byte)(displayList.cat.state & 011);
                 jumpTimer.stop();
             }
         }
@@ -144,24 +155,28 @@ public class Level1 extends JPanel {
         g2.setColor(Color.MAGENTA);
         g2.fill(ground);
 
-        displayList.cat.paintComponent(g2);
-        for (Shape shape : displayList.getShapes()) {
+        for (Shape shape : displayList.getBackgroundShapes()) {
             g2.draw(shape);
         }
-        for (Entity entity : displayList.getEntities()) {
-            if (!entity.stillMoving) {
-                SwingUtilities.invokeLater(() -> displayList.removeEntity(entity));
+
+        for (Entity danger : displayList.getDangers()) {
+            danger.paintComponent(g2);
+        }
+        for (Entity enemy : displayList.getEnemies()) {
+            enemy.paintComponent(g2);
+        }
+        for (Fluffball fluffball : displayList.getFluffballs()) {
+            if (!fluffball.stillMoving) {
+                SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
             } else {
-                entity.paintComponent(g2);
+                fluffball.paintComponent(g2);
             }
         }
 
+        displayList.cat.paintComponent(g2);
+
+
     }
-
-
-//    public void CatMove(int dx, int dy) {
-//        displayList.cat.IncrementXY(dx, dy);
-//    }
 
 
 }
