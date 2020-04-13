@@ -92,13 +92,20 @@ public class Level1 extends JPanel {
                 }
             }
         });
-
+        Fluffball f = displayList.cat.generateFluffball();
+        f = null;
     }
 
     ActionListener hitCheckListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (Enemy enemy : displayList.getEnemies()) {
+                if (enemy.dead) {
+                    SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
+                    continue;
+                } else if (enemy.deadAnimating) {
+                    continue;
+                }
                 for (Fluffball fluffball : displayList.getFluffballs()) {
                     if (fluffball.getHitBox().intersects(enemy.getHitBox())) {
                         fluffball.stop();
