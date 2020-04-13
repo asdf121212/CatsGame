@@ -20,6 +20,7 @@ public class Squirrel extends Enemy {
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
+    //private Timer ballGenerationTimer;
 
     private ArrayList<Ball> BallList;
 
@@ -36,6 +37,9 @@ public class Squirrel extends Enemy {
         image = squirrelImage;
         x = 100;
         y = 100;
+
+//        ballGenerationTimer = new Timer(500, generateBall);
+//        ballGenerationTimer.start();
     }
 
     public Rectangle2D getHitBox() {
@@ -46,20 +50,28 @@ public class Squirrel extends Enemy {
     public void entityHit() {
         health -= 10;
         if (health <= 0) {
+            //ballGenerationTimer.stop();
             deadAnimating = true;
             explodeTimer = new Timer(150, explode);
-            explodeTimer.setInitialDelay(80);
+            explodeTimer.setInitialDelay(90);
             image = squirrelExp1;
             explodeTimer.start();
             if (flashTimer != null) {
                 flashTimer.stop();
             }
         } else {
+            if (flashTimer != null && flashTimer.isRunning()) {
+                flashTimer.stop();
+            }
             flashTimer = new Timer(0, flash);
             flashTimer.setInitialDelay(75);
             image = squirrelFlashImage;
             flashTimer.start();
         }
+    }
+
+    public Ball generateBall() {
+        return new Ball(x - 20, y + 20);
     }
 
     private ActionListener flash = new ActionListener() {
@@ -79,9 +91,18 @@ public class Squirrel extends Enemy {
             } else {
                 deadAnimating = false;
                 dead = true;
+                explodeTimer.stop();
             }
         }
     };
+
+//    private ActionListener generateBall = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            generateBall();
+//        }
+//    };
+
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;

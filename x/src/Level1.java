@@ -110,7 +110,7 @@ public class Level1 extends JPanel {
                     if (fluffball.getHitBox().intersects(enemy.getHitBox())) {
                         fluffball.stop();
                         SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
-                        enemy.entityHit();
+                        SwingUtilities.invokeLater(enemy::entityHit);
                     }
                 }
             }
@@ -152,7 +152,6 @@ public class Level1 extends JPanel {
             }
         }
     };
-
 
     @Override
     protected void paintComponent(Graphics g) {
