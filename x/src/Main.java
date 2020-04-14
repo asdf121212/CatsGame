@@ -39,6 +39,7 @@ public class Main {
         frame.revalidate();
 
         ///////////////////////////////////////
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
 

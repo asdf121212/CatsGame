@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 
 public class Squirrel extends Enemy {
 
@@ -28,8 +26,7 @@ public class Squirrel extends Enemy {
 
     private void loadSound() {
         try {
-            File file = new File("Explosion.wav");
-            AudioInputStream stream = AudioSystem.getAudioInputStream(file.getAbsoluteFile());
+            AudioInputStream stream = AudioSystem.getAudioInputStream(this.getClass().getResource("SoundFiles/Explosion.wav"));
             clip = AudioSystem.getClip();
             clip.open(stream);
         }
@@ -63,7 +60,12 @@ public class Squirrel extends Enemy {
     public void entityHit() {
         health -= 10;
         if (health <= 0) {
-            clip.start();
+            try {
+               clip.start();
+            }
+            catch (Exception ex) {
+
+            }
             Dying = true;
             explodeTimer = new Timer(150, explode);
             explodeTimer.setInitialDelay(90);
