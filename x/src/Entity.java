@@ -9,7 +9,9 @@ public abstract class Entity {
 
     protected int x;
     protected int y;
-    public boolean stillMoving = true;
+    //public boolean stillMoving = true;
+    public boolean Dead = false;
+    public boolean Dying = false;
 
     public abstract void paintComponent(Graphics g);
 

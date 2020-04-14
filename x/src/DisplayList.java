@@ -21,7 +21,11 @@ public class DisplayList {
         foregroundShapesList = new ArrayList<>();
         cat = new Cat();
     }
-
+    public void clearDynamics() {
+        fluffballs.clear();
+        enemies.clear();
+        dangers.clear();
+    }
     public void AddBackgroundShape(Shape shape) {
         backgroundShapesList.add(shape);
     }

@@ -64,7 +64,7 @@ public class Squirrel extends Enemy {
         health -= 10;
         if (health <= 0) {
             clip.start();
-            deadAnimating = true;
+            Dying = true;
             explodeTimer = new Timer(150, explode);
             explodeTimer.setInitialDelay(90);
             image = squirrelExp1;
@@ -102,8 +102,8 @@ public class Squirrel extends Enemy {
             } else if (image.equals(squirrelExp2)) {
                 image = squirrelExp3;
             } else {
-                deadAnimating = false;
-                dead = true;
+                Dying = false;
+                Dead = true;
                 explodeTimer.stop();
             }
         }

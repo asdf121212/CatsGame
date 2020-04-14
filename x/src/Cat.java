@@ -45,14 +45,14 @@ public class Cat extends Entity {
 
     }
 
-    public boolean isAlive() {
-        return Health > 0;
-    }
+//    public boolean isAlive() {
+//        return Health > 0;
+//    }
 
     public void catHit() {
         Health -= 20;
         if (Health <= 0) {
-
+            Dying = true;///////
             healthBar.setRect(902, 52, 0, 16);
         } else {
             double width = healthBar.getWidth() - 40;

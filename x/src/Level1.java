@@ -100,7 +100,7 @@ public class Level1 extends JPanel {
     ActionListener hitCheckListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).deadAnimating) {
+            if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
                 Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);/////////not good structure- should refactor
                 if (tickCount == 220) {
                     SwingUtilities.invokeLater(() -> displayList.AddDanger(squirrel.generateBall(-5)));
@@ -110,10 +110,10 @@ public class Level1 extends JPanel {
                 }
             }
             for (Enemy enemy : displayList.getEnemies()) {
-                if (enemy.dead) {
+                if (enemy.Dead) {
                     SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
                     continue;
-                } else if (enemy.deadAnimating) {
+                } else if (enemy.Dying) {
                     continue;
                 }
                 for (Fluffball fluffball : displayList.getFluffballs()) {
@@ -125,13 +125,22 @@ public class Level1 extends JPanel {
                 }
             }
             for (Danger danger : displayList.getDangers()) {
-                if (danger.getHitBox().intersects(displayList.cat.getHitBox()) && danger.Live) {
-                    SwingUtilities.invokeLater(displayList.cat::catHit);
-                    danger.Live = false;
-                    if (!displayList.cat.isAlive()) {
-                        
+                if (danger.Dead) {
+                    SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
+                } else if (danger.Dying) {
+
+                } else {
+                    if (danger.getHitBox().intersects(displayList.cat.getHitBox())) {
+                        SwingUtilities.invokeLater(displayList.cat::catHit);
+                        danger.hitTarget();
                     }
                 }
+            }
+            if (displayList.cat.Dying) {
+                ///game over
+                //hitCheckTimer.stop();
+                //displayList.clearDynamics();
+
             }
         }
     };
@@ -184,22 +193,20 @@ public class Level1 extends JPanel {
             g2.draw(shape);
         }
 
-        for (Entity danger : displayList.getDangers()) {
-            danger.paintComponent(g2);
-        }
         for (Entity enemy : displayList.getEnemies()) {
             enemy.paintComponent(g2);
         }
         for (Fluffball fluffball : displayList.getFluffballs()) {
-            if (!fluffball.stillMoving) {
+            if (fluffball.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
             } else {
                 fluffball.paintComponent(g2);
             }
         }
-
         displayList.cat.paintComponent(g2);
-
+        for (Entity danger : displayList.getDangers()) {
+            danger.paintComponent(g2);
+        }
 
     }
 
