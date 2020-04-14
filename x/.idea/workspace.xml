@@ -4,16 +4,29 @@
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/DisplayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/DisplayList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Level1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/sprites/ball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp1-test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp2-test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/sprites/squirrelExp2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DisplayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DisplayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Squirrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Squirrel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprites/ball.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/ball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprites/squirrelExp1-test.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/squirrelExp1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprites/squirrelExp2-test.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/squirrelExp2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +64,15 @@
     <option name="height" value="875" />
   </component>
   <component name="ProjectId" id="1aSE9K06W3RKYwqg5FTwwnyvBDw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -93,21 +109,49 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1586810811854">
+    <state x="424" y="246" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586819737342">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586810811854" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1586810811852">
+    <state x="424" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.875@0.0.1440.875" timestamp="1586819737342" />
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1586892669660">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1586810811852" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1586810811852">
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser/0.0.1440.875@0.0.1440.875" timestamp="1586892669660" />
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1586893549639">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1586810811852" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1586810811853">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586893549639" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1586893549638">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1586810811853" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1586893549638" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1586893549638">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1586893549638" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1586893549638">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1586893549638" />
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1586822789893">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586822789893" />
+    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1586822789892">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.875@0.0.1440.875" timestamp="1586822789892" />
+    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1586822789891">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.875@0.0.1440.875" timestamp="1586822789891" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1586822789892">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.875@0.0.1440.875" timestamp="1586822789892" />
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1586891604054">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup/0.0.1440.875@0.0.1440.875" timestamp="1586891604054" />
   </component>
 </project>

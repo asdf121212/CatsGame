@@ -1,14 +1,16 @@
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
-import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
+import java.io.File;
 import java.util.ArrayList;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 
 public class Squirrel extends Enemy {
 
@@ -20,26 +22,37 @@ public class Squirrel extends Enemy {
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    //private Timer ballGenerationTimer;
+    private Clip clip;
 
     private ArrayList<Ball> BallList;
 
+    private void loadSound() {
+        try {
+            File file = new File("Explosion.wav");
+            AudioInputStream stream = AudioSystem.getAudioInputStream(file.getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(stream);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public Squirrel() {
         BallList = new ArrayList<>();
         squirrelImage = getBufferedImage("sprites/squirrel.png", 100, 100);
         squirrelFlashImage = getBufferedImage("sprites/squirrelFlash.png", 100, 100);
 
-        squirrelExp1 = getBufferedImage("sprites/squirrelExp1-test.png", 100, 100);
-        squirrelExp2 = getBufferedImage("sprites/squirrelExp2-test.png", 100, 100);
+        squirrelExp1 = getBufferedImage("sprites/squirrelExp1.png", 100, 100);
+        squirrelExp2 = getBufferedImage("sprites/squirrelExp2.png", 100, 100);
         squirrelExp3 = getBufferedImage("sprites/squirrelExp3.png", 100, 100);
 
         image = squirrelImage;
         x = 100;
         y = 100;
 
-//        ballGenerationTimer = new Timer(500, generateBall);
-//        ballGenerationTimer.start();
+        loadSound();
+
     }
 
     public Rectangle2D getHitBox() {
@@ -50,7 +63,7 @@ public class Squirrel extends Enemy {
     public void entityHit() {
         health -= 10;
         if (health <= 0) {
-            //ballGenerationTimer.stop();
+            clip.start();
             deadAnimating = true;
             explodeTimer = new Timer(150, explode);
             explodeTimer.setInitialDelay(90);
@@ -70,8 +83,8 @@ public class Squirrel extends Enemy {
         }
     }
 
-    public Ball generateBall() {
-        return new Ball(x - 20, y + 20);
+    public Ball generateBall(int xVelocity) {
+        return new Ball(x - 20, y + 50, xVelocity);
     }
 
     private ActionListener flash = new ActionListener() {
@@ -95,13 +108,6 @@ public class Squirrel extends Enemy {
             }
         }
     };
-
-//    private ActionListener generateBall = new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            generateBall();
-//        }
-//    };
 
 
     public void paintComponent(Graphics g) {

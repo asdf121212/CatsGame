@@ -8,7 +8,7 @@ public class DisplayList {
     //private ArrayList<Entity> entities;
     private ArrayList<Fluffball> fluffballs;
     private ArrayList<Enemy> enemies;
-    private ArrayList<Entity> dangers;
+    private ArrayList<Danger> dangers;
     private ArrayList<Shape> backgroundShapesList;
     private ArrayList<Shape> foregroundShapesList;
 
@@ -37,7 +37,7 @@ public class DisplayList {
     public void AddEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
-    public void AddDanger(Entity danger) {
+    public void AddDanger(Danger danger) {
         dangers.add(danger);
     }
 
@@ -56,7 +56,7 @@ public class DisplayList {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
-    public ArrayList<Entity> getDangers() {
+    public ArrayList<Danger> getDangers() {
         return dangers;
     }
 
@@ -69,7 +69,7 @@ public class DisplayList {
     public void removeEnemy(Entity enemy) {
         enemies.remove(enemy);
     }
-    public void removeDanger(Entity danger) {
+    public void removeDanger(Danger danger) {
         dangers.remove(danger);
     }
 

@@ -2,13 +2,13 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 
 
 public class Cat extends Entity {
-
 
     public byte state = 000;
     private int Health = 100;
@@ -23,6 +23,8 @@ public class Cat extends Entity {
     private BufferedImage walk2;
     private BufferedImage walk2Back;
 
+    private RoundRectangle2D healthBarOutline;
+    private Rectangle2D healthBar;
 
     public Cat() {
         x = 150;
@@ -36,6 +38,26 @@ public class Cat extends Entity {
         walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);
         catImage = still;
 
+        healthBarOutline = new RoundRectangle2D.Double();
+        healthBarOutline.setRoundRect(900, 50, 200, 20, 10, 10);
+        healthBar = new Rectangle2D.Double(902, 52, 196, 16);
+
+
+    }
+
+    public boolean isAlive() {
+        return Health > 0;
+    }
+
+    public void catHit() {
+        Health -= 20;
+        if (Health <= 0) {
+
+            healthBar.setRect(902, 52, 0, 16);
+        } else {
+            double width = healthBar.getWidth() - 40;
+            healthBar.setRect(902, 52, width, 16);
+        }
     }
 
     public Rectangle2D getHitBox() {
@@ -83,6 +105,13 @@ public class Cat extends Entity {
         Graphics2D g2 = (Graphics2D)g;
         setSprite();
         g2.drawImage(catImage, x, y, 75, 50, null);
+
+
+        g2.setColor(Color.GREEN);
+        g2.fill(healthBar);
+        g2.setStroke(new BasicStroke(4));
+        g2.setColor(Color.WHITE);
+        g2.draw(healthBarOutline);
     }
 
 

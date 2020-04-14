@@ -16,6 +16,7 @@ public class Level1 extends JPanel {
     private Timer repaintTimer;
     private Timer hitCheckTimer;
 
+    private int tickCount = 180;
     private float vel_y = 0;
     private final float GRAV = 0.5f;
     private int GroundLevel = 350;
@@ -99,6 +100,15 @@ public class Level1 extends JPanel {
     ActionListener hitCheckListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).deadAnimating) {
+                Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);/////////not good structure- should refactor
+                if (tickCount == 220) {
+                    SwingUtilities.invokeLater(() -> displayList.AddDanger(squirrel.generateBall(-5)));
+                    tickCount = 0;
+                } else {
+                    tickCount++;
+                }
+            }
             for (Enemy enemy : displayList.getEnemies()) {
                 if (enemy.dead) {
                     SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
@@ -111,6 +121,15 @@ public class Level1 extends JPanel {
                         fluffball.stop();
                         SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                         SwingUtilities.invokeLater(enemy::entityHit);
+                    }
+                }
+            }
+            for (Danger danger : displayList.getDangers()) {
+                if (danger.getHitBox().intersects(displayList.cat.getHitBox()) && danger.Live) {
+                    SwingUtilities.invokeLater(displayList.cat::catHit);
+                    danger.Live = false;
+                    if (!displayList.cat.isAlive()) {
+                        
                     }
                 }
             }
