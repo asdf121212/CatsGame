@@ -29,7 +29,6 @@ public class Main {
         frame.setVisible(true);
         frame.setResizable(false);
 
-
         ///////////////////////////////////////
         Level1 level = new Level1();
         frame.add(level, BorderLayout.CENTER);

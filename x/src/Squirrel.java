@@ -47,6 +47,8 @@ public class Squirrel extends Enemy {
         image = squirrelImage;
         x = 100;
         y = 100;
+        width = 150;
+        height = 120;
 
         loadSound();
 
@@ -114,7 +116,7 @@ public class Squirrel extends Enemy {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, x, y, 150, 120, null);
+        g2.drawImage(image, x, y, width, height, null);
         for (Ball ball : BallList) {
             ball.paintComponent(g2);
         }

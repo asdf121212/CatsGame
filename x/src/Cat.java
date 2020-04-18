@@ -8,6 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class Cat extends Entity {
@@ -17,21 +18,17 @@ public class Cat extends Entity {
     private BufferedImage catImage;
     private int frameCount = 0;
     private int previousDx = 0;
-    private int width = 75;
-    private int height = 50;
+    private BufferedImage[] popAnimationImages;
+    int popIndex = 0;
 
-    private BufferedImage still;
-    private BufferedImage stillBack;
-    private BufferedImage walk1;
-    private BufferedImage walk1Back;
-    private BufferedImage walk2;
-    private BufferedImage walk2Back;
-    private BufferedImage pop1;
-    private BufferedImage pop2;
-    private BufferedImage pop3;
-    private BufferedImage pop4;
-    private BufferedImage pop5;
-    private BufferedImage pop6;
+    private final BufferedImage still;
+    private final BufferedImage stillBack;
+    private final BufferedImage walk1;
+    private final BufferedImage walk1Back;
+    private final BufferedImage walk2;
+    private final BufferedImage walk2Back;
+    private BufferedImage[] popImages;
+    private BufferedImage[] popBackImages;
 
     private RoundRectangle2D healthBarOutline;
     private Rectangle2D healthBar;
@@ -40,19 +37,29 @@ public class Cat extends Entity {
     public Cat() {
         x = 150;
         y = 350;
+        width = 75;
+        height = 50;
 
+        popImages = new BufferedImage[6];
+        popBackImages = new BufferedImage[6];
         still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
         walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
         walk2 = getBufferedImage("sprites/zinzanWalk2.png", 100, 50);
         stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
         walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
         walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);
-        pop1 = getBufferedImage("sprites/zinzanPop1.png", 100, 50);
-        pop2 = getBufferedImage("sprites/zinzanPop2.png", 100, 50);
-        pop3 = getBufferedImage("sprites/zinzanPop3.png", 100, 50);
-        pop4 = getBufferedImage("sprites/zinzanPop4.png", 100, 50);
-        pop5 = getBufferedImage("sprites/zinzanPop5.png", 100, 50);
-        pop6 = getBufferedImage("sprites/zinzanPop6.png", 100, 50);
+        popImages[0] = getBufferedImage("sprites/zinzanPop1.png", 100, 50);
+        popImages[1] = getBufferedImage("sprites/zinzanPop2.png", 100, 50);
+        popImages[2] = getBufferedImage("sprites/zinzanPop3.png", 100, 50);
+        popImages[3] = getBufferedImage("sprites/zinzanPop4.png", 100, 50);
+        popImages[4] = getBufferedImage("sprites/zinzanPop5.png", 100, 50);
+        popImages[5] = getBufferedImage("sprites/zinzanPop6.png", 100, 50);
+        popBackImages[0] = getBufferedImage("sprites/zinzanPop1Back.png", 100, 50);
+        popBackImages[1] = getBufferedImage("sprites/zinzanPop2Back.png", 100, 50);
+        popBackImages[2] = getBufferedImage("sprites/zinzanPop3Back.png", 100, 50);
+        popBackImages[3] = getBufferedImage("sprites/zinzanPop4Back.png", 100, 50);
+        popBackImages[4] = getBufferedImage("sprites/zinzanPop5Back.png", 100, 50);
+        popBackImages[5] = getBufferedImage("sprites/zinzanPop6Back.png", 100, 50);
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();
@@ -75,14 +82,21 @@ public class Cat extends Entity {
             dieTimer = new Timer(30, die);
             dieTimer.setInitialDelay(30);
 
-            catImage = pop1;////set forwards or backwards;
-
+            if ((state | 110) == 111) {
+                popAnimationImages = popBackImages;
+            } else {
+                popAnimationImages = popImages;
+            }
+            catImage = popAnimationImages[0];////set forwards or backwards;
             dieTimer.start();
-
         } else {
             double width = healthBar.getWidth() - 40;
             healthBar.setRect(902, 52, width, 16);
         }
+    }
+
+    public void die() {
+
     }
 
     public Rectangle2D getHitBox() {
@@ -143,20 +157,13 @@ public class Cat extends Entity {
     private ActionListener die = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            x -= 11;
-            y -= 18;
-            width += 22;
-            height += 22;
-            if (catImage.equals(pop1)) {
-                catImage = pop2;
-            } else if (catImage.equals(pop2)) {
-                catImage = pop3;
-            } else if (catImage.equals(pop3)) {
-                catImage = pop4;
-            } else if (catImage.equals(pop4)) {
-                catImage = pop5;
-            } else if (catImage.equals(pop5)) {
-                catImage = pop6;
+            if (popIndex < 5) {
+                x -= 11;
+                y -= 18;
+                width += 22;
+                height += 22;
+                popIndex++;
+                catImage = popAnimationImages[popIndex];
             } else {
                 dieTimer.stop();
                 Dying = false;

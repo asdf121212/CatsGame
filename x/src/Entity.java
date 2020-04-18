@@ -12,7 +12,8 @@ public abstract class Entity {
 
     protected int x;
     protected int y;
-    //public boolean stillMoving = true;
+    protected int width;
+    protected int height;
     public boolean Dead = false;
     public boolean Dying = false;
 
