@@ -23,7 +23,7 @@ public class DisplayList {
     }
     public void clearDynamics() {
         fluffballs.clear();
-        enemies.clear();
+        //enemies.clear();
         dangers.clear();
     }
     public void AddBackgroundShape(Shape shape) {

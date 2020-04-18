@@ -4,6 +4,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.Clip;
 
 public abstract class Entity {
 
@@ -14,6 +17,10 @@ public abstract class Entity {
     public boolean Dying = false;
 
     public abstract void paintComponent(Graphics g);
+
+    protected static Clip getSoundClip(String resourceName) {
+        return null;
+    }
 
     protected static BufferedImage getBufferedImage(String filePath, int scaledWidth, int scaledHeight) {
         Image img = null;

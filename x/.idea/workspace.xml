@@ -7,16 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Explosion.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/DisplayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/DisplayList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/META-INF/x.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ballHit1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/sprites/ballHit1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DisplayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DisplayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Squirrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Squirrel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprites/ballHit1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/ballHit1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +75,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -107,50 +120,54 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="424" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.875@0.0.1440.875" timestamp="1586819737342" />
-    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1586892669660">
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1587228145804">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser/0.0.1440.875@0.0.1440.875" timestamp="1586892669660" />
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser/0.0.1440.875@0.0.1440.875" timestamp="1587228145804" />
     <state x="457" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586898828225">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="457" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.875@0.0.1440.875" timestamp="1586898828225" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1586907950213">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1587230252079">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586907950213" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1586907950212">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1587230252079" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1587230252079">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1586907950212" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1586907950211">
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1587230252079" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1587230252078">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1586907950211" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1586907950212">
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1587230252078" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1587230252079">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1586907950212" />
-    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1586822789893">
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1587230252079" />
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1586911072023">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586822789893" />
-    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1586822789892">
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.875@0.0.1440.875" timestamp="1586911072023" />
+    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1586911072023">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.875@0.0.1440.875" timestamp="1586822789892" />
-    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1586822789891">
+    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.875@0.0.1440.875" timestamp="1586911072023" />
+    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1586911072022">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.875@0.0.1440.875" timestamp="1586822789891" />
-    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1586822789892">
+    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.875@0.0.1440.875" timestamp="1586911072022" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1586911072023">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.875@0.0.1440.875" timestamp="1586822789892" />
-    <state x="208" y="19" key="SettingsEditor" timestamp="1586906579970">
+    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.875@0.0.1440.875" timestamp="1586911072023" />
+    <state x="208" y="19" key="SettingsEditor" timestamp="1586912079639">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state x="208" y="19" key="SettingsEditor/0.0.1440.875@0.0.1440.875" timestamp="1586906579970" />
+    <state x="208" y="19" key="SettingsEditor/0.0.1440.875@0.0.1440.875" timestamp="1586912079639" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1587225962330">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1440.875@0.0.1440.875" timestamp="1587225962330" />
     <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1586891604054">
       <screen x="0" y="0" width="1440" height="875" />
     </state>

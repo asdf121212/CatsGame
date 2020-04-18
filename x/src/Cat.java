@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -15,6 +17,8 @@ public class Cat extends Entity {
     private BufferedImage catImage;
     private int frameCount = 0;
     private int previousDx = 0;
+    private int width = 75;
+    private int height = 50;
 
     private BufferedImage still;
     private BufferedImage stillBack;
@@ -22,9 +26,16 @@ public class Cat extends Entity {
     private BufferedImage walk1Back;
     private BufferedImage walk2;
     private BufferedImage walk2Back;
+    private BufferedImage pop1;
+    private BufferedImage pop2;
+    private BufferedImage pop3;
+    private BufferedImage pop4;
+    private BufferedImage pop5;
+    private BufferedImage pop6;
 
     private RoundRectangle2D healthBarOutline;
     private Rectangle2D healthBar;
+    private Timer dieTimer;
 
     public Cat() {
         x = 150;
@@ -36,6 +47,12 @@ public class Cat extends Entity {
         stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
         walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
         walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);
+        pop1 = getBufferedImage("sprites/zinzanPop1.png", 100, 50);
+        pop2 = getBufferedImage("sprites/zinzanPop2.png", 100, 50);
+        pop3 = getBufferedImage("sprites/zinzanPop3.png", 100, 50);
+        pop4 = getBufferedImage("sprites/zinzanPop4.png", 100, 50);
+        pop5 = getBufferedImage("sprites/zinzanPop5.png", 100, 50);
+        pop6 = getBufferedImage("sprites/zinzanPop6.png", 100, 50);
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();
@@ -54,6 +71,14 @@ public class Cat extends Entity {
         if (Health <= 0) {
             Dying = true;///////
             healthBar.setRect(902, 52, 0, 16);
+
+            dieTimer = new Timer(30, die);
+            dieTimer.setInitialDelay(30);
+
+            catImage = pop1;////set forwards or backwards;
+
+            dieTimer.start();
+
         } else {
             double width = healthBar.getWidth() - 40;
             healthBar.setRect(902, 52, width, 16);
@@ -103,9 +128,10 @@ public class Cat extends Entity {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        setSprite();
-        g2.drawImage(catImage, x, y, 75, 50, null);
-
+        if (!Dying && !Dead) {
+            setSprite();
+        }
+        g2.drawImage(catImage, x, y, width, height, null);
 
         g2.setColor(Color.GREEN);
         g2.fill(healthBar);
@@ -114,6 +140,30 @@ public class Cat extends Entity {
         g2.draw(healthBarOutline);
     }
 
+    private ActionListener die = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            x -= 11;
+            y -= 18;
+            width += 22;
+            height += 22;
+            if (catImage.equals(pop1)) {
+                catImage = pop2;
+            } else if (catImage.equals(pop2)) {
+                catImage = pop3;
+            } else if (catImage.equals(pop3)) {
+                catImage = pop4;
+            } else if (catImage.equals(pop4)) {
+                catImage = pop5;
+            } else if (catImage.equals(pop5)) {
+                catImage = pop6;
+            } else {
+                dieTimer.stop();
+                Dying = false;
+                Dead = true;
+            }
+        }
+    };
 
     private void setSprite() {
 

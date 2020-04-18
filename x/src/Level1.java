@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 public class Level1 extends JPanel {
 
     private DisplayList displayList;
-
+    private KeyAdapter keyAdapter;
     private Timer leftTimer;
     private Timer rightTimer;
     private Timer jumpTimer;
@@ -22,6 +22,7 @@ public class Level1 extends JPanel {
     private int GroundLevel = 350;
     private Shape ground;
     private boolean spaceReleased = true;
+
 
     public Level1() {
 
@@ -43,7 +44,8 @@ public class Level1 extends JPanel {
         repaintTimer = new Timer(5, repaintListener);
         repaintTimer.start();
         hitCheckTimer.start();
-        addKeyListener(new KeyAdapter() {
+        //addKeyListener(new KeyAdapter() {
+        keyAdapter = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
 
@@ -92,9 +94,10 @@ public class Level1 extends JPanel {
                     spaceReleased = true;
                 }
             }
-        });
+        };
         Fluffball f = displayList.cat.generateFluffball();
         f = null;
+        addKeyListener(keyAdapter);
     }
 
     ActionListener hitCheckListener = new ActionListener() {
@@ -136,14 +139,29 @@ public class Level1 extends JPanel {
                     }
                 }
             }
-            if (displayList.cat.Dying) {
+            //if (displayList.cat.Dying) {
                 ///game over
                 //hitCheckTimer.stop();
                 //displayList.clearDynamics();
 
+            //} else if (displayList.cat.Dead) {
+            if (displayList.cat.Dead) {
+                cat_die();
             }
         }
     };
+
+    private void cat_die() {
+        removeKeyListener(keyAdapter);
+        hitCheckTimer.stop();
+        displayList.cat = null;
+        for (Danger danger : displayList.getDangers()) {
+            if (danger.Dead || danger.Dying) {
+                SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
+            }
+        }
+    }
+
     ActionListener repaintListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -203,7 +221,9 @@ public class Level1 extends JPanel {
                 fluffball.paintComponent(g2);
             }
         }
-        displayList.cat.paintComponent(g2);
+        if (displayList.cat != null) {
+            displayList.cat.paintComponent(g2);
+        }
         for (Entity danger : displayList.getDangers()) {
             danger.paintComponent(g2);
         }

@@ -8,6 +8,7 @@ public class Main {
 
     private javax.swing.JFrame frame;
     private JPanel currentPanel;
+    private int extraLives = 4;
 
     public Main() {
         Initialize();
@@ -15,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Main());
-
     }
 
 
