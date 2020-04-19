@@ -21,14 +21,28 @@ public class Cat extends Entity {
     private BufferedImage[] popAnimationImages;
     int popIndex = 0;
 
-    private final BufferedImage still;
-    private final BufferedImage stillBack;
-    private final BufferedImage walk1;
-    private final BufferedImage walk1Back;
-    private final BufferedImage walk2;
-    private final BufferedImage walk2Back;
-    private BufferedImage[] popImages;
-    private BufferedImage[] popBackImages;
+    private static final BufferedImage still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
+    private static final BufferedImage walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
+    private static final BufferedImage walk2 = getBufferedImage("sprites/zinzanWalk2.png", 100, 50);
+    private static final BufferedImage stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
+    private static final BufferedImage walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
+    private static final BufferedImage walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);;
+    private static BufferedImage[] popImages = new BufferedImage[] {
+        getBufferedImage("sprites/zinzanPop1.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop2.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop3.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop4.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop5.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop6.png", 100, 50)
+    };
+    private static BufferedImage[] popBackImages = new BufferedImage[] {
+        getBufferedImage("sprites/zinzanPop1Back.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop2Back.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop3Back.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop4Back.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop5Back.png", 100, 50),
+        getBufferedImage("sprites/zinzanPop6Back.png", 100, 50)
+    };
 
     private RoundRectangle2D healthBarOutline;
     private Rectangle2D healthBar;
@@ -40,26 +54,7 @@ public class Cat extends Entity {
         width = 75;
         height = 50;
 
-        popImages = new BufferedImage[6];
-        popBackImages = new BufferedImage[6];
-        still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
-        walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
-        walk2 = getBufferedImage("sprites/zinzanWalk2.png", 100, 50);
-        stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
-        walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
-        walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);
-        popImages[0] = getBufferedImage("sprites/zinzanPop1.png", 100, 50);
-        popImages[1] = getBufferedImage("sprites/zinzanPop2.png", 100, 50);
-        popImages[2] = getBufferedImage("sprites/zinzanPop3.png", 100, 50);
-        popImages[3] = getBufferedImage("sprites/zinzanPop4.png", 100, 50);
-        popImages[4] = getBufferedImage("sprites/zinzanPop5.png", 100, 50);
-        popImages[5] = getBufferedImage("sprites/zinzanPop6.png", 100, 50);
-        popBackImages[0] = getBufferedImage("sprites/zinzanPop1Back.png", 100, 50);
-        popBackImages[1] = getBufferedImage("sprites/zinzanPop2Back.png", 100, 50);
-        popBackImages[2] = getBufferedImage("sprites/zinzanPop3Back.png", 100, 50);
-        popBackImages[3] = getBufferedImage("sprites/zinzanPop4Back.png", 100, 50);
-        popBackImages[4] = getBufferedImage("sprites/zinzanPop5Back.png", 100, 50);
-        popBackImages[5] = getBufferedImage("sprites/zinzanPop6Back.png", 100, 50);
+
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();

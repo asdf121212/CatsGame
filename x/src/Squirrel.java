@@ -12,45 +12,39 @@ import javax.sound.sampled.Clip;
 
 public class Squirrel extends Enemy {
 
-    private BufferedImage squirrelImage;
-    private BufferedImage squirrelFlashImage;
-    private BufferedImage squirrelExp1;
-    private BufferedImage squirrelExp2;
-    private BufferedImage squirrelExp3;
+    private static BufferedImage squirrelImage = getBufferedImage("sprites/squirrel.png", 100, 100);
+    private static BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrelFlash.png", 100, 100);
+    private static BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrelExp1.png", 100, 100);
+    private static BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrelExp2.png", 100, 100);
+    private static BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrelExp3.png", 100, 100);
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    private Clip clip;
+    private static Clip clip = loadSound();
 
     private ArrayList<Ball> BallList;
 
-    private void loadSound() {
+    private static Clip loadSound() {
         try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(this.getClass().getResource("SoundFiles/Explosion.wav"));
-            clip = AudioSystem.getClip();
-            clip.open(stream);
+            AudioInputStream stream = AudioSystem.getAudioInputStream(Squirrel.class.getResource("SoundFiles/Explosion.wav"));
+            Clip soundClip = AudioSystem.getClip();
+            soundClip.open(stream);
+            return soundClip;
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
+            return null;
         }
     }
 
     public Squirrel() {
         BallList = new ArrayList<>();
-        squirrelImage = getBufferedImage("sprites/squirrel.png", 100, 100);
-        squirrelFlashImage = getBufferedImage("sprites/squirrelFlash.png", 100, 100);
-
-        squirrelExp1 = getBufferedImage("sprites/squirrelExp1.png", 100, 100);
-        squirrelExp2 = getBufferedImage("sprites/squirrelExp2.png", 100, 100);
-        squirrelExp3 = getBufferedImage("sprites/squirrelExp3.png", 100, 100);
 
         image = squirrelImage;
         x = 100;
         y = 100;
         width = 150;
         height = 120;
-
-        loadSound();
 
     }
 

@@ -10,13 +10,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Cat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Squirrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Squirrel.java" afterDir="false" />
     </list>
@@ -42,11 +45,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>jumpaction</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -117,22 +115,22 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="457" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.875@0.0.1440.875" timestamp="1586898828225" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1587253226214">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1587311871369">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1587253226214" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1587253226213">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1587311871369" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1587311871368">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1587253226213" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1587253226212">
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1587311871368" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1587311871368">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1587253226212" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1587253226213">
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1587311871368" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1587311871369">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1587253226213" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1587311871369" />
     <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1586911072023">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
