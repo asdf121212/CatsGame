@@ -20,7 +20,6 @@ public class Squirrel extends Enemy {
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    //private static Clip clip = loadSound("SoundFiles/Explosion.wav");
     private static AutoResetSound clip = new AutoResetSound("SoundFiles/Explosion.wav");
 
     private ArrayList<Ball> BallList;
@@ -72,6 +71,7 @@ public class Squirrel extends Enemy {
     }
 
     public Ball generateBall(int xVelocity) {
+
         return new Ball(x - 20, y + 50, xVelocity);
     }
 

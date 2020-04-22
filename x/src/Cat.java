@@ -23,7 +23,7 @@ public class Cat extends Entity {
     int popIndex = 0;
 
     //private static final Clip popSound = loadSound("SoundFiles/Explosion.wav");
-    private static AutoResetSound popSound = new AutoResetSound("SoundFiles/Explosion.wav");
+    private static AutoResetSound popSound = new AutoResetSound("SoundFiles/pop.wav");
 
     private static final BufferedImage still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
     private static final BufferedImage walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
@@ -76,17 +76,17 @@ public class Cat extends Entity {
     public void catHit() {
         Health -= 20;
 
-        try {
+        if (Health <= 0) {
+
+            try {
 //            if (popSound.isRunning()) {
 //            }
-            //popSound.start();
-            popSound.Start();
-        }
-        catch (Exception ex) {
-            System.out.println("error");
-        }
-
-        if (Health <= 0) {
+                //popSound.start();
+                popSound.Start();
+            }
+            catch (Exception ex) {
+                System.out.println("pop sound error");
+            }
 
             Dying = true;///////
             healthBar.setRect(902, 52, 0, 16);

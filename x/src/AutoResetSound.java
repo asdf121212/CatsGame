@@ -53,8 +53,6 @@ public class AutoResetSound {
         public void actionPerformed(ActionEvent e) {
             if (!clip.isRunning()) {
                 try {
-                    //clip.stop();
-                    //stream.reset();
                     clip.setFramePosition(0);
                 }
                 catch (Exception ex) {

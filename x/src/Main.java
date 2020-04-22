@@ -98,12 +98,7 @@ public class Main {
                     }
                 }
             }
-            //if (displayList.cat.Dying) {
-            ///game over
-            //hitCheckTimer.stop();
-            //displayList.clearDynamics();
 
-            //} else if (displayList.cat.Dead) {
             if (displayList.cat.Dead) {
                 cat_die();
             }
