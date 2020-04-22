@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,13 +22,16 @@ public class Cat extends Entity {
     private BufferedImage[] popAnimationImages;
     int popIndex = 0;
 
+    //private static final Clip popSound = loadSound("SoundFiles/Explosion.wav");
+    private static AutoResetSound popSound = new AutoResetSound("SoundFiles/Explosion.wav");
+
     private static final BufferedImage still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
     private static final BufferedImage walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
     private static final BufferedImage walk2 = getBufferedImage("sprites/zinzanWalk2.png", 100, 50);
     private static final BufferedImage stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
     private static final BufferedImage walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
     private static final BufferedImage walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);;
-    private static BufferedImage[] popImages = new BufferedImage[] {
+    private static final BufferedImage[] popImages = new BufferedImage[] {
         getBufferedImage("sprites/zinzanPop1.png", 100, 50),
         getBufferedImage("sprites/zinzanPop2.png", 100, 50),
         getBufferedImage("sprites/zinzanPop3.png", 100, 50),
@@ -35,7 +39,7 @@ public class Cat extends Entity {
         getBufferedImage("sprites/zinzanPop5.png", 100, 50),
         getBufferedImage("sprites/zinzanPop6.png", 100, 50)
     };
-    private static BufferedImage[] popBackImages = new BufferedImage[] {
+    private static final BufferedImage[] popBackImages = new BufferedImage[] {
         getBufferedImage("sprites/zinzanPop1Back.png", 100, 50),
         getBufferedImage("sprites/zinzanPop2Back.png", 100, 50),
         getBufferedImage("sprites/zinzanPop3Back.png", 100, 50),
@@ -54,7 +58,6 @@ public class Cat extends Entity {
         width = 75;
         height = 50;
 
-
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();
@@ -68,9 +71,23 @@ public class Cat extends Entity {
 //        return Health > 0;
 //    }
 
+
+
     public void catHit() {
         Health -= 20;
+
+        try {
+//            if (popSound.isRunning()) {
+//            }
+            //popSound.start();
+            popSound.Start();
+        }
+        catch (Exception ex) {
+            System.out.println("error");
+        }
+
         if (Health <= 0) {
+
             Dying = true;///////
             healthBar.setRect(902, 52, 0, 16);
 
@@ -141,7 +158,7 @@ public class Cat extends Entity {
             setSprite();
         }
         g2.drawImage(catImage, x, y, width, height, null);
-
+        //move to level Paintcomponent. call super.paintComponent
         g2.setColor(Color.GREEN);
         g2.fill(healthBar);
         g2.setStroke(new BasicStroke(4));

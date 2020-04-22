@@ -1,18 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 
 public class Level1 extends Level {
 
-
-
     private Shape ground;
-
-
 
     public Level1() {
 
@@ -28,9 +21,20 @@ public class Level1 extends Level {
         squirrel.x = 1000;
         squirrel.y = 280;
         displayList.AddEnemy(squirrel);
-
         setFocusable(true);
 
+        zinzanLives = new ZinzanLife[] {
+                new ZinzanLife(10, 10),
+                new ZinzanLife(37, 10),
+                new ZinzanLife(64, 10),
+        };
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                requestFocus();/////////////////////////////
+            }
+        });
 
     }
 
@@ -42,6 +46,10 @@ public class Level1 extends Level {
 
         g2.setColor(Color.MAGENTA);
         g2.fill(ground);
+
+        for (int i = 0; i < numLives; i++) {
+            zinzanLives[i].paintComponent(g);
+        }
 
         for (Shape shape : displayList.getBackgroundShapes()) {
             g2.draw(shape);

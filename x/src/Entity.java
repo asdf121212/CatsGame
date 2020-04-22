@@ -7,6 +7,8 @@ import java.net.URL;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.DataLine;
 
 public abstract class Entity {
 
@@ -19,9 +21,22 @@ public abstract class Entity {
 
     public abstract void paintComponent(Graphics g);
 
-    protected static Clip getSoundClip(String resourceName) {
-        return null;
-    }
+//    protected static Clip loadSound(String path) {
+//        try {
+//            AudioInputStream stream = AudioSystem.getAudioInputStream(Entity.class.getResource(path));
+//            Clip soundClip = AudioSystem.getClip();
+//            soundClip.open(stream);
+//            return soundClip;
+////            AudioFormat format = stream.getFormat();
+////            DataLine.Info info = new DataLine.Info(Clip.class, format);
+////            Clip clip = (Clip) AudioSystem.getLine(info);
+////            return clip;
+//        }
+//        catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            return null;
+//        }
+//    }
 
     protected static BufferedImage getBufferedImage(String filePath, int scaledWidth, int scaledHeight) {
         Image img = null;

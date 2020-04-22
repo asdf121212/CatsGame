@@ -20,22 +20,11 @@ public class Squirrel extends Enemy {
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    private static Clip clip = loadSound();
+    //private static Clip clip = loadSound("SoundFiles/Explosion.wav");
+    private static AutoResetSound clip = new AutoResetSound("SoundFiles/Explosion.wav");
 
     private ArrayList<Ball> BallList;
 
-    private static Clip loadSound() {
-        try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(Squirrel.class.getResource("SoundFiles/Explosion.wav"));
-            Clip soundClip = AudioSystem.getClip();
-            soundClip.open(stream);
-            return soundClip;
-        }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return null;
-        }
-    }
 
     public Squirrel() {
         BallList = new ArrayList<>();
@@ -57,7 +46,8 @@ public class Squirrel extends Enemy {
         health -= 10;
         if (health <= 0) {
             try {
-               clip.start();
+               //clip.start();
+                clip.Start();
             }
             catch (Exception ex) {
 

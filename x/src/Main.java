@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.runtime.ECMAException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ public class Main {
 
     private javax.swing.JFrame frame;
     private Level currentLevel;
-    private int extraLives = 4;
+    private int extraLives = 3;
 
     private KeyAdapter keyAdapter;
     private Timer leftTimer;
@@ -131,10 +133,14 @@ public class Main {
             GameOver();
         } else {
             extraLives--;
-            //SwingUtilities.invokeLater(() -> InitializeLevel(0));///////////fix
-            Level1 level = new Level1();
-            //try {get new instance method
-            SwingUtilities.invokeLater(() -> InitializeLevel(level));///////////fix
+            try {
+                //Level1 level = new Level1();
+                Level level = currentLevel.getClass().newInstance();
+                SwingUtilities.invokeLater(() -> InitializeLevel(level));
+            }
+            catch (Exception ex) {
+                System.out.println("could not instantiate new level");
+            }
         }
     }
 
@@ -142,15 +148,8 @@ public class Main {
 
     }
 
-///////////////////fix constructor
     private void InitializeLevel(Level level) {
-        //try {
-            ////////Level sameLevel = new Level1();
-            //displayList = sameLevel.displayList;
-        //}
-        //catch (Exception ex) {
-            //couldn't load level
-        //}
+        level.setNumLives(extraLives);
         if (currentLevel != null) {
             frame.remove(currentLevel);
             currentLevel.removeKeyListener(keyAdapter);
