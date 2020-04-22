@@ -7,9 +7,9 @@ import java.awt.image.BufferedImage;
 
 public class Ball extends Danger {
 
-    private static BufferedImage ballImage = getBufferedImage("sprites/ball.png", 50, 50);
-    private static BufferedImage ballHit1 = getBufferedImage("sprites/ballHit1.png", 50, 50);
-    private static BufferedImage ballHit2 = getBufferedImage("sprites/ballHit2.png", 50, 50);
+    private static BufferedImage ballImage = getBufferedImage("sprites/ball/ball.png", 50, 50);
+    private static BufferedImage ballHit1 = getBufferedImage("sprites/ball/ballHit1.png", 50, 50);
+    private static BufferedImage ballHit2 = getBufferedImage("sprites/ball/ballHit2.png", 50, 50);
     private BufferedImage image;
     private Timer moveTimer;
     private Timer deathTimer;

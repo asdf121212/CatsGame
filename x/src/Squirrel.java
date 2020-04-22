@@ -12,11 +12,11 @@ import javax.sound.sampled.Clip;
 
 public class Squirrel extends Enemy {
 
-    private static BufferedImage squirrelImage = getBufferedImage("sprites/squirrel.png", 100, 100);
-    private static BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrelFlash.png", 100, 100);
-    private static BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrelExp1.png", 100, 100);
-    private static BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrelExp2.png", 100, 100);
-    private static BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrelExp3.png", 100, 100);
+    private static BufferedImage squirrelImage = getBufferedImage("sprites/squirrel/squirrel.png", 100, 100);
+    private static BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrel/squirrelFlash.png", 100, 100);
+    private static BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrel/squirrelExp1.png", 100, 100);
+    private static BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrel/squirrelExp2.png", 100, 100);
+    private static BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrel/squirrelExp3.png", 100, 100);
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;

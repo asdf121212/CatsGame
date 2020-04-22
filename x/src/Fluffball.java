@@ -7,9 +7,9 @@ import java.awt.image.BufferedImage;
 
 public class Fluffball extends Entity {
 
-    private static BufferedImage fluffballImage = getBufferedImage("sprites/fluffball.png", 20, 20);
-    private static BufferedImage fluffballImageA1 = getBufferedImage("sprites/fluffball-A1.png", 20, 20);
-    private static BufferedImage fluffballImageA2 = getBufferedImage("sprites/fluffball-A2.png", 20, 20);
+    private static BufferedImage fluffballImage = getBufferedImage("sprites/fluffball/fluffball.png", 20, 20);
+    private static BufferedImage fluffballImageA1 = getBufferedImage("sprites/fluffball/fluffball-A1.png", 20, 20);
+    private static BufferedImage fluffballImageA2 = getBufferedImage("sprites/fluffball/fluffball-A2.png", 20, 20);
     private BufferedImage image;
     private Timer moveTimer;
     private Timer disappearTimer;

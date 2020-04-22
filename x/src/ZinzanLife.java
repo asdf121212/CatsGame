@@ -3,7 +3,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class ZinzanLife extends Entity {
-    private static BufferedImage zinzan = getBufferedImage("sprites/zinzanStill.png", 50, 25);
+    private static BufferedImage zinzan = getBufferedImage("sprites/zinzan/zinzanStill.png", 50, 25);
 
     public ZinzanLife(int x, int y) {
         this.x = x;

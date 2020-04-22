@@ -25,27 +25,27 @@ public class Cat extends Entity {
     //private static final Clip popSound = loadSound("SoundFiles/Explosion.wav");
     private static AutoResetSound popSound = new AutoResetSound("SoundFiles/pop.wav");
 
-    private static final BufferedImage still = getBufferedImage("sprites/zinzanStill.png", 100, 50);
-    private static final BufferedImage walk1 = getBufferedImage("sprites/zinzanWalk1.png", 100, 50);
-    private static final BufferedImage walk2 = getBufferedImage("sprites/zinzanWalk2.png", 100, 50);
-    private static final BufferedImage stillBack = getBufferedImage("sprites/zinzanStillBack.png", 100, 50);
-    private static final BufferedImage walk1Back = getBufferedImage("sprites/zinzanWalk1Back.png", 100, 50);
-    private static final BufferedImage walk2Back = getBufferedImage("sprites/zinzanWalk2Back.png", 100, 50);;
+    private static final BufferedImage still = getBufferedImage("sprites/zinzan/zinzanStill.png", 100, 50);
+    private static final BufferedImage walk1 = getBufferedImage("sprites/zinzan/zinzanWalk1.png", 100, 50);
+    private static final BufferedImage walk2 = getBufferedImage("sprites/zinzan/zinzanWalk2.png", 100, 50);
+    private static final BufferedImage stillBack = getBufferedImage("sprites/zinzan/zinzanStillBack.png", 100, 50);
+    private static final BufferedImage walk1Back = getBufferedImage("sprites/zinzan/zinzanWalk1Back.png", 100, 50);
+    private static final BufferedImage walk2Back = getBufferedImage("sprites/zinzan/zinzanWalk2Back.png", 100, 50);;
     private static final BufferedImage[] popImages = new BufferedImage[] {
-        getBufferedImage("sprites/zinzanPop1.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop2.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop3.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop4.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop5.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop6.png", 100, 50)
+        getBufferedImage("sprites/zinzan/pop/zinzanPop1.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop2.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop3.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop4.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop5.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop6.png", 100, 50)
     };
     private static final BufferedImage[] popBackImages = new BufferedImage[] {
-        getBufferedImage("sprites/zinzanPop1Back.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop2Back.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop3Back.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop4Back.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop5Back.png", 100, 50),
-        getBufferedImage("sprites/zinzanPop6Back.png", 100, 50)
+        getBufferedImage("sprites/zinzan/pop/zinzanPop1Back.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop2Back.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop3Back.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop4Back.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop5Back.png", 100, 50),
+        getBufferedImage("sprites/zinzan/pop/zinzanPop6Back.png", 100, 50)
     };
 
     private RoundRectangle2D healthBarOutline;
