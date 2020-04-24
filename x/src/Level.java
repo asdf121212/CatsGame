@@ -10,12 +10,14 @@ public abstract class Level extends JPanel {
     protected DisplayList displayList;
     protected ZinzanLife[] zinzanLives;
     protected int numLives = 3;
-    public int getGroundLevel() {
-        return GroundLevel;
-    }
+    //public int getGroundLevel() {
+        //return GroundLevel;
+    //}
     public float getGRAV() {
         return GRAV;
     }
+    protected int levelWidth = 1200;
+    protected int levelHeight = 700;
 
 //    @Override
 //    protected void paintComponent(Graphics g) {
@@ -25,8 +27,9 @@ public abstract class Level extends JPanel {
         this.numLives = numLives;
     }
 
-    public int getGroundLevel(int xCoord) {
-        return 350;
-    }
+    protected abstract void mouseClick(int x, int y);
+
+    ///should be abstract
+    protected abstract int getGroundLevel(int xCoord, int yCoord);
 
 }

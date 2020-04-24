@@ -26,6 +26,10 @@ public class Ball extends Danger {
         moveTimer.start();
     }
 
+    public int getDamage() {
+        return 20;
+    }
+
     public Rectangle2D getHitBox() {
         return new Rectangle2D.Double(x + 9, y + 4, 20, 30);
     }

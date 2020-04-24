@@ -71,10 +71,12 @@ public class Cat extends Entity {
 //        return Health > 0;
 //    }
 
+    public void catHit(int healthHit) {
+        Health -= healthHit;
 
-
-    public void catHit() {
-        Health -= 20;
+        if (Dying) {
+            return;
+        }
 
         if (Health <= 0) {
 
@@ -107,9 +109,6 @@ public class Cat extends Entity {
         }
     }
 
-    public void die() {
-
-    }
 
     public Rectangle2D getHitBox() {
         int xAdd = (state | 110) == 111 ? 4 : 15;

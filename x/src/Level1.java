@@ -11,7 +11,7 @@ public class Level1 extends Level {
 
         GroundLevel = 350;
 
-        setPreferredSize(new Dimension(1200, 700));
+        setPreferredSize(new Dimension(levelWidth, levelHeight));
 
         displayList = new DisplayList();
         setBackground(Color.BLACK);
@@ -29,15 +29,15 @@ public class Level1 extends Level {
                 new ZinzanLife(64, 10),
         };
 
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                requestFocus();/////////////////////////////
-            }
-        });
-
     }
 
+    public int getGroundLevel(int xCoord, int yCoord) {
+        return 350;
+    }
+
+    public void mouseClick(int x, int y) {
+        return;
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

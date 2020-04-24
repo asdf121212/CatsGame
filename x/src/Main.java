@@ -1,11 +1,10 @@
+import javafx.application.Application;
 import jdk.nashorn.internal.runtime.ECMAException;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 
 
@@ -50,18 +49,13 @@ public class Main {
 
         currentLevel = new Level1();
         InitializeLevel(currentLevel);
-        //frame.add(currentLevel, BorderLayout.CENTER);
-        //currentLevel.setVisible(true);
-        //frame.pack();
-        //frame.repaint();
-        //frame.revalidate();
-
-
     }
 
     ActionListener hitCheckListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            ////make the squirrel shoot balls
             if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
                 Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);/////////not good structure- should refactor
                 if (tickCount == 220) {
@@ -71,6 +65,8 @@ public class Main {
                     tickCount++;
                 }
             }
+
+            ////check if fluffballs hit enemies, remove dead enemies--- kill cat if cat touches enemy
             for (Enemy enemy : displayList.getEnemies()) {
                 if (enemy.Dead) {
                     SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
@@ -85,20 +81,37 @@ public class Main {
                         SwingUtilities.invokeLater(enemy::entityHit);
                     }
                 }
-            }
-            for (Danger danger : displayList.getDangers()) {
-                if (danger.Dead) {
-                    SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
-                } else if (danger.Dying) {
-
-                } else {
-                    if (danger.getHitBox().intersects(displayList.cat.getHitBox())) {
-                        SwingUtilities.invokeLater(displayList.cat::catHit);
-                        danger.hitTarget();
+                if (enemy.getHitBox().intersects(displayList.cat.getHitBox())) {
+                    if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
+                        SwingUtilities.invokeLater(() -> displayList.cat.catHit(200));///threw error
                     }
                 }
             }
 
+            ////check if projectiles hit cat, remove dead dangers
+            for (Danger danger : displayList.getDangers()) {
+                if (danger.Dead) {
+                    SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
+                } else if (danger.Dying) {
+                    continue;
+                } else {
+                    if (danger.getHitBox().intersects(displayList.cat.getHitBox())) {
+                        SwingUtilities.invokeLater(() -> displayList.cat.catHit(danger.getDamage()));//add
+                        danger.hitTarget();
+                    }
+                }
+            }
+            if (displayList.cat.Dying) {
+                if (rightTimer != null && rightTimer.isRunning()) {
+                    rightTimer.stop();
+                }
+                if (leftTimer != null && leftTimer.isRunning()) {
+                    leftTimer.stop();
+                }
+                if (jumpTimer != null && jumpTimer.isRunning()) {
+                    jumpTimer.stop();
+                }
+            }
             if (displayList.cat.Dead) {
                 cat_die();
             }
@@ -140,8 +153,44 @@ public class Main {
     }
 
     private void GameOver() {
+        AutoResetSound s = new AutoResetSound("SoundFiles/gameOver.wav");
+        if (currentLevel != null) {
+            frame.remove(currentLevel);
+            currentLevel.removeKeyListener(keyAdapter);
+        }
+        GameOverPanel gameOverPanel = new GameOverPanel();
+        frame.add(gameOverPanel);
+        frame.pack();
+        s.Start();
 
+        gameOverPanel.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (gameOverPanel.clickedQuit(e.getX(), e.getY())) {
+                    System.exit(0);
+                }else if (gameOverPanel.clickedRetry(e.getX(), e.getY())) {
+                    extraLives = 3;
+                    Level level = new Level1();
+                    frame.remove(gameOverPanel);
+                    InitializeLevel(level);
+                }
+            }
+        });
+        gameOverPanel.addMouseMotionListener(new MouseInputAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                gameOverPanel.mouseMove(e.getX(), e.getY());
+            }
+        });
     }
+
+    MouseAdapter mouseAdapter = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            currentLevel.requestFocus();
+            currentLevel.mouseClick(e.getX(), e.getY());
+        }
+    };
 
     private void InitializeLevel(Level level) {
         level.setNumLives(extraLives);
@@ -151,7 +200,7 @@ public class Main {
         }
         frame.add(level);
         currentLevel = level;
-
+        currentLevel.addMouseListener(mouseAdapter);
         displayList = currentLevel.displayList;
         hitCheckTimer = new Timer(5, hitCheckListener);
         hitCheckTimer.setInitialDelay(1);
@@ -248,7 +297,7 @@ public class Main {
         public void actionPerformed(ActionEvent e) {
             displayList.cat.IncrementXY(0, Math.round(vel_y));
             vel_y += currentLevel.getGRAV();
-            if (displayList.cat.GetY() >= currentLevel.GroundLevel) {
+            if (displayList.cat.GetY() >= currentLevel.getGroundLevel(displayList.cat.GetX(), displayList.cat.GetY())) {
                 displayList.cat.SetY(350);
                 displayList.cat.state = (byte)(displayList.cat.state & 011);
                 jumpTimer.stop();
