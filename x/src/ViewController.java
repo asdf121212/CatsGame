@@ -12,8 +12,8 @@ public class ViewController {
 
     private DisplayList displayList;
 
-    public ViewController(DisplayList displayList) {
-        this.displayList = displayList;
+    public ViewController() {
+        //this.displayList = displayList;
         InitializeFrame();
     }
 
@@ -43,6 +43,7 @@ public class ViewController {
             frame.remove(currentLevel);
         }
         currentLevel = newLevel;
+        displayList = newLevel.displayList;
         frame.add(newLevel);
         frame.pack();
     }

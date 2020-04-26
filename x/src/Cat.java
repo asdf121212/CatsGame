@@ -67,10 +67,6 @@ public class Cat extends Entity {
 
     }
 
-//    public boolean isAlive() {
-//        return Health > 0;
-//    }
-
     public void catHit(int healthHit) {
         Health -= healthHit;
 
@@ -81,9 +77,6 @@ public class Cat extends Entity {
         if (Health <= 0) {
 
             try {
-//            if (popSound.isRunning()) {
-//            }
-                //popSound.start();
                 popSound.Start();
             }
             catch (Exception ex) {

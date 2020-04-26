@@ -18,7 +18,7 @@ public class Level1 extends Level {
         displayList = new DisplayList();
         setBackground(Color.BLACK);
         ground = new Rectangle2D.Double(0, GroundLevel + 50, 1200, 300);
-        displayList.AddBackgroundShape(ground);
+        //displayList.AddBackgroundShape(ground);
         Squirrel squirrel = new Squirrel();
         squirrel.x = 1000;
         squirrel.y = 280;
@@ -33,6 +33,7 @@ public class Level1 extends Level {
 
     }
 
+    @Override
     public void update() {
         ////make the squirrel shoot balls
         if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
@@ -44,6 +45,12 @@ public class Level1 extends Level {
                 tickCount++;
             }
         }
+
+        // do check if reached end of level
+        if (displayList.cat.x > 1165) {
+            reachedNextLevel = true;
+        }
+
         super.update();
     }
 
@@ -55,12 +62,13 @@ public class Level1 extends Level {
         //return;
     //}
 
-    ///level is part of the "View" not the model
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
+        ///might have to make shape class for filling in shapes easily
         g2.setColor(Color.MAGENTA);
         g2.fill(ground);
 
@@ -69,28 +77,23 @@ public class Level1 extends Level {
             zinzanLives[i].paintComponent(g);
         }
 
-        for (Shape shape : displayList.getBackgroundShapes()) {
-            g2.draw(shape);
-        }
+        paintDisplayList(g2);
 
-        for (Entity enemy : displayList.getEnemies()) {
-            enemy.paintComponent(g2);
-        }
-
-        ///////this needs to be in level specific update.
-        for (Fluffball fluffball : displayList.getFluffballs()) {
-            if (fluffball.Dead) {
-                SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
-            } else {
-                fluffball.paintComponent(g2);
-            }
-        }
-        if (displayList.cat != null) {
-            displayList.cat.paintComponent(g2);
-        }
-        for (Entity danger : displayList.getDangers()) {
-            danger.paintComponent(g2);
-        }
+//        for (Shape shape : displayList.getBackgroundShapes()) {
+//            g2.draw(shape);
+//        }
+//        for (Entity enemy : displayList.getEnemies()) {
+//            enemy.paintComponent(g2);
+//        }
+//        for (Fluffball fluffball : displayList.getFluffballs()) {
+//            fluffball.paintComponent(g2);
+//        }
+//        if (displayList.cat != null) {
+//            displayList.cat.paintComponent(g2);
+//        }
+//        for (Entity danger : displayList.getDangers()) {
+//            danger.paintComponent(g2);
+//        }
 
     }
 

@@ -6,15 +6,16 @@ public class GameController {
 
     private Level currentLevel;
     private int extraLives = 3;
+    private int levelIndex = 0;
+    private Class[] levelClasses = new Class[] { Level1.class, Level2.class };
 
     private KeyAdapter keyAdapter;
     private Timer leftTimer;
     private Timer rightTimer;
     private Timer jumpTimer;
 
-    private Timer hitCheckTimer;
+    private Timer updateTimer;
 
-    private int tickCount = 180;
     private float vel_y = 0;
     private DisplayList displayList;
     private boolean spaceReleased = true;
@@ -23,18 +24,15 @@ public class GameController {
 
     public GameController() {
         currentLevel = new Level1();
+        viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
-        //InitializeLevel(currentLevel);
-        viewController = new ViewController(currentLevel.displayList);
-        viewController.StartRepaintTimer();
     }
 
-    ActionListener hitCheckListener = new ActionListener() {
+    ActionListener updateListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
             currentLevel.update();
-
             if (displayList.cat.Dying) {
                 if (rightTimer != null && rightTimer.isRunning()) {
                     rightTimer.stop();
@@ -45,29 +43,22 @@ public class GameController {
                 if (jumpTimer != null && jumpTimer.isRunning()) {
                     jumpTimer.stop();
                 }
-            }
-            if (displayList.cat.Dead) {
+            } else if (displayList.cat.Dead) {
                 cat_die();
+            } else if (currentLevel.hasReachedNextLevel()) {
+                advance_levels();
             }
         }
     };
 
     private void InitializeLevel(Level level) {
         level.setNumLives(extraLives);
-//        if (currentLevel != null) {
-//            frame.remove(currentLevel);
-//            currentLevel.removeKeyListener(keyAdapter);
-//        }
-//        frame.add(level);
         viewController.changeLevel(level);
         currentLevel = level;
         //currentLevel.addMouseListener(mouseAdapter);////////////////////////???????
         displayList = currentLevel.displayList;
-        hitCheckTimer = new Timer(5, hitCheckListener);
-        hitCheckTimer.setInitialDelay(1);
-        //repaintTimer = new Timer(5, repaintListener);
-        //repaintTimer.start();
-        //hitCheckTimer.start();
+        updateTimer = new Timer(5, updateListener);
+        updateTimer.setInitialDelay(1);
         keyAdapter = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -122,12 +113,25 @@ public class GameController {
         f = null;
         currentLevel.addKeyListener(keyAdapter);
         currentLevel.requestFocus();
-        //frame.pack();
-        //frame.revalidate();
-        hitCheckTimer.start();
+        viewController.StartRepaintTimer();
+        updateTimer.start();
         viewController.revalidateFrame();
     }
 
+    private void advance_levels() {
+        if (levelIndex < levelClasses.length - 1) {
+            levelIndex++;
+            try {
+                Level nextLevel = (Level)levelClasses[levelIndex].newInstance();
+                InitializeLevel(nextLevel);
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            return;
+        }
+    }
 
     private void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);
@@ -140,7 +144,7 @@ public class GameController {
         if (jumpTimer != null && jumpTimer.isRunning()) {
             jumpTimer.stop();
         }
-        hitCheckTimer.stop();
+        updateTimer.stop();
         displayList.cat = null;
         for (Danger danger : displayList.getDangers()) {
             if (danger.Dead || danger.Dying) {
