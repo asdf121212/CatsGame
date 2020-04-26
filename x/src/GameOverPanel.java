@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class GameOverPanel extends JPanel {
+public class GameOverPanel extends Level {
 
     private BufferedImage quitDark;
     private BufferedImage quitLight;
@@ -39,6 +39,7 @@ public class GameOverPanel extends JPanel {
 
     }
 
+    ///change so it changes a boolean property and check from mouse controller
     public boolean clickedRetry(int x, int y) {
         Point2D point = new Point2D.Double(x, y);
         return retryBox.contains(point);
@@ -47,6 +48,7 @@ public class GameOverPanel extends JPanel {
         Point2D point = new Point2D.Double(x, y);
         return quitBox.contains(point);
     }
+
     public void mouseMove(int x, int y) {
         Point2D point = new Point2D.Double(x, y);
         if (mouseOverRetry) {
@@ -86,4 +88,13 @@ public class GameOverPanel extends JPanel {
 
     }
 
+//    @Override
+//    protected void mouseClick(int x, int y) {
+//
+//    }
+
+    @Override
+    protected int getGroundLevel(int xCoord, int yCoord) {
+        return 0;
+    }
 }

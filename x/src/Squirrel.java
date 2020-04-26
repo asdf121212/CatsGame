@@ -36,6 +36,7 @@ public class Squirrel extends Enemy {
 
     }
 
+
     public Rectangle2D getHitBox() {
         return new Rectangle2D.Double(x + 15, y + 56, 90, 50);
     }
@@ -101,6 +102,8 @@ public class Squirrel extends Enemy {
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.drawImage(image, x, y, width, height, null);
+
+        ////move these balls to the display list-- repaint in the level paintComponent
         for (Ball ball : BallList) {
             ball.paintComponent(g2);
         }

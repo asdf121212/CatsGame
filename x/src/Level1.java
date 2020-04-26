@@ -6,8 +6,10 @@ import java.awt.geom.Rectangle2D;
 public class Level1 extends Level {
 
     private Shape ground;
+    private int tickCount = 0;
 
     public Level1() {
+
 
         GroundLevel = 350;
 
@@ -31,14 +33,29 @@ public class Level1 extends Level {
 
     }
 
+    public void update() {
+        ////make the squirrel shoot balls
+        if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
+            Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);/////////not good structure- should refactor
+            if (tickCount == 220) {
+                SwingUtilities.invokeLater(() -> displayList.AddDanger(squirrel.generateBall(-5)));
+                tickCount = 0;
+            } else {
+                tickCount++;
+            }
+        }
+        super.update();
+    }
+
     public int getGroundLevel(int xCoord, int yCoord) {
         return 350;
     }
 
-    public void mouseClick(int x, int y) {
-        return;
-    }
+    //public void mouseClick(int x, int y) {
+        //return;
+    //}
 
+    ///level is part of the "View" not the model
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -46,6 +63,7 @@ public class Level1 extends Level {
 
         g2.setColor(Color.MAGENTA);
         g2.fill(ground);
+
 
         for (int i = 0; i < numLives; i++) {
             zinzanLives[i].paintComponent(g);
@@ -58,6 +76,8 @@ public class Level1 extends Level {
         for (Entity enemy : displayList.getEnemies()) {
             enemy.paintComponent(g2);
         }
+
+        ///////this needs to be in level specific update.
         for (Fluffball fluffball : displayList.getFluffballs()) {
             if (fluffball.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));

@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ViewController {
+
+    private javax.swing.JFrame frame;
+    private Level currentLevel;
+
+    private Timer repaintTimer;
+
+    private DisplayList displayList;
+
+    public ViewController(DisplayList displayList) {
+        this.displayList = displayList;
+        InitializeFrame();
+    }
+
+    private void InitializeFrame() {
+        frame = new JFrame();
+        Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(screenDimensions.width / 2 - 600, screenDimensions.height / 2 - 350);
+        frame.setSize(800, 500);
+        frame.setBackground(Color.BLACK);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    ActionListener repaintListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            currentLevel.repaint();
+        }
+    };
+
+    public void revalidateFrame() {
+        frame.revalidate();
+    }
+    public void changeLevel(Level newLevel) {
+        if (currentLevel != null) {
+            frame.remove(currentLevel);
+        }
+        currentLevel = newLevel;
+        frame.add(newLevel);
+        frame.pack();
+    }
+    public void StartRepaintTimer() {
+        repaintTimer = new Timer(5, repaintListener);
+        repaintTimer.start();
+    }
+
+}
