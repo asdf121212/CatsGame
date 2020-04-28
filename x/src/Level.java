@@ -2,26 +2,52 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 public abstract class Level extends JPanel {
 
-    protected final float GRAV = 0.5f;
+
+    //protected final float GRAV = 0.25f;
     protected int GroundLevel;
     protected DisplayList displayList;
     protected ZinzanLife[] zinzanLives;
-    protected int numLives = 3;
+    protected static int numLives = 3;
     protected boolean reachedNextLevel = false;
-    //public int getGroundLevel() {
-        //return GroundLevel;
-    //}
+
+    protected int levelWidth = 1200;
+    protected int levelHeight = 700;
+
+    protected RoundRectangle2D[] walls;
+    protected RoundRectangle2D[] floors;
+
     public boolean hasReachedNextLevel() {
         return reachedNextLevel;
     }
-    public float getGRAV() {
-        return GRAV;
+    //public float getGRAV() {
+        //return GRAV;
+    //}
+
+
+
+    public boolean canMoveX(int x, int y) {
+        for (RoundRectangle2D rect : walls) {
+            if (rect.contains(x, y)) {
+                return false;
+            }
+        }
+        return true;
     }
-    protected int levelWidth = 1200;
-    protected int levelHeight = 700;
+    public double nearestFloorY(double x, double y) {
+        for (RoundRectangle2D rect : floors) {
+            if (rect.contains(x, y)) {
+                return rect.getY();
+            }
+        }
+        return -1;
+    }
+
 
     public void update() {
         ////check if fluffballs hit enemies, remove dead enemies--- kill cat if cat touches enemy
@@ -86,19 +112,12 @@ public abstract class Level extends JPanel {
         }
     }
 
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//
-//    }
+
 
     public void setNumLives(int numLives) {
         this.numLives = numLives;
     }
 
-    //protected abstract void mouseClick(int x, int y);
-
-    ///should be abstract
     protected abstract int getGroundLevel(int xCoord, int yCoord);
 
 }

@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 public class Level1 extends Level {
 
-    private Shape ground;
+    private RoundRectangle2D ground;
     private int tickCount = 0;
 
     public Level1() {
@@ -17,7 +18,8 @@ public class Level1 extends Level {
 
         displayList = new DisplayList();
         setBackground(Color.BLACK);
-        ground = new Rectangle2D.Double(0, GroundLevel + 50, 1200, 300);
+        ground = new RoundRectangle2D.Double(0, GroundLevel + 50, 1250, 300, 0, 0);
+        displayList.cat.SetXY(150, 350);
         //displayList.AddBackgroundShape(ground);
         Squirrel squirrel = new Squirrel();
         squirrel.x = 1000;
@@ -29,6 +31,13 @@ public class Level1 extends Level {
                 new ZinzanLife(10, 10),
                 new ZinzanLife(37, 10),
                 new ZinzanLife(64, 10),
+        };
+
+        floors = new RoundRectangle2D[] {
+                ground
+        };
+        walls = new RoundRectangle2D[] {
+
         };
 
     }

@@ -13,11 +13,11 @@ public class Fluffball extends Entity {
     private BufferedImage image;
     private Timer moveTimer;
     private Timer disappearTimer;
-    private float velocityX;
+    private double velocityX;
     private int negMultipler;
-    private float decelX = -0.2f;
+    private double decelX = -0.2;
 
-    public Fluffball(int x, int y, int velocityX, int negMultipler) {
+    public Fluffball(int x, int y, double velocityX, int negMultipler) {
         this.x = x;
         this.y = y;
         this.velocityX = velocityX;
@@ -47,7 +47,7 @@ public class Fluffball extends Entity {
     private ActionListener moveAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            x = Math.round(x + (velocityX * negMultipler));
+            x = (int)Math.round(x + (velocityX * negMultipler));
             velocityX += decelX;
             if (velocityX <= 4) {
                 //moveTimer.stop();

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,7 @@ public class Cat extends Entity {
     private int Health = 100;
     private BufferedImage catImage;
     private int frameCount = 0;
-    private int previousDx = 0;
+    private double previousDx = 0;
     private BufferedImage[] popAnimationImages;
     int popIndex = 0;
 
@@ -61,10 +62,19 @@ public class Cat extends Entity {
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();
-        healthBarOutline.setRoundRect(900, 50, 200, 20, 10, 10);
-        healthBar = new Rectangle2D.Double(902, 52, 196, 16);
+        healthBarOutline.setRoundRect(100, 10, 200, 20, 10, 10);
+        healthBar = new Rectangle2D.Double(102, 12, 196, 16);
 
 
+    }
+
+    public void setHealth(int health) {
+        Health = health;
+        double width = (Health / 100.0)*200;
+        healthBar.setRect(102, 12, width, 16);
+    }
+    public int getHealth() {
+        return Health;
     }
 
     public void catHit(int healthHit) {
@@ -84,7 +94,7 @@ public class Cat extends Entity {
             }
 
             Dying = true;///////
-            healthBar.setRect(902, 52, 0, 16);
+            healthBar.setRect(102, 12, 0, 16);
 
             dieTimer = new Timer(30, die);
             dieTimer.setInitialDelay(30);
@@ -97,8 +107,9 @@ public class Cat extends Entity {
             catImage = popAnimationImages[0];////set forwards or backwards;
             dieTimer.start();
         } else {
-            double width = healthBar.getWidth() - 40;
-            healthBar.setRect(902, 52, width, 16);
+            double width = (Health / 100.0)*200;
+            //double width = healthBar.getWidth() - 40;
+            healthBar.setRect(102, 12, width, 16);
         }
     }
 
@@ -117,7 +128,9 @@ public class Cat extends Entity {
         }
     }
 
-    public void IncrementXY(int dx, int dy) {
+    //public void snapToNearestFloor(int)
+
+    public void tryIncrementXY(double dx, double dy) {
         x += dx;
         y += dy;
         if ((previousDx <= 0 && dx < 0) || (previousDx >= 0 && dx > 0)) {
@@ -127,6 +140,7 @@ public class Cat extends Entity {
         }
         previousDx = dx;
     }
+
     public void SetXY(int x, int y) {
         this.x = x;
         this.y = y;
@@ -156,6 +170,10 @@ public class Cat extends Entity {
         g2.setStroke(new BasicStroke(4));
         g2.setColor(Color.WHITE);
         g2.draw(healthBarOutline);
+
+//        Line2D check = new Line2D.Double();/////////// for development
+//        check.setLine(x, y, x, y + 48);
+//        g2.draw(check);
     }
 
     private ActionListener die = new ActionListener() {
@@ -180,21 +198,21 @@ public class Cat extends Entity {
 
         if (state == 010) {
             //walking
-            if (frameCount < 7) {
+            if (frameCount < 10) {
                 catImage = walk1;
             } else {
                 catImage = walk2;
-                if (frameCount == 14) {
+                if (frameCount >= 20) {
                     frameCount = 0;
                 }
             }
-        }else if (state == 011) {
+        } else if (state == 011) {
             //walking back
-            if (frameCount < 7) {
+            if (frameCount < 10) {
                 catImage = walk1Back;
             } else {
                 catImage = walk2Back;
-                if (frameCount == 14) {
+                if (frameCount >= 20) {
                     frameCount = 0;
                 }
             }

@@ -10,13 +10,16 @@ public class GameController {
     private Class[] levelClasses = new Class[] { Level1.class, Level2.class };
 
     private KeyAdapter keyAdapter;
-    private Timer leftTimer;
-    private Timer rightTimer;
-    private Timer jumpTimer;
+    //private Timer leftTimer;
+    //private Timer rightTimer;
+    //private Timer jumpTimer;
 
     private Timer updateTimer;
 
-    private float vel_y = 0;
+    private float cat_Vy = 0;
+    private double cat_Vx = 0;
+    private double Gravity = 0.20;
+
     private DisplayList displayList;
     private boolean spaceReleased = true;
 
@@ -24,6 +27,7 @@ public class GameController {
 
     public GameController() {
         currentLevel = new Level1();
+        //currentLevel = new Level2();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
     }
@@ -31,19 +35,52 @@ public class GameController {
     ActionListener updateListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            ///////////////////////////////////////////////////////////////////////////////////
+            double checkX;
+            if ((displayList.cat.state | 110) == 111) {
+                checkX = displayList.cat.GetX() + 60 + cat_Vx;
+            } else {
+                checkX = displayList.cat.GetX() + 25 + cat_Vx;
+            }
+            double floorY;
+            if (cat_Vy >= 0) {
+                 floorY = (currentLevel).nearestFloorY(checkX, displayList.cat.GetY() + 50 + cat_Vy);
+            } else {
+                floorY = -1;
+            }//////////should change how this works.
+            if (floorY == -1) {
+                displayList.cat.state = (byte)(displayList.cat.state | 100);
+                cat_Vy += Gravity;
+            } else {
+                if (cat_Vy > 0) {
+                    displayList.cat.SetY((int)Math.round(floorY) - 50);
+                }
+                cat_Vy = 0;
+                displayList.cat.state = (byte)(displayList.cat.state & 011);
+                if (Math.abs(cat_Vx) > 0) {
+                    displayList.cat.state = (byte)(displayList.cat.state | 010);
+                }
+            }
+            ///////////////////////////////////////////////////////////////////////////////////
+            if (!displayList.cat.Dying) {
+                displayList.cat.tryIncrementXY(cat_Vx, cat_Vy);
+            }
+
 
             currentLevel.update();
-            if (displayList.cat.Dying) {
-                if (rightTimer != null && rightTimer.isRunning()) {
-                    rightTimer.stop();
-                }
-                if (leftTimer != null && leftTimer.isRunning()) {
-                    leftTimer.stop();
-                }
-                if (jumpTimer != null && jumpTimer.isRunning()) {
-                    jumpTimer.stop();
-                }
-            } else if (displayList.cat.Dead) {
+
+            //if (displayList.cat.Dying) {
+//                if (rightTimer != null && rightTimer.isRunning()) {
+//                    rightTimer.stop();
+//                }
+//                if (leftTimer != null && leftTimer.isRunning()) {
+//                    leftTimer.stop();
+//                }
+//                if (jumpTimer != null && jumpTimer.isRunning()) {
+//                    jumpTimer.stop();
+//                }
+            //}
+            if (displayList.cat.Dead) {
                 cat_die();
             } else if (currentLevel.hasReachedNextLevel()) {
                 advance_levels();
@@ -53,9 +90,11 @@ public class GameController {
 
     private void InitializeLevel(Level level) {
         level.setNumLives(extraLives);
+        cat_Vx = 0;
+        cat_Vy = 0;
         viewController.changeLevel(level);
         currentLevel = level;
-        //currentLevel.addMouseListener(mouseAdapter);////////////////////////???????
+        //currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
         displayList = currentLevel.displayList;
         updateTimer = new Timer(5, updateListener);
         updateTimer.setInitialDelay(1);
@@ -64,28 +103,32 @@ public class GameController {
             public void keyPressed(KeyEvent e) {
 
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    if (jumpTimer == null || !jumpTimer.isRunning()) {
-                        jumpTimer = new Timer(10, jumpAction);
-                        jumpTimer.setInitialDelay(0);
-                        vel_y = -10;
+                    if (cat_Vy == 0) {
+                        cat_Vy = -6;
                         displayList.cat.state = (byte)(displayList.cat.state | 100);
-                        jumpTimer.start();
                     }
+                    //if (jumpTimer == null || !jumpTimer.isRunning()) {
+                        //jumpTimer = new Timer(10, fallAction);
+                        //jumpTimer.setInitialDelay(0);
+                        //jumpTimer.start();
+                    //}
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    if (leftTimer == null || !leftTimer.isRunning()) {
-                        leftTimer = new Timer(10, moveLeft);
-                        leftTimer.setInitialDelay(0);
+                    //if (leftTimer == null || !leftTimer.isRunning()) {
+                        //leftTimer = new Timer(10, moveLeft);
+                        cat_Vx = -2;//////
+                        //leftTimer.setInitialDelay(0);
                         displayList.cat.state = (byte)(displayList.cat.state | 011);
-                        leftTimer.start();
-                    }
+                        //leftTimer.start();
+                    //}
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    if (rightTimer == null || !rightTimer.isRunning()) {
-                        rightTimer = new Timer(10, moveRight);
-                        rightTimer.setInitialDelay(0);
+                    //if (rightTimer == null || !rightTimer.isRunning()) {
+                        //rightTimer = new Timer(10, moveRight);
+                        cat_Vx = 2;
+                        //rightTimer.setInitialDelay(0);
                         displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
-                        rightTimer.start();
-                    }
+                        //rightTimer.start();
+                    //}
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE && spaceReleased) {
                     spaceReleased = false;
                     displayList.AddFluffball(displayList.cat.generateFluffball());
@@ -95,15 +138,23 @@ public class GameController {
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    if (leftTimer != null) {
-                        leftTimer.stop();
+                    if (cat_Vx < 0) {
+                        cat_Vx = 0;
                         displayList.cat.state = (byte)(displayList.cat.state & 101);
                     }
+                    //if (leftTimer != null) {
+                        //leftTimer.stop();
+                        //displayList.cat.state = (byte)(displayList.cat.state & 101);
+                    //}
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    if (rightTimer != null) {
-                        rightTimer.stop();
+                    if (cat_Vx > 0) {
+                        cat_Vx = 0;
                         displayList.cat.state = (byte)(displayList.cat.state & 101);
                     }
+                    //if (rightTimer != null) {
+                        //rightTimer.stop();
+                        //displayList.cat.state = (byte)(displayList.cat.state & 101);
+                    //}
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     spaceReleased = true;
                 }
@@ -122,7 +173,11 @@ public class GameController {
         if (levelIndex < levelClasses.length - 1) {
             levelIndex++;
             try {
+                int health = displayList.cat.getHealth();
+                currentLevel.removeKeyListener(keyAdapter);
+                updateTimer.stop();
                 Level nextLevel = (Level)levelClasses[levelIndex].newInstance();
+                nextLevel.displayList.cat.setHealth(health);
                 InitializeLevel(nextLevel);
             }
             catch (Exception ex) {
@@ -135,15 +190,15 @@ public class GameController {
 
     private void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);
-        if (rightTimer != null && rightTimer.isRunning()) {
-            rightTimer.stop();
-        }
-        if (leftTimer != null && leftTimer.isRunning()) {
-            leftTimer.stop();
-        }
-        if (jumpTimer != null && jumpTimer.isRunning()) {
-            jumpTimer.stop();
-        }
+//        if (rightTimer != null && rightTimer.isRunning()) {
+//            rightTimer.stop();
+//        }
+//        if (leftTimer != null && leftTimer.isRunning()) {
+//            leftTimer.stop();
+//        }
+//        if (jumpTimer != null && jumpTimer.isRunning()) {
+//            jumpTimer.stop();
+//        }
         updateTimer.stop();
         displayList.cat = null;
         for (Danger danger : displayList.getDangers()) {
@@ -159,6 +214,7 @@ public class GameController {
             try {
                 //Level1 level = new Level1();
                 Level level = currentLevel.getClass().newInstance();
+                //extraLives = 3;
                 SwingUtilities.invokeLater(() -> InitializeLevel(level));
             }
             catch (Exception ex) {
@@ -201,45 +257,48 @@ public class GameController {
         });
     }
 
-//    MouseAdapter mouseAdapter = new MouseAdapter() {
+    //development method to see where to place stuff
+    MouseAdapter mouseAdapter = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println(String.format("x:  %d    y:  %d", e.getX(), e.getY()));
+        }
+    };
+
+//    private void startFalling(double initialYVelocity) {
+//
+//    }
+
+//    ActionListener moveRight = new ActionListener() {
 //        @Override
-//        public void mouseClicked(MouseEvent e) {
-//            currentLevel.requestFocus();
-//            currentLevel.mouseClick(e.getX(), e.getY());
+//        public void actionPerformed(ActionEvent e) {
+//            displayList.cat.tryIncrementXY(3, 0);
+//            if (displayList.cat.state >> 2 == 0) {
+//                displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
+//            }
 //        }
 //    };
-
-
-    ActionListener moveRight = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            displayList.cat.IncrementXY(3, 0);
-            if (displayList.cat.state >> 2 == 0) {
-                displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
-            }
-        }
-    };
-    ActionListener moveLeft = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            displayList.cat.IncrementXY(-3, 0);
-            if (displayList.cat.state >> 2 == 0) {
-                displayList.cat.state = (byte)(displayList.cat.state | 011);
-            }
-        }
-    };
-    ActionListener jumpAction = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            displayList.cat.IncrementXY(0, Math.round(vel_y));
-            vel_y += currentLevel.getGRAV();
-            if (displayList.cat.GetY() >= currentLevel.getGroundLevel(displayList.cat.GetX(), displayList.cat.GetY())) {
-                displayList.cat.SetY(350);
-                displayList.cat.state = (byte)(displayList.cat.state & 011);
-                jumpTimer.stop();
-            }
-        }
-    };
+//    ActionListener moveLeft = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            displayList.cat.tryIncrementXY(-3, 0);
+//            if (displayList.cat.state >> 2 == 0) {
+//                displayList.cat.state = (byte)(displayList.cat.state | 011);
+//            }
+//        }
+//    };
+//    ActionListener fallAction = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            displayList.cat.tryIncrementXY(0, Math.round(cat_Vy));
+//            cat_Vy += currentLevel.getGRAV();
+//            if (displayList.cat.GetY() >= currentLevel.getGroundLevel(displayList.cat.GetX(), displayList.cat.GetY())) {
+//                displayList.cat.SetY(currentLevel.getGroundLevel(displayList.cat.GetX(), displayList.cat.GetY()));
+//                displayList.cat.state = (byte)(displayList.cat.state & 011);
+//                jumpTimer.stop();
+//            }
+//        }
+//    };
 
 
 }
