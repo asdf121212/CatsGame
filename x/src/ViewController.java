@@ -48,6 +48,9 @@ public class ViewController {
         frame.pack();
     }
     public void StartRepaintTimer() {
+        if (repaintTimer != null) {
+            repaintTimer.stop();
+        }
         repaintTimer = new Timer(5, repaintListener);
         repaintTimer.start();
     }

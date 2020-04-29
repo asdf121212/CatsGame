@@ -30,23 +30,31 @@ public abstract class Level extends JPanel {
     //}
 
 
+    public RoundRectangle2D[] getWalls() {
+        //walls.clone() ?
+        return walls;
+    }
+    public RoundRectangle2D[] getFloors() {
+        return floors;
+    }
 
-    public boolean canMoveX(int x, int y) {
-        for (RoundRectangle2D rect : walls) {
-            if (rect.contains(x, y)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    public double nearestFloorY(double x, double y) {
-        for (RoundRectangle2D rect : floors) {
-            if (rect.contains(x, y)) {
-                return rect.getY();
-            }
-        }
-        return -1;
-    }
+//    public double nearestWallX(double x, double y) {
+//        for (RoundRectangle2D rect : walls) {
+//            if (rect.contains(x, y)) {
+//                //return rect.getX();
+//                // will need to change these for nearest X
+//            }
+//        }
+//        return -1;
+//    }
+//    public double nearestFloorY(double x, double y) {
+//        for (RoundRectangle2D rect : floors) {
+//            if (rect.contains(x, y)) {
+//                return rect.getY();
+//            }
+//        }
+//        return -1;
+//    }
 
 
     public void update() {
@@ -88,6 +96,13 @@ public abstract class Level extends JPanel {
         for (Fluffball fluffball : displayList.getFluffballs()) {
             if (fluffball.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+            } else {
+                for (RoundRectangle2D wall : walls) {
+                    if (fluffball.getHitBox().intersects(wall.getFrame())) {
+                        fluffball.stop();
+                        SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                    }
+                }
             }
         }
 
