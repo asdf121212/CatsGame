@@ -36,6 +36,9 @@ public class Squirrel extends Enemy {
 
     }
 
+    public int getContactDamage() {
+        return 200;
+    }
 
     public Rectangle2D getHitBox() {
         return new Rectangle2D.Double(x + 15, y + 56, 90, 50);
@@ -72,7 +75,6 @@ public class Squirrel extends Enemy {
     }
 
     public Ball generateBall(int xVelocity) {
-
         return new Ball(x - 20, y + 50, xVelocity);
     }
 

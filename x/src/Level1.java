@@ -46,7 +46,7 @@ public class Level1 extends Level {
     public void update() {
         ////make the squirrel shoot balls
         if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
-            Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);/////////not good structure- should refactor
+            Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);
             if (tickCount == 220) {
                 SwingUtilities.invokeLater(() -> displayList.AddDanger(squirrel.generateBall(-5)));
                 tickCount = 0;

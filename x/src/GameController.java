@@ -200,6 +200,7 @@ public class GameController {
                 }else if (gameOverPanel.clickedRetry(e.getX(), e.getY())) {
                     updateTimer.stop();
                     extraLives = 3;
+                    levelIndex = 0;
                     Level level = new Level1();
                     InitializeLevel(level);
                 }

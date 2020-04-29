@@ -12,8 +12,10 @@ public class Level2 extends Level {
     private RoundRectangle2D leftWall = new RoundRectangle2D.Double(-10, 210,  35, 440, 0, 0);
     private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 550, 60, 10, 10);
     private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(670, 650, 560, 60, 10, 10);
-    //
     private RoundRectangle2D topLeftWall = new RoundRectangle2D.Double(-10, -5, 4, 155, 0, 0);
+
+    private Yarnball topYarnball = new Yarnball(1070, 25, 450);
+    private Yarnball bottomYarnball = new Yarnball(1200, 520, 400);
 
     public Level2() {
 
@@ -28,6 +30,9 @@ public class Level2 extends Level {
                 new ZinzanLife(37, 10),
                 new ZinzanLife(64, 10),
         };
+
+        displayList.AddEnemy(topYarnball);
+        displayList.AddEnemy(bottomYarnball);
 
         walls = new RoundRectangle2D[] {
                 middleSideWall,
@@ -56,6 +61,12 @@ public class Level2 extends Level {
 
         if (displayList.cat.GetY() > 800) {
             displayList.cat.catHit(200);
+        }
+
+        if (topYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
+            topYarnball.Start();
+        } else if (bottomYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
+            bottomYarnball.Start();
         }
 
         super.update();

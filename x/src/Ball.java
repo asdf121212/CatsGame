@@ -64,6 +64,7 @@ public class Ball extends Danger {
             if (image.equals(ballHit1)) {
                 image = ballHit2;
             } else {
+                moveTimer.stop();
                 deathTimer.stop();
                 Dead = true;
             }

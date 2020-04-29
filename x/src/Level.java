@@ -75,7 +75,7 @@ public abstract class Level extends JPanel {
             }
             if (enemy.getHitBox().intersects(displayList.cat.getHitBox())) {
                 if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
-                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(200));///threw error
+                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(enemy.getContactDamage()));///threw error
                 }
             }
         }
@@ -88,7 +88,7 @@ public abstract class Level extends JPanel {
                 continue;
             } else {
                 if (danger.getHitBox().intersects(displayList.cat.getHitBox())) {
-                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(danger.getDamage()));//add
+                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(danger.getDamage()));
                     danger.hitTarget();
                 }
             }
