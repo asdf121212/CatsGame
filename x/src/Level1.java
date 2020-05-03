@@ -8,6 +8,7 @@ public class Level1 extends Level {
 
     private RoundRectangle2D ground;
     private int tickCount = 0;
+    private Squirrel squirrel;
 
     public Level1() {
 
@@ -20,8 +21,7 @@ public class Level1 extends Level {
         setBackground(Color.BLACK);
         ground = new RoundRectangle2D.Double(0, GroundLevel + 50, 1250, 300, 0, 0);
         displayList.cat.SetXY(150, 350);
-        //displayList.AddBackgroundShape(ground);
-        Squirrel squirrel = new Squirrel();
+        squirrel = new Squirrel();
         squirrel.x = 1000;
         squirrel.y = 280;
         displayList.AddEnemy(squirrel);
@@ -45,10 +45,9 @@ public class Level1 extends Level {
     @Override
     public void update() {
         ////make the squirrel shoot balls
-        if (displayList.getEnemies().size() == 1 && !displayList.getEnemies().get(0).Dying) {
-            Squirrel squirrel = (Squirrel) displayList.getEnemies().get(0);
+        if (squirrel != null && !squirrel.Dying && !squirrel.Dead) {
             if (tickCount == 220) {
-                SwingUtilities.invokeLater(() -> displayList.AddDanger(squirrel.generateBall(-5)));
+                SwingUtilities.invokeLater(() -> displayList.AddEnemy(squirrel.generateBall(-5)));
                 tickCount = 0;
             } else {
                 tickCount++;
@@ -63,13 +62,6 @@ public class Level1 extends Level {
         super.update();
     }
 
-    public int getGroundLevel(int xCoord, int yCoord) {
-        return 350;
-    }
-
-    //public void mouseClick(int x, int y) {
-        //return;
-    //}
 
 
     @Override
@@ -88,21 +80,6 @@ public class Level1 extends Level {
 
         paintDisplayList(g2);
 
-//        for (Shape shape : displayList.getBackgroundShapes()) {
-//            g2.draw(shape);
-//        }
-//        for (Entity enemy : displayList.getEnemies()) {
-//            enemy.paintComponent(g2);
-//        }
-//        for (Fluffball fluffball : displayList.getFluffballs()) {
-//            fluffball.paintComponent(g2);
-//        }
-//        if (displayList.cat != null) {
-//            displayList.cat.paintComponent(g2);
-//        }
-//        for (Entity danger : displayList.getDangers()) {
-//            danger.paintComponent(g2);
-//        }
 
     }
 

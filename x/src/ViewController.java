@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 
 public class ViewController {
 
@@ -13,7 +14,6 @@ public class ViewController {
     private DisplayList displayList;
 
     public ViewController() {
-        //this.displayList = displayList;
         InitializeFrame();
     }
 
@@ -38,6 +38,8 @@ public class ViewController {
     public void revalidateFrame() {
         frame.revalidate();
     }
+
+
     public void changeLevel(Level newLevel) {
         if (currentLevel != null) {
             frame.remove(currentLevel);
@@ -54,5 +56,6 @@ public class ViewController {
         repaintTimer = new Timer(5, repaintListener);
         repaintTimer.start();
     }
+
 
 }

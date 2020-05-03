@@ -4,13 +4,10 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.DataLine;
 
 public abstract class Entity {
+
+    protected int health = 100;
 
     protected int x;
     protected int y;
@@ -41,5 +38,8 @@ public abstract class Entity {
 
     public abstract Rectangle2D getHitBox();
 
+    public abstract void entityHit(int damage);
+
+    public abstract void startDying();
 
 }

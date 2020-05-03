@@ -21,4 +21,11 @@ public class ZinzanLife extends Entity {
     public Rectangle2D getHitBox() {
         return null;
     }
+
+    @Override
+    public void entityHit(int damage) {
+    }
+    @Override
+    public void startDying() {
+    }
 }

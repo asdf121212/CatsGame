@@ -39,12 +39,22 @@ public class AutoResetSound {
 //                clip.stop();
 //                stream.reset();
 //            }
+            clip.setFramePosition(0);
             clip.start();
             endTimer = new Timer(10, reset);
             endTimer.start();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println(ex.toString());
+        }
+    }
+    public void Stop() {
+        if (clip.isRunning()) {
+            clip.stop();
+            clip.setFramePosition(0);
+            if (endTimer != null) {
+                endTimer.stop();
+            }
         }
     }
 

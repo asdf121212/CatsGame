@@ -24,8 +24,8 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        currentLevel = new Level1();
-        //currentLevel = new Level2();/////////////////////for development purposes
+        //currentLevel = new Level1();
+        currentLevel = new Level2();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
     }
@@ -164,11 +164,11 @@ public class GameController {
         currentLevel.removeKeyListener(keyAdapter);
         updateTimer.stop();
         displayList.cat = null;
-        for (Danger danger : displayList.getDangers()) {
-            if (danger.Dead || danger.Dying) {
-                SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
-            }
-        }
+//        for (Danger danger : displayList.getDangers()) {
+//            if (danger.Dead || danger.Dying) {
+//                SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
+//            }
+//        }
 
         if (extraLives <= 0) {
             GameOver();
@@ -186,10 +186,11 @@ public class GameController {
     }
 
     private void GameOver() {
-        AutoResetSound s = new AutoResetSound("SoundFiles/gameOver.wav");
         GameOverPanel gameOverPanel = new GameOverPanel();
+        AutoResetSound s = new AutoResetSound("SoundFiles/gameOver.wav");
         viewController.changeLevel(gameOverPanel);
         currentLevel.removeKeyListener(keyAdapter);
+        //currentLevel.repaint();
         s.Start();
 
         gameOverPanel.addMouseListener(new MouseInputAdapter() {
@@ -202,7 +203,7 @@ public class GameController {
                     extraLives = 3;
                     levelIndex = 0;
                     Level level = new Level1();
-                    InitializeLevel(level);
+                    InitializeLevel(level);//, true);
                 }
             }
         });

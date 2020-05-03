@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 
 public class GameOverPanel extends Level {
 
-    private BufferedImage quitDark;
-    private BufferedImage quitLight;
-    private BufferedImage retryDark;
-    private BufferedImage retryLight;
+    private static BufferedImage quitDark = Entity.getBufferedImage("sprites/gameOverButtons/QuitDark.png", 300, 180);
+    private static BufferedImage quitLight = Entity.getBufferedImage("sprites/gameOverButtons/QuitLight.png", 300, 180);
+    private static BufferedImage retryDark = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainDark.png", 300, 180);
+    private static BufferedImage retryLight = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainLight.png", 300, 180);
 
     private boolean mouseOverQuit = false;
     private boolean mouseOverRetry = false;
@@ -21,16 +21,14 @@ public class GameOverPanel extends Level {
     private int quitY = 450;
     private int retryX = 625;
     private int retryY = 450;
-    private int width = 300;
-    private int height = 180;
+    //private int width = 300;
+    //private int height = 180;
+
+    private static Font font = new Font("times", Font.BOLD, 120);
 
     public GameOverPanel() {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(1200, 700));
-        quitDark = Entity.getBufferedImage("sprites/gameOverButtons/QuitDark.png", width, height);
-        quitLight = Entity.getBufferedImage("sprites/gameOverButtons/QuitLight.png", width, height);
-        retryDark = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainDark.png", width, height);
-        retryLight = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainLight.png", width, height);
 
         quitBox = new Rectangle2D.Double();
         retryBox = new Rectangle2D.Double();
@@ -75,6 +73,11 @@ public class GameOverPanel extends Level {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
+
+        g2.setFont(font);
+        g2.setColor(Color.red);
+        g2.drawString("GAME OVER", 225, 240);
+
         if (mouseOverQuit) {
             g2.drawImage(quitLight, quitX, quitY, null);
         } else {
@@ -93,7 +96,7 @@ public class GameOverPanel extends Level {
 //
 //    }
 
-    @Override
+
     protected int getGroundLevel(int xCoord, int yCoord) {
         return 0;
     }

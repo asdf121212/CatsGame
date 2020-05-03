@@ -1,3 +1,5 @@
+import com.sun.deploy.pings.Pings;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -70,27 +72,14 @@ public abstract class Level extends JPanel {
                 if (fluffball.getHitBox().intersects(enemy.getHitBox())) {
                     fluffball.stop();
                     SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
-                    SwingUtilities.invokeLater(enemy::entityHit);
+                    SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
                 }
             }
             if (enemy.getHitBox().intersects(displayList.cat.getHitBox())) {
                 if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
-                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(enemy.getContactDamage()));///threw error
+                    SwingUtilities.invokeLater(() -> displayList.cat.entityHit(enemy.getContactDamage()));///threw error
                 }
-            }
-        }
-
-        ////check if projectiles hit cat, remove dead dangers
-        for (Danger danger : displayList.getDangers()) {
-            if (danger.Dead) {
-                SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));
-            } else if (danger.Dying) {
-                continue;
-            } else {
-                if (danger.getHitBox().intersects(displayList.cat.getHitBox())) {
-                    SwingUtilities.invokeLater(() -> displayList.cat.catHit(danger.getDamage()));
-                    danger.hitTarget();
-                }
+                enemy.hitCat();
             }
         }
         for (Fluffball fluffball : displayList.getFluffballs()) {
@@ -110,9 +99,9 @@ public abstract class Level extends JPanel {
 
     protected void paintDisplayList(Graphics2D g2) {
 
-        for (Shape shape : displayList.getBackgroundShapes()) {
-            g2.draw(shape);
-        }
+//        for (Shape shape : displayList.getBackgroundShapes()) {
+//            g2.draw(shape);
+//        }
         for (Entity enemy : displayList.getEnemies()) {
             enemy.paintComponent(g2);
         }
@@ -122,9 +111,11 @@ public abstract class Level extends JPanel {
         if (displayList.cat != null) {
             displayList.cat.paintComponent(g2);
         }
-        for (Entity danger : displayList.getDangers()) {
-            danger.paintComponent(g2);
-        }
+//        for (Entity danger : displayList.getDangers()) {
+//            danger.paintComponent(g2);
+//        }
+
+
     }
 
 
@@ -133,6 +124,6 @@ public abstract class Level extends JPanel {
         this.numLives = numLives;
     }
 
-    protected abstract int getGroundLevel(int xCoord, int yCoord);
+    //protected abstract int getGroundLevel(int xCoord, int yCoord);
 
 }

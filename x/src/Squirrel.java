@@ -44,25 +44,32 @@ public class Squirrel extends Enemy {
         return new Rectangle2D.Double(x + 15, y + 56, 90, 50);
     }
 
+    public void hitCat() {
+        //do nothing
+    }
 
-    public void entityHit() {
-        health -= 10;
+    public void startDying() {
+        try {
+            clip.Start();
+        }
+        catch (Exception ex) {
+
+        }
+        Dying = true;
+        explodeTimer = new Timer(150, explode);
+        explodeTimer.setInitialDelay(90);
+        image = squirrelExp1;
+        explodeTimer.start();
+        if (flashTimer != null) {
+            flashTimer.stop();
+        }
+    }
+
+    public void entityHit(int damage) {
+        //squirrel damage is 10 from zinzan
+        health -= damage;
         if (health <= 0) {
-            try {
-               //clip.start();
-                clip.Start();
-            }
-            catch (Exception ex) {
-
-            }
-            Dying = true;
-            explodeTimer = new Timer(150, explode);
-            explodeTimer.setInitialDelay(90);
-            image = squirrelExp1;
-            explodeTimer.start();
-            if (flashTimer != null) {
-                flashTimer.stop();
-            }
+            startDying();
         } else {
             if (flashTimer != null && flashTimer.isRunning()) {
                 flashTimer.stop();
@@ -104,12 +111,6 @@ public class Squirrel extends Enemy {
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.drawImage(image, x, y, width, height, null);
-
-        ////move these balls to the display list-- repaint in the level paintComponent
-        for (Ball ball : BallList) {
-            ball.paintComponent(g2);
-        }
-
     }
 
 }

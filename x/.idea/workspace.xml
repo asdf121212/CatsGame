@@ -8,24 +8,114 @@
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/AutoResetSound$1 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball$1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball$1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball$1 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball$2 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball$2 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball$2 3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Ball$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Ball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat$1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat$1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Danger 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Danger 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Danger 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Danger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/DisplayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/DisplayList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Enemy 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Enemy 2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball$1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$2 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameOverPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameOverPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level 2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Level2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/gameOver 2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/pop 2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel 3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1 3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$2 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2 3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Squirrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Squirrel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/ViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/ZinzanLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/ZinzanLife.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ball 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ball 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ballHit1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ballHit2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball-A1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball-A2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/QuitDark 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/QuitLight 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/TryAgainDark 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/TryAgainLight 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrel 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp3 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelFlash 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop1Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop2Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop2Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop3 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop3Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop4 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop4Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop5 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop5Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop6 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop6Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanStill 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanStillBack 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk1Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk2Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk2Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutoResetSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutoResetSound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Danger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DisplayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DisplayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Fluffball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fluffball.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameOverPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameOverPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Squirrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Squirrel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Yarnball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Yarnball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZinzanLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ZinzanLife.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,50 +201,54 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="424" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.875@0.0.1440.875" timestamp="1586819737342" />
-    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1588120256194">
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser" timestamp="1588460832824">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser/0.0.1440.875@0.0.1440.875" timestamp="1588120256194" />
+    <state x="533" y="151" key="#com.intellij.ide.util.MemberChooser/0.0.1440.875@0.0.1440.875" timestamp="1588460832824" />
     <state x="457" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586898828225">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="457" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.875@0.0.1440.875" timestamp="1586898828225" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1588130821726">
+    <state x="408" y="180" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588362919307">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1588130821726" />
+    <state x="408" y="180" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1440.875@0.0.1440.875" timestamp="1588362919307" />
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1588462113552">
+      <screen x="0" y="0" width="1440" height="875" />
+    </state>
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1588462113552" />
     <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1588130821726">
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1588462113551">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1588130821726" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1588462113551" />
     <state width="1398" height="224" key="GridCell.Tab.0.center/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1588130821725">
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1588462113551">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1588130821725" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1588462113551" />
     <state width="1398" height="224" key="GridCell.Tab.0.left/0.23.1440.852@0.23.1440.852" timestamp="1587672873320" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1588130821726">
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1588462113552">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1588130821726" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1588462113552" />
     <state width="1398" height="224" key="GridCell.Tab.0.right/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1588129951249">
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1588215792798">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.875@0.0.1440.875" timestamp="1588129951249" />
-    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1588129951249">
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.875@0.0.1440.875" timestamp="1588215792798" />
+    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1588215792797">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.875@0.0.1440.875" timestamp="1588129951249" />
-    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1588129951249">
+    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.875@0.0.1440.875" timestamp="1588215792797" />
+    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1588215792796">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.875@0.0.1440.875" timestamp="1588129951249" />
-    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1588129951249">
+    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.875@0.0.1440.875" timestamp="1588215792796" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1588215792798">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.875@0.0.1440.875" timestamp="1588129951249" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.875@0.0.1440.875" timestamp="1588215792798" />
     <state x="208" y="19" key="SettingsEditor" timestamp="1586912079639">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
@@ -163,9 +257,9 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state width="600" height="428" key="javadoc.popup/0.0.1440.875@0.0.1440.875" timestamp="1587225962330" />
-    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1588123980602">
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1588461724855">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup/0.0.1440.875@0.0.1440.875" timestamp="1588123980602" />
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup/0.0.1440.875@0.0.1440.875" timestamp="1588461724855" />
   </component>
 </project>

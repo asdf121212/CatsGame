@@ -11,15 +11,14 @@ public class Level2 extends Level {
     private RoundRectangle2D middleRightRect = new RoundRectangle2D.Double(145, 400, 1055, 95, 10, 10);
     private RoundRectangle2D leftWall = new RoundRectangle2D.Double(-10, 210,  35, 440, 0, 0);
     private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 550, 60, 10, 10);
-    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(670, 650, 560, 60, 10, 10);
+    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(660, 650, 570, 60, 10, 10);
     private RoundRectangle2D topLeftWall = new RoundRectangle2D.Double(-10, -5, 4, 155, 0, 0);
 
-    private Yarnball topYarnball = new Yarnball(1070, 25, 450);
-    private Yarnball bottomYarnball = new Yarnball(1200, 520, 400);
+    private Yarnball topYarnball = new Yarnball(1070, 30, 455);
+    private Yarnball bottomYarnball = new Yarnball(1200, 520, 465);
 
     public Level2() {
 
-        //GroundLevel = 350;
         setPreferredSize(new Dimension(levelWidth, levelHeight));
         displayList = new DisplayList();
         setBackground(Color.BLACK);
@@ -51,16 +50,11 @@ public class Level2 extends Level {
 
 
     @Override
-    protected int getGroundLevel(int xCoord, int yCoord) {
-        return 105;
-    }
-
-    @Override
     public void update() {
         ///update any enemies and stuff that need updating
 
         if (displayList.cat.GetY() > 800) {
-            displayList.cat.catHit(200);
+            displayList.cat.entityHit(200);
         }
 
         if (topYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {

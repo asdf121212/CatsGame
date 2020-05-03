@@ -27,12 +27,22 @@ public class Fluffball extends Entity {
         moveTimer.start();
     }
 
-//    public boolean isMovingRight() {
-//        return velocityX > 0;
-//    }
+    public int fluffballDamage() {
+        return 10;
+    }
 
     public Rectangle2D getHitBox() {
         return new Rectangle2D.Double(x + 2, y + 2, 14, 15);
+    }
+
+    @Override
+    public void entityHit(int damage) {
+
+    }
+
+    @Override
+    public void startDying() {
+
     }
 
     public void paintComponent(Graphics g) {

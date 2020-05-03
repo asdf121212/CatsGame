@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Ball extends Danger {
+public class Ball extends Enemy {
 
     private static BufferedImage ballImage = getBufferedImage("sprites/ball/ball.png", 50, 50);
     private static BufferedImage ballHit1 = getBufferedImage("sprites/ball/ballHit1.png", 50, 50);
@@ -26,7 +26,7 @@ public class Ball extends Danger {
         moveTimer.start();
     }
 
-    public int getDamage() {
+    public int getContactDamage() {
         return 20;
     }
 
@@ -39,7 +39,14 @@ public class Ball extends Danger {
         g2.drawImage(image, x, y, 50, 50, null);
     }
 
-    public void hitTarget() {
+    public void entityHit(int damage) {
+    }
+    public void hitCat() {
+        startDying();
+    }
+
+    @Override
+    public void startDying() {
         moveTimer.stop();
         image = ballHit1;
         Dying = true;

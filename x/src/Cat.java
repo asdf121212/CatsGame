@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Cat extends Entity {
 
     public byte state = 000;
-    private int Health = 100;
+    //private int Health = 100;
     private BufferedImage catImage;
     private int frameCount = 0;
     private double previousDx = 0;
@@ -69,50 +69,51 @@ public class Cat extends Entity {
     }
 
     public void setHealth(int health) {
-        Health = health;
-        double width = (Health / 100.0)*200;
+        this.health = health;
+        double width = (health / 100.0)*200;
         healthBar.setRect(102, 12, width, 16);
     }
     public int getHealth() {
-        return Health;
+        return health;
     }
 
-    public void catHit(int healthHit) {
-        Health -= healthHit;
-
+    public void entityHit(int healthHit) {
+        health -= healthHit;
         if (Dying) {
             return;
         }
+        if (health <= 0) {
+            startDying();
 
-        if (Health <= 0) {
-
-            try {
-                popSound.Start();
-            }
-            catch (Exception ex) {
-                System.out.println("pop sound error");
-            }
-
-            Dying = true;///////
-            healthBar.setRect(102, 12, 0, 16);
-
-            dieTimer = new Timer(30, die);
-            dieTimer.setInitialDelay(30);
-
-            if ((state | 110) == 111) {
-                popAnimationImages = popBackImages;
-            } else {
-                popAnimationImages = popImages;
-            }
-            catImage = popAnimationImages[0];////set forwards or backwards;
-            dieTimer.start();
         } else {
-            double width = (Health / 100.0)*200;
+            double width = (health / 100.0)*200;
             //double width = healthBar.getWidth() - 40;
             healthBar.setRect(102, 12, width, 16);
         }
     }
 
+    public void startDying() {
+        try {
+            popSound.Start();
+        }
+        catch (Exception ex) {
+            System.out.println("pop sound error");
+        }
+
+        Dying = true;///////
+        healthBar.setRect(102, 12, 0, 16);
+
+        dieTimer = new Timer(30, die);
+        dieTimer.setInitialDelay(30);
+
+        if ((state | 110) == 111) {
+            popAnimationImages = popBackImages;
+        } else {
+            popAnimationImages = popImages;
+        }
+        catImage = popAnimationImages[0];////set forwards or backwards;
+        dieTimer.start();
+    }
 
     public Rectangle2D getHitBox() {
         int xAdd = (state | 110) == 111 ? 4 : 15;
@@ -164,7 +165,7 @@ public class Cat extends Entity {
             setSprite();
         }
         g2.drawImage(catImage, x, y, width, height, null);
-        //move to level Paintcomponent. call super.paintComponent
+        //move to Level's Paintcomponent.
         g2.setColor(Color.GREEN);
         g2.fill(healthBar);
         g2.setStroke(new BasicStroke(4));
