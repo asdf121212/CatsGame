@@ -27,7 +27,7 @@ public class Ball extends Enemy {
     }
 
     public int getContactDamage() {
-        return 20;
+        return 25;
     }
 
     public Rectangle2D getHitBox() {

@@ -1,7 +1,6 @@
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import com.sun.scenario.effect.impl.sw.java.JSWLinearConvolvePeer;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,9 +35,13 @@ public class AutoResetSound {
     public void Start() {
         try {
 //            if (!canStart()) {
+//                endTimer.stop();
 //                clip.stop();
-//                stream.reset();
 //            }
+            if (endTimer != null && endTimer.isRunning()) {
+                endTimer.stop();
+                clip.stop();
+            }
             clip.setFramePosition(0);
             clip.start();
             endTimer = new Timer(10, reset);
@@ -49,12 +52,12 @@ public class AutoResetSound {
         }
     }
     public void Stop() {
+        if (endTimer != null) {
+            endTimer.stop();
+        }
         if (clip.isRunning()) {
             clip.stop();
             clip.setFramePosition(0);
-            if (endTimer != null) {
-                endTimer.stop();
-            }
         }
     }
 
@@ -63,6 +66,7 @@ public class AutoResetSound {
         public void actionPerformed(ActionEvent e) {
             if (!clip.isRunning()) {
                 try {
+                    clip.stop();
                     clip.setFramePosition(0);
                 }
                 catch (Exception ex) {

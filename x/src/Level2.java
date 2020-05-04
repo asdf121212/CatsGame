@@ -16,6 +16,7 @@ public class Level2 extends Level {
 
     private Yarnball topYarnball = new Yarnball(1070, 30, 455);
     private Yarnball bottomYarnball = new Yarnball(1200, 520, 465);
+    private TinyMouse tinyMouse = new TinyMouse(150, 1000, 375);
 
     public Level2() {
 
@@ -32,6 +33,7 @@ public class Level2 extends Level {
 
         displayList.AddEnemy(topYarnball);
         displayList.AddEnemy(bottomYarnball);
+        displayList.AddEnemy(tinyMouse);
 
         walls = new RoundRectangle2D[] {
                 middleSideWall,
@@ -62,6 +64,7 @@ public class Level2 extends Level {
         } else if (bottomYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
             bottomYarnball.Start();
         }
+        tinyMouse.update();
 
         super.update();
     }

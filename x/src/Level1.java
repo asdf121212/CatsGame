@@ -47,7 +47,8 @@ public class Level1 extends Level {
         ////make the squirrel shoot balls
         if (squirrel != null && !squirrel.Dying && !squirrel.Dead) {
             if (tickCount == 220) {
-                SwingUtilities.invokeLater(() -> displayList.AddEnemy(squirrel.generateBall(-5)));
+                Ball ball = squirrel.generateBall(-5);
+                SwingUtilities.invokeLater(() -> displayList.AddEnemy(ball));
                 tickCount = 0;
             } else {
                 tickCount++;

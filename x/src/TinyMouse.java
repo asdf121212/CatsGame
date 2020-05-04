@@ -1,36 +1,89 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class TinyMouse extends Enemy {
 
-    //private static BufferedImage mouseImage = Entity.getBufferedImage("", 30, 30);
+    private static BufferedImage mouseImage_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_L.png", 30, 30);
+    private static BufferedImage mouseImageHit1_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_L.png", 30, 30);
+    private static BufferedImage mouseImageHit2_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_L.png", 30, 30);
+    private static BufferedImage mouseImage_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_R.png", 30, 30);
+    private static BufferedImage mouseImageHit1_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_R.png", 30, 30);
+    private static BufferedImage mouseImageHit2_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_R.png", 30, 30);
+
+    //private static AutoResetSound hitSound = new AutoResetSound("SoundFiles/slap.wav");
 
     private double xVel;
-    private int xBound;
+    private int right_xBound;
+    private int left_xBound;
+    //private Timer moveTimer;
+    private Timer hitTimer;
     private static BufferedImage image;
+    int cooldownTicks = 0;
 
-    public TinyMouse(int x, int y, int xBound) {
-        this.x = x;
+    public TinyMouse(int left_xBound, int right_xBound, int y) {
+        this.x = left_xBound;
         this.y = y;
-        this.xBound = xBound;
-        //width =
-        //height =
+        this.right_xBound = right_xBound;
+        this.left_xBound = left_xBound;
+        image = mouseImage_R;
+        width = 60;
+        height = 25;
     }
 
+//    public void Stop() {
+//        if (hitTimer != null) {
+//            hitTimer.stop();
+//        }
+////        if (moveTimer != null) {
+////            moveTimer.stop();
+////        }
+//    }
+
+    public void update() {
+        if (cooldownTicks > 0) {
+            cooldownTicks--;
+        }
+        if (x >= right_xBound) {
+            image = mouseImage_L;
+            xVel = -3;
+        } else if (x <= left_xBound) {
+            image = mouseImage_R;
+            xVel = 3;
+        }
+        x += xVel;
+    }
 
     @Override
     public int getContactDamage() {
-        return 10;
+        if (cooldownTicks <= 0) {
+            return 25;
+        } else {
+            return 0;
+        }
     }
     @Override
     public void hitCat() {
-
+        if (cooldownTicks <= 0) {
+            //hitSound.Start();
+            hitTimer = new Timer(150, hit);
+            hitTimer.setInitialDelay(180);
+            if (xVel < 0) {
+                image = mouseImageHit2_L;
+            } else {
+                image = mouseImageHit2_R;
+            }
+            hitTimer.start();
+            cooldownTicks = 80;
+        }
     }
 
     @Override
     public Rectangle2D getHitBox() {
-        return null;
+        return new Rectangle2D.Double(x, y, width, height);
     }
     @Override
     public void entityHit(int damage) {
@@ -40,6 +93,23 @@ public class TinyMouse extends Enemy {
     public void startDying() {
 
     }
+
+    private ActionListener hit = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (image.equals(mouseImageHit1_L)) {
+                image = mouseImageHit2_L;
+            } else if (image.equals(mouseImageHit1_R)) {
+                image = mouseImageHit2_R;
+            } else if (image.equals(mouseImageHit2_L)) {
+                image = mouseImage_L;
+                hitTimer.stop();
+            } else if (image.equals(mouseImageHit2_R)) {
+                image = mouseImage_R;
+                hitTimer.stop();
+            }
+        }
+    };
 
     @Override
     public void paintComponent(Graphics g) {

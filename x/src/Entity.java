@@ -36,6 +36,8 @@ public abstract class Entity {
         return bufferedImage;
     }
 
+    //public abstract void Update();
+
     public abstract Rectangle2D getHitBox();
 
     public abstract void entityHit(int damage);

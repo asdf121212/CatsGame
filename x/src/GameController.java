@@ -24,8 +24,8 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        //currentLevel = new Level1();
-        currentLevel = new Level2();/////////////////////for development purposes
+        currentLevel = new Level1();
+        //currentLevel = new Level2();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
     }
@@ -159,6 +159,8 @@ public class GameController {
             return;
         }
     }
+
+
 
     private void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);

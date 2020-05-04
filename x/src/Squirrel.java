@@ -1,14 +1,10 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
-import javax.sound.sampled.Clip;
 
 public class Squirrel extends Enemy {
 
@@ -20,7 +16,8 @@ public class Squirrel extends Enemy {
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    private static AutoResetSound clip = new AutoResetSound("SoundFiles/Explosion.wav");
+    private static AutoResetSound explodeClip = new AutoResetSound("SoundFiles/Explosion.wav");
+    private static AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
 
     private ArrayList<Ball> BallList;
 
@@ -50,7 +47,7 @@ public class Squirrel extends Enemy {
 
     public void startDying() {
         try {
-            clip.Start();
+            explodeClip.Start();
         }
         catch (Exception ex) {
 
@@ -82,6 +79,8 @@ public class Squirrel extends Enemy {
     }
 
     public Ball generateBall(int xVelocity) {
+        //generateBallClip.Stop();
+        generateBallClip.Start();
         return new Ball(x - 20, y + 50, xVelocity);
     }
 
