@@ -55,9 +55,9 @@ public class Level2 extends Level {
     public void update() {
         ///update any enemies and stuff that need updating
 
-        if (displayList.cat.GetY() > 800) {
-            displayList.cat.entityHit(200);
-        }
+//        if (displayList.cat.GetY() > 800) {
+//            displayList.cat.entityHit(200);
+//        }
 
         if (topYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
             topYarnball.Start();
@@ -65,6 +65,10 @@ public class Level2 extends Level {
             bottomYarnball.Start();
         }
         tinyMouse.update();
+
+        if (displayList.cat.GetX() >= 1170 && displayList.cat.GetY() >= 600) {
+            reachedNextLevel = true;
+        }
 
         super.update();
     }

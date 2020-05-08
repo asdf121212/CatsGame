@@ -8,7 +8,7 @@ public class GameController {
     private Level currentLevel;
     private int extraLives = 3;
     private int levelIndex = 0;
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class };
+    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class };
 
     private KeyAdapter keyAdapter;
 
@@ -24,8 +24,9 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        currentLevel = new Level1();
+        //currentLevel = new Level1();
         //currentLevel = new Level2();/////////////////////for development purposes
+        currentLevel = new Level3();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
     }

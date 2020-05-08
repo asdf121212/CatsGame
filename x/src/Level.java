@@ -61,6 +61,9 @@ public abstract class Level extends JPanel {
 
     public void update() {
         ////check if fluffballs hit enemies, remove dead enemies--
+        if (displayList.cat.GetY() > 800) {
+            displayList.cat.entityHit(200);
+        }
         for (Enemy enemy : displayList.getEnemies()) {
             if (enemy.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
