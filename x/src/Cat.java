@@ -53,6 +53,15 @@ public class Cat extends Entity {
     private Rectangle2D healthBar;
     private Timer dieTimer;
 
+    private Timer bumpTimer;
+    private double bumpVx;
+    private boolean bumping = false;
+    private int bumpTicks = 0;
+
+    public double Vy = 0;
+    public double Vx = 0;
+    public double Gravity = 0.2;
+
     public Cat() {
         x = 150;
         y = 350;
@@ -77,6 +86,38 @@ public class Cat extends Entity {
         return health;
     }
 
+    public void bump(double enemy_Midpoint_x) {
+        if (!Dying && !Dead && Vy >= 0) {
+            if (bumpTimer != null && bumpTimer.isRunning()) {
+                return;
+            }
+            bumping = true;
+            //if (Vy == 0) {
+                y -= 5;
+                Vy = -2;
+            //}
+            bumpTimer = new Timer(5, bumpAction);
+            if (enemy_Midpoint_x < x + width / 2) {
+                bumpVx = 2;
+            } else {
+                bumpVx = -2;
+            }
+            bumpTimer.start();
+        }
+    }
+    private ActionListener bumpAction = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            x += bumpVx;
+            bumpTicks++;
+            if (bumpTicks >= 25) {
+                bumping = false;
+                bumpTimer.stop();
+                bumpTicks = 0;
+            }
+        }
+    };
+
     public void entityHit(int healthHit) {
         health -= healthHit;
         if (Dying) {
@@ -86,6 +127,7 @@ public class Cat extends Entity {
             startDying();
 
         } else {
+            //
             double width = (health / 100.0)*200;
             //double width = healthBar.getWidth() - 40;
             healthBar.setRect(102, 12, width, 16);
@@ -132,14 +174,16 @@ public class Cat extends Entity {
     //public void snapToNearestFloor(int)
 
     public void tryIncrementXY(double dx, double dy) {
-        x += dx;
         y += dy;
-        if ((previousDx <= 0 && dx < 0) || (previousDx >= 0 && dx > 0)) {
-            frameCount++;
-        } else {
-            frameCount = 0;
+        if (!bumping) {
+            x += dx;
+            if ((previousDx <= 0 && dx < 0) || (previousDx >= 0 && dx > 0)) {
+                frameCount++;
+            } else {
+                frameCount = 0;
+            }
+            previousDx = dx;
         }
-        previousDx = dx;
     }
 
     public void SetXY(int x, int y) {

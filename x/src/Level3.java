@@ -1,14 +1,14 @@
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
 public class Level3 extends Level {
 
-    private RoundRectangle2D lowerLeftWall = new RoundRectangle2D.Double(-10, 70, 80, 650, 10, 10);
+    private RoundRectangle2D leftWall = new RoundRectangle2D.Double(-10, 200, 80, 520, 10, 10);
+    private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 700, 60, 10, 10);
+    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(900, 400, 320, 60, 10, 10);
 
-    private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 550, 60, 10, 10);
-    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(750, 400, 470, 60, 10, 10);
-
-    private DaisyEnemy daisy = new DaisyEnemy(leftFloor.getFrame(), rightFloor.getFrame());
+    private DaisyEnemy daisy = new DaisyEnemy(new Rectangle2D.Double(70, 650, 620, 60), rightFloor.getFrame());
 
     public Level3() {
 
@@ -16,7 +16,7 @@ public class Level3 extends Level {
         displayList = new DisplayList();
         setBackground(Color.CYAN);
         setFocusable(true);
-        displayList.cat.SetXY(-5, 10);
+        displayList.cat.SetXY(-5, 140);
         zinzanLives = new ZinzanLife[] {
                 new ZinzanLife(10, 10),
                 new ZinzanLife(37, 10),
@@ -26,13 +26,13 @@ public class Level3 extends Level {
         displayList.AddEnemy(daisy);
 
         walls = new RoundRectangle2D[] {
-                lowerLeftWall
+                leftWall
         };
 
         floors = new RoundRectangle2D[] {
                 leftFloor,
                 rightFloor,
-                lowerLeftWall
+                leftWall
         };
 
         daisy.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));

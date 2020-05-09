@@ -72,16 +72,17 @@ public abstract class Level extends JPanel {
                 continue;
             }
             for (Fluffball fluffball : displayList.getFluffballs()) {
-                if (fluffball.getHitBox().intersects(enemy.getHitBox())) {
+                if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
                     fluffball.stop();
                     SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                     SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
                 }
             }
-            if (enemy.getHitBox().intersects(displayList.cat.getHitBox())) {
+            if (enemy.getHitBox().intersects(displayList.cat.getHitBox()) && !enemy.hitCoolingDown) {
                 if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
                     //SwingUtilities.invokeLater(() -> displayList.cat.entityHit(enemy.getContactDamage()));///threw error
                     displayList.cat.entityHit(enemy.getContactDamage());
+                    SwingUtilities.invokeLater(() -> displayList.cat.bump(enemy.x + enemy.width / 2));
                 }
                 enemy.hitCat();
             }

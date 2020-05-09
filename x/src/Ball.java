@@ -18,6 +18,7 @@ public class Ball extends Enemy {
     private int rightBound = 1300;
 
     public Ball(int x, int y, int xVel) {
+        hittable = false;
         this.x = x;
         this.y = y;
         this.xVel = xVel;

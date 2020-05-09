@@ -25,6 +25,7 @@ public class TinyMouse extends Enemy {
     int cooldownTicks = 0;
 
     public TinyMouse(int left_xBound, int right_xBound, int y) {
+        hittable = false;
         this.x = left_xBound;
         this.y = y;
         this.right_xBound = right_xBound;
@@ -46,6 +47,9 @@ public class TinyMouse extends Enemy {
     public void update() {
         if (cooldownTicks > 0) {
             cooldownTicks--;
+            if (cooldownTicks == 0) {
+                hitCoolingDown = false;
+            }
         }
         if (x >= right_xBound) {
             image = mouseImage_L;
@@ -77,6 +81,7 @@ public class TinyMouse extends Enemy {
                 image = mouseImageHit2_R;
             }
             hitTimer.start();
+            hitCoolingDown = true;
             cooldownTicks = 80;
         }
     }

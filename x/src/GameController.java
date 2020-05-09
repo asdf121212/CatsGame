@@ -14,11 +14,12 @@ public class GameController {
 
     private Timer updateTimer;
 
-    private float cat_Vy = 0;
-    private double cat_Vx = 0;
-    private double Gravity = 0.20;
+    //private float cat_Vy = 0;
+    //private double cat_Vx = 0;
+    //private double Gravity = 0.20;
 
     private DisplayList displayList;
+    private Cat cat;
     private boolean spaceReleased = true;
 
     private ViewController viewController;
@@ -42,41 +43,41 @@ public class GameController {
             RoundRectangle2D floor_Rect = null;
             RoundRectangle2D wall_Rect = null;
             for (RoundRectangle2D floor : currentLevel.getFloors()) {
-                if (floor.contains(floorCheckX1, displayList.cat.GetY() + 51 + cat_Vy)
-                || floor.contains(floorCheckX2, displayList.cat.GetY() + 51 + cat_Vy)) {
+                if (floor.contains(floorCheckX1, displayList.cat.GetY() + 51 + cat.Vy)
+                || floor.contains(floorCheckX2, displayList.cat.GetY() + 51 + cat.Vy)) {
                     floor_Rect = floor;
                 }
             }
             for (RoundRectangle2D wall : currentLevel.getWalls()) {
-                if (wall.contains(wallCheckX1, displayList.cat.GetY() + 25) && cat_Vx < 0) {
+                if (wall.contains(wallCheckX1, displayList.cat.GetY() + 25) && cat.Vx < 0) {
                     wall_Rect = wall;
-                } else if (wall.contains(wallCheckX2, displayList.cat.GetY() + 25) && cat_Vx > 0) {
+                } else if (wall.contains(wallCheckX2, displayList.cat.GetY() + 25) && cat.Vx > 0) {
                     wall_Rect = wall;
                 }
             }
-            if (floor_Rect == null || cat_Vy < 0) {
+            if (floor_Rect == null || cat.Vy < 0) {
                 displayList.cat.state = (byte)(displayList.cat.state | 100);
-                cat_Vy += Gravity;
+                cat.Vy += cat.Gravity;
             } else {
-                if (cat_Vy > 0) {
+                if (cat.Vy > 0) {
                     //make sure it's level with floor
                     displayList.cat.SetY((int)Math.round(floor_Rect.getY()) - 50);
                 }
-                cat_Vy = 0;
+                cat.Vy = 0;
                 displayList.cat.state = (byte)(displayList.cat.state & 011);
             }
             if (wall_Rect != null) {
-                cat_Vx = 0;
+                cat.Vx = 0;
             }
             ///////////////////////////////////////////////////////////////////////////////////
 
             if (!displayList.cat.Dying) {
-                displayList.cat.tryIncrementXY(cat_Vx, cat_Vy);
+                displayList.cat.tryIncrementXY(cat.Vx, cat.Vy);
             }
 
             currentLevel.update();
 
-            if (displayList.cat.Dead) {
+            if (cat.Dead) {
                 cat_die();
             } else if (currentLevel.hasReachedNextLevel()) {
                 advance_levels();
@@ -86,12 +87,13 @@ public class GameController {
 
     private void InitializeLevel(Level level) {
         level.setNumLives(extraLives);
-        cat_Vx = 0;
-        cat_Vy = 0;
+        //cat.Vx = 0;
+        //cat.Vy = 0;
         viewController.changeLevel(level);
         currentLevel = level;
         //currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
         displayList = currentLevel.displayList;
+        cat = displayList.cat;
         updateTimer = new Timer(5, updateListener);
         updateTimer.setInitialDelay(1);
         keyAdapter = new KeyAdapter() {
@@ -99,41 +101,41 @@ public class GameController {
             public void keyPressed(KeyEvent e) {
 
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    if (cat_Vy == 0) {
-                        cat_Vy = -6;
-                        displayList.cat.state = (byte)(displayList.cat.state | 100);
+                    if (cat.Vy == 0) {
+                        cat.Vy = -6;
+                        cat.state = (byte)(cat.state | 100);
                     }
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        cat_Vx = -2;//////
-                        displayList.cat.state = (byte)(displayList.cat.state | 011);
+                        cat.Vx = -2;//////
+                        cat.state = (byte)(cat.state | 011);
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        cat_Vx = 2;
-                        displayList.cat.state = (byte)((displayList.cat.state & 110) | 010);
+                        cat.Vx = 2;
+                        cat.state = (byte)((cat.state & 110) | 010);
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE && spaceReleased) {
                     spaceReleased = false;
-                    displayList.AddFluffball(displayList.cat.generateFluffball());
+                    displayList.AddFluffball(cat.generateFluffball());
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    if (cat_Vx < 0) {
-                        cat_Vx = 0;
-                        displayList.cat.state = (byte)(displayList.cat.state & 101);
+                    if (cat.Vx < 0) {
+                        cat.Vx = 0;
+                        cat.state = (byte)(cat.state & 101);
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    if (cat_Vx > 0) {
-                        cat_Vx = 0;
-                        displayList.cat.state = (byte)(displayList.cat.state & 101);
+                    if (cat.Vx > 0) {
+                        cat.Vx = 0;
+                        cat.state = (byte)(cat.state & 101);
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     spaceReleased = true;
                 }
             }
         };
-        Fluffball f = displayList.cat.generateFluffball();
+        Fluffball f = cat.generateFluffball();
         f = null;
         currentLevel.addKeyListener(keyAdapter);
         currentLevel.requestFocus();
@@ -146,7 +148,7 @@ public class GameController {
         if (levelIndex < levelClasses.length - 1) {
             levelIndex++;
             try {
-                int health = displayList.cat.getHealth();
+                int health = cat.getHealth();
                 currentLevel.removeKeyListener(keyAdapter);
                 updateTimer.stop();
                 Level nextLevel = (Level)levelClasses[levelIndex].newInstance();
@@ -166,7 +168,7 @@ public class GameController {
     private void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);
         updateTimer.stop();
-        displayList.cat = null;
+        cat = null;
 //        for (Danger danger : displayList.getDangers()) {
 //            if (danger.Dead || danger.Dying) {
 //                SwingUtilities.invokeLater(() -> displayList.removeDanger(danger));

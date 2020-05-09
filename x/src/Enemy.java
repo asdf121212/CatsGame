@@ -1,5 +1,8 @@
 public abstract class Enemy extends Entity {
 
+    public boolean hitCoolingDown = false;
+    public boolean hittable = true;
+
     public Enemy() {
 
     }
