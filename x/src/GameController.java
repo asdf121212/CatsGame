@@ -25,9 +25,9 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        //currentLevel = new Level1();
+        currentLevel = new Level1();
         //currentLevel = new Level2();/////////////////////for development purposes
-        currentLevel = new Level3();/////////////////////for development purposes
+        //currentLevel = new Level3();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
     }

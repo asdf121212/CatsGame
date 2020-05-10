@@ -7,8 +7,11 @@ public class Level3 extends Level {
     private RoundRectangle2D leftWall = new RoundRectangle2D.Double(-10, 200, 80, 520, 10, 10);
     private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 700, 60, 10, 10);
     private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(900, 400, 320, 60, 10, 10);
+    private RoundRectangle2D hiddenFloor = new RoundRectangle2D.Double(750, 900, 550, 60, 10, 10);
 
     private DaisyEnemy daisy = new DaisyEnemy(new Rectangle2D.Double(70, 650, 620, 60), rightFloor.getFrame());
+
+    private boolean floorRaising = false;
 
     public Level3() {
 
@@ -32,7 +35,8 @@ public class Level3 extends Level {
         floors = new RoundRectangle2D[] {
                 leftFloor,
                 rightFloor,
-                leftWall
+                leftWall,
+                hiddenFloor
         };
 
         daisy.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
@@ -54,6 +58,17 @@ public class Level3 extends Level {
 //            bottomYarnball.Start();
 //        }
 //        tinyMouse.update();
+        if (daisy.Dead) {
+            floorRaising = true;
+        }
+        if (floorRaising) {
+            if (hiddenFloor.getY() > 650) {
+                hiddenFloor.setRoundRect(hiddenFloor.getX(), hiddenFloor.getY() - 1,
+                        hiddenFloor.getWidth(), hiddenFloor.getHeight(), 10, 10);
+            } else {
+                floorRaising = false;
+            }
+        }
 
         super.update();
     }

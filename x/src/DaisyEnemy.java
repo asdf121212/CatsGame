@@ -322,6 +322,9 @@ public class DaisyEnemy extends SolidEnemy {
         if (jumpLTimer != null) {
             jumpLTimer.stop();
         }
+        if (flashTimer != null) {
+            flashTimer.stop();
+        }
         dieTimer = new Timer(50, die);
         if (xVel >= 0) {
             Images = dieRImages;
