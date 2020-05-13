@@ -8,14 +8,14 @@ public class LevelInfo {
 
     private Cat cat;
 
-    public int getCatX() {
+    public double getCatX() {
         if (cat == null) {
             return -1;
         } else {
             return cat.GetX();
         }
     }
-    public int getCatY() {
+    public double getCatY() {
         if (cat == null) {
             return -1;
         } else {

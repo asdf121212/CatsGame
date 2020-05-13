@@ -18,7 +18,7 @@ public class Ball extends Enemy {
     private int leftBound = -60;
     private int rightBound = 1300;
 
-    public Ball(int x, int y, double xVel, double yVel) {
+    public Ball(double x, double y, double xVel, double yVel) {
         hittable = false;
         this.x = x;
         this.y = y;
@@ -48,8 +48,7 @@ public class Ball extends Enemy {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        //draw math.round(x); but store x as a double
-        g2.drawImage(image, x, y, 50, 50, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), 50, 50, null);
     }
 
     public void entityHit(int damage) {

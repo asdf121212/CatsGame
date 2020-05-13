@@ -9,8 +9,8 @@ public abstract class Entity {
 
     protected int health = 100;
 
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
     protected int width;
     protected int height;
     public boolean Dead = false;

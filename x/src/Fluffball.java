@@ -17,7 +17,7 @@ public class Fluffball extends Entity {
     private int negMultipler;
     private double decelX = -0.2;
 
-    public Fluffball(int x, int y, double velocityX, int negMultipler) {
+    public Fluffball(double x, double y, double velocityX, int negMultipler) {
         this.x = x;
         this.y = y;
         this.velocityX = velocityX;
@@ -57,7 +57,7 @@ public class Fluffball extends Entity {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, x, y, 20, 20, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), 20, 20, null);
     }
 
     public void stop() {

@@ -205,10 +205,10 @@ public class Cat extends Entity {
         this.y = y;
     }
 
-    public int GetX() {
+    public double GetX() {
         return x;
     }
-    public int GetY() {
+    public double GetY() {
         return y;
     }
 
@@ -218,7 +218,7 @@ public class Cat extends Entity {
         if (!Dying && !Dead) {
             setSprite();
         }
-        g2.drawImage(catImage, x, y, width, height, null);
+        g2.drawImage(catImage, (int)Math.round(x), (int)Math.round(y), width, height, null);
         //move to Level's Paintcomponent.
         g2.setColor(Color.GREEN);
         g2.fill(healthBar);

@@ -120,7 +120,7 @@ public class Squirrel extends Enemy {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, x, y, width, height, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
     }
 
 }

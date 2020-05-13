@@ -55,12 +55,12 @@ public class Vacuum extends Enemy{
 
     public Ball generateBall() {
         blast.Start();
-        int x0 = x + (width / 2);
-        int y0 = y + height - 10;
-        double xDist = levelInfo.getCatX() + 50 - x0;
-        double yDist = levelInfo.getCatY() + 25 - y0;
+        double x0 = x + (width / 2.0);
+        double y0 = y + height - 10;
+        double xDist = levelInfo.getCatX() + 20 - x0;
+        double yDist = levelInfo.getCatY() + 15 - y0;
         double hyp = Math.sqrt(xDist * xDist + yDist * yDist);
-        double delta_t = hyp / 6;
+        double delta_t = hyp / 8;
         double ballVx = xDist / delta_t;
         double ballVy = yDist / delta_t;
         return new Ball(x0, y0, ballVx, ballVy);
@@ -75,7 +75,7 @@ public class Vacuum extends Enemy{
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, x, y, width, height, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
     }
 
     @Override

@@ -231,8 +231,8 @@ public class DaisyEnemy extends SolidEnemy {
     };
 
     private boolean catIsInRange() {
-        int catx = levelInfo.getCatX();
-        int caty = levelInfo.getCatY();
+        double catx = levelInfo.getCatX();
+        double caty = levelInfo.getCatY();
         return catx >= leftFloor.getX1() && catx <= leftFloor.getX2()
                 && caty > leftFloor.getY1() - 150 && caty + 45 < leftFloor.getY1();
     }
@@ -296,8 +296,8 @@ public class DaisyEnemy extends SolidEnemy {
     }
 
     private void startAttackJump() {
-        int catX = levelInfo.getCatX();
-        int catY = levelInfo.getCatY();
+        double catX = levelInfo.getCatX();
+        double catY = levelInfo.getCatY();
         if (catX < x) {
             image = daisyFly;
         } else {
@@ -386,7 +386,7 @@ public class DaisyEnemy extends SolidEnemy {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, x, y, width, height, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
 
         //draw daisy health bar
         g2.setColor(Color.BLUE);

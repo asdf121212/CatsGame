@@ -18,7 +18,7 @@ public class ZinzanLife extends Entity {
 
     @Override
     public void paintComponent(Graphics g) {
-        ((Graphics2D)g).drawImage(zinzan, x, y, width, height, null);
+        ((Graphics2D)g).drawImage(zinzan, (int)Math.round(x), (int)Math.round(y), width, height, null);
     }
 
     @Override

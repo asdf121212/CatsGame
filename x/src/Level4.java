@@ -15,10 +15,10 @@ public class Level4 extends Level {
     private RoundRectangle2D jumpPad8 = new RoundRectangle2D.Double(1000, 145, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad9 = new RoundRectangle2D.Double(1100, 90, 110, 50, 10, 10);
 
-    private MovingRectangle movePad1 = new MovingRectangle(300, 280, 120, 20, 300, 1000, 2);
+    private MovingRectangle movePad1 = new MovingRectangle(285, 280, 120, 20, 285, 1000, 2);
 
     private Vacuum vacuum;
-    private int shootTicks = 0;
+    private int shootTicks = 200;
 
     public Level4() {
 
@@ -67,7 +67,7 @@ public class Level4 extends Level {
     public void update() {
         ///update any enemies and stuff that need updating
         shootTicks++;
-        if (shootTicks >= 220) {
+        if (shootTicks >= 400) {
             shootTicks = 0;
             displayList.AddEnemy(vacuum.generateBall());
         }
