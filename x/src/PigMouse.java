@@ -2,6 +2,11 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class PigMouse extends SolidEnemy {
+
+    public void Dispose() {
+
+    }
+
     @Override
     public int getContactDamage() {
         return 0;

@@ -23,6 +23,7 @@ public abstract class Level extends JPanel {
 
     protected RoundRectangle2D[] walls;
     protected RoundRectangle2D[] floors;
+    protected MovingRectangle[] movingRectangles;
 
     public boolean hasReachedNextLevel() {
         return reachedNextLevel;
@@ -40,24 +41,15 @@ public abstract class Level extends JPanel {
         return floors;
     }
 
-//    public double nearestWallX(double x, double y) {
-//        for (RoundRectangle2D rect : walls) {
-//            if (rect.contains(x, y)) {
-//                //return rect.getX();
-//                // will need to change these for nearest X
-//            }
-//        }
-//        return -1;
-//    }
-//    public double nearestFloorY(double x, double y) {
-//        for (RoundRectangle2D rect : floors) {
-//            if (rect.contains(x, y)) {
-//                return rect.getY();
-//            }
-//        }
-//        return -1;
-//    }
-
+    public void Dispose() {
+        displayList.cat.Dispose();
+        for (Enemy enemy : displayList.getEnemies()) {
+            enemy.Dispose();
+        }
+        for (Fluffball fluffball : displayList.getFluffballs()) {
+            fluffball.Dispose();
+        }
+    }
 
     public void update() {
         ////check if fluffballs hit enemies, remove dead enemies--
@@ -101,6 +93,18 @@ public abstract class Level extends JPanel {
             }
         }
 
+        if (movingRectangles != null) {
+            for (MovingRectangle movingRect : movingRectangles) {
+                movingRect.update();
+                if (displayList.cat.GetY() == movingRect.getY() - displayList.cat.height) {
+                    double x = displayList.cat.GetX();
+                    if (x >= movingRect.getX() - 50 && x <= movingRect.getX() + 50) {
+                        displayList.cat.tryIncrementXY(movingRect.getXVel(), 0);
+                        //displayList.cat.Vx += movingRect.getXVel();
+                    }
+                }
+            }
+        }
     }
 
     protected void paintDisplayList(Graphics2D g2) {

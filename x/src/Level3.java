@@ -47,17 +47,6 @@ public class Level3 extends Level {
     @Override
     public void update() {
         ///update any enemies and stuff that need updating
-
-//        if (displayList.cat.GetY() > 800) {
-//            displayList.cat.entityHit(200);
-//        }
-
-//        if (topYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
-//            topYarnball.Start();
-//        } else if (bottomYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
-//            bottomYarnball.Start();
-//        }
-//        tinyMouse.update();
         if (daisy.Dead) {
             floorRaising = true;
         }
@@ -69,7 +58,9 @@ public class Level3 extends Level {
                 floorRaising = false;
             }
         }
-
+        if (displayList.cat.GetX() >= 1170 && displayList.cat.GetY() >= 600) {
+            reachedNextLevel = true;
+        }
         super.update();
     }
 

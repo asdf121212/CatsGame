@@ -11,6 +11,7 @@ public class AutoResetSound {
     private Clip clip;
     private AudioInputStream stream;
     private Timer endTimer;
+    private FloatControl gainControl;
 
     public AutoResetSound(String relativePath) {
         try {
@@ -28,6 +29,13 @@ public class AutoResetSound {
             clip = null;
         }
     }
+
+//    public void halfGain() {
+//        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//        gainControl.setValue(0.1f);
+//        System.out.println(gainControl.getValue());
+//        System.out.println(gainControl.getMaximum());
+//    }
 
     public boolean canStart() {
         return (endTimer == null || !endTimer.isRunning());

@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 
 public class TinyMouse extends Enemy {
 
-    private static BufferedImage mouseImage_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_L.png", 30, 30);
-    private static BufferedImage mouseImageHit1_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_L.png", 30, 30);
-    private static BufferedImage mouseImageHit2_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_L.png", 30, 30);
-    private static BufferedImage mouseImage_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_R.png", 30, 30);
-    private static BufferedImage mouseImageHit1_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_R.png", 30, 30);
-    private static BufferedImage mouseImageHit2_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_R.png", 30, 30);
+    private BufferedImage mouseImage_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_L.png", 30, 30);
+    private BufferedImage mouseImageHit1_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_L.png", 30, 30);
+    private BufferedImage mouseImageHit2_L = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_L.png", 30, 30);
+    private BufferedImage mouseImage_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouse1_R.png", 30, 30);
+    private BufferedImage mouseImageHit1_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit1_R.png", 30, 30);
+    private BufferedImage mouseImageHit2_R = Entity.getBufferedImage("sprites/tinyMouse/tinyMouseHit2_R.png", 30, 30);
 
     //private static AutoResetSound hitSound = new AutoResetSound("SoundFiles/slap.wav");
 
@@ -35,6 +35,11 @@ public class TinyMouse extends Enemy {
         height = 25;
     }
 
+    public void Dispose() {
+        if (hitTimer != null) {
+            hitTimer.stop();
+        }
+    }
 //    public void Stop() {
 //        if (hitTimer != null) {
 //            hitTimer.stop();

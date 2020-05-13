@@ -27,6 +27,16 @@ public class Fluffball extends Entity {
         moveTimer.start();
     }
 
+    @Override
+    public void Dispose() {
+        if (moveTimer != null) {
+            moveTimer.stop();
+        }
+        if (disappearTimer != null) {
+            disappearTimer.stop();
+        }
+    }
+
     public int fluffballDamage() {
         return 10;
     }

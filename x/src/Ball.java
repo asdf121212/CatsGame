@@ -13,18 +13,29 @@ public class Ball extends Enemy {
     private BufferedImage image;
     private Timer moveTimer;
     private Timer deathTimer;
-    private int xVel;
+    private final double xVel;
+    private final double yVel;
     private int leftBound = -60;
     private int rightBound = 1300;
 
-    public Ball(int x, int y, int xVel) {
+    public Ball(int x, int y, double xVel, double yVel) {
         hittable = false;
         this.x = x;
         this.y = y;
         this.xVel = xVel;
+        this.yVel = yVel;
         image = ballImage;
         moveTimer = new Timer(10, move);
         moveTimer.start();
+    }
+
+    public void Dispose() {
+        if (moveTimer != null) {
+            moveTimer.stop();
+        }
+        if (deathTimer != null) {
+            deathTimer.stop();
+        }
     }
 
     public int getContactDamage() {
@@ -37,6 +48,7 @@ public class Ball extends Enemy {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
+        //draw math.round(x); but store x as a double
         g2.drawImage(image, x, y, 50, 50, null);
     }
 
@@ -61,6 +73,11 @@ public class Ball extends Enemy {
         public void actionPerformed(ActionEvent e) {
             x += xVel;
             if (x < leftBound || x > rightBound) {
+                Dead = true;
+                moveTimer.stop();
+            }
+            y += yVel;
+            if (y < -10 - height || y > 710 + height) {
                 Dead = true;
                 moveTimer.stop();
             }

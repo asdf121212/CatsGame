@@ -8,22 +8,21 @@ import java.util.ArrayList;
 
 public class Squirrel extends Enemy {
 
-    private static BufferedImage squirrelImage = getBufferedImage("sprites/squirrel/squirrel.png", 100, 100);
-    private static BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrel/squirrelFlash.png", 100, 100);
-    private static BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrel/squirrelExp1.png", 100, 100);
-    private static BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrel/squirrelExp2.png", 100, 100);
-    private static BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrel/squirrelExp3.png", 100, 100);
+    private BufferedImage squirrelImage = getBufferedImage("sprites/squirrel/squirrel.png", 100, 100);
+    private BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrel/squirrelFlash.png", 100, 100);
+    private BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrel/squirrelExp1.png", 100, 100);
+    private BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrel/squirrelExp2.png", 100, 100);
+    private BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrel/squirrelExp3.png", 100, 100);
     private BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
-    private static AutoResetSound explodeClip = new AutoResetSound("SoundFiles/Explosion.wav");
-    private static AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
+    private AutoResetSound explodeClip = new AutoResetSound("SoundFiles/Explosion.wav");
+    private AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
 
-    private ArrayList<Ball> BallList;
-
+    //private ArrayList<Ball> BallList;
 
     public Squirrel() {
-        BallList = new ArrayList<>();
+        //BallList = new ArrayList<>();
 
         image = squirrelImage;
         x = 100;
@@ -31,6 +30,18 @@ public class Squirrel extends Enemy {
         width = 150;
         height = 120;
 
+        //generateBallClip.halfGain();
+
+    }
+
+    @Override
+    public void Dispose() {
+        if (flashTimer != null) {
+            flashTimer.stop();
+        }
+        if (explodeTimer != null) {
+            explodeTimer.stop();
+        }
     }
 
     public int getContactDamage() {
@@ -81,7 +92,7 @@ public class Squirrel extends Enemy {
     public Ball generateBall(int xVelocity) {
         //generateBallClip.Stop();
         generateBallClip.Start();
-        return new Ball(x - 20, y + 50, xVelocity);
+        return new Ball(x - 20, y + 50, xVelocity, 0);
     }
 
     private ActionListener flash = new ActionListener() {

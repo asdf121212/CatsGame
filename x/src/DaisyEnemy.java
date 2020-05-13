@@ -57,10 +57,13 @@ public class DaisyEnemy extends SolidEnemy {
 
     private LevelInfo levelInfo;
     private boolean zinzanInRange = false;
+    private boolean firstAttack = true;
+    //private boolean jumpNow;
 
     private Line2D leftFloor;
     private Line2D rightFloor;
 
+    private int lapCount = 0;
     private int walkTicks = 0;
     private int indexDirection = 1;
     private int xVel;
@@ -91,9 +94,26 @@ public class DaisyEnemy extends SolidEnemy {
         Images = daisyWalkR;
         image = daisyWalkR[0];
         xVel = 2;
+        //jumpNow = true;
         walkTimer.start();
-
     }
+
+    public void Dispose() {
+        if (walkTimer != null) {
+            walkTimer.stop();
+        }
+        if (jumpLTimer != null) {
+            jumpLTimer.stop();
+        }
+        if (flashTimer != null) {
+            flashTimer.stop();
+        }
+        if (dieTimer != null) {
+            dieTimer.stop();
+        }
+        //don't need to dispose of images
+    }
+
 //    public DaisyEnemy(Line2D attackFloor, Line2D restFloor) {
 //        this.attackFloor = attackFloor;
 //        this.restFloor = restFloor;
@@ -184,17 +204,25 @@ public class DaisyEnemy extends SolidEnemy {
                     Images = daisyWalk;
                     xVel = -2;
                     walkTicks = 0;
+                    lapCount++;
                 }
             } else if (xVel < 0) {
-                Random rand = new Random();
                 if (x <= rightFloor.getX1()) {
-                    if (catIsInRange() && rand.nextBoolean()) {
+                    Random rand = new Random();
+                    boolean jump = (rand.nextBoolean() || lapCount >= 6);
+                    if (jump) {
+                        lapCount = 0;
+                    }
+                    if (catIsInRange() && (jump || firstAttack)) {
+                    //if (jumpNow && catIsInRange()) {
+                        if (firstAttack) { firstAttack = false; }
                         walkTimer.stop();
                         startAttackJump();
                     } else {
                         Images = daisyWalkR;
                         xVel = 2;
                         walkTicks = 0;
+                        //jumpNow = rand.nextBoolean();
                     }
                 }
             }
@@ -209,7 +237,7 @@ public class DaisyEnemy extends SolidEnemy {
                 && caty > leftFloor.getY1() - 150 && caty + 45 < leftFloor.getY1();
     }
 
-    private ActionListener jumpL = new ActionListener() {
+    private ActionListener jumpToRightFloor = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (y + height >= rightFloor.getY1() && x > rightFloor.getX1()) {
@@ -227,7 +255,7 @@ public class DaisyEnemy extends SolidEnemy {
             }
         }
     };
-    private ActionListener jumpR = new ActionListener() {
+    private ActionListener jumpToLeftFloor = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (y + height >= leftFloor.getY1() && x < leftFloor.getX2()) {
@@ -261,7 +289,7 @@ public class DaisyEnemy extends SolidEnemy {
             image = daisyFlyR;
         }
         //walkTimer.stop();
-        jumpLTimer = new Timer(5, jumpL);
+        jumpLTimer = new Timer(5, jumpToRightFloor);
         xVel = 5;
         yVel = getInitialVy(target_x, target_y);
         jumpLTimer.start();
@@ -276,7 +304,7 @@ public class DaisyEnemy extends SolidEnemy {
             image = daisyFlyR;
         }
         //walkTimer.stop();
-        jumpLTimer = new Timer(5, jumpR);
+        jumpLTimer = new Timer(5, jumpToLeftFloor);
         xVel = -5;
         yVel = getInitialVy(catX + 25, catY);
         jumpLTimer.start();
@@ -288,12 +316,18 @@ public class DaisyEnemy extends SolidEnemy {
 
     @Override
     public int getContactDamage() {
-        return 200;
+        return 50;
     }
 
     @Override
     public void hitCat() {
-
+        hitCoolingDown = true;
+        Timer cooldownTimer = new Timer(100, (e) -> {
+            hitCoolingDown = false;
+            ((Timer)e.getSource()).stop();
+        });
+        cooldownTimer.setInitialDelay(1000);
+        cooldownTimer.start();
     }
 
     @Override

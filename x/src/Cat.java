@@ -73,8 +73,15 @@ public class Cat extends Entity {
         healthBarOutline = new RoundRectangle2D.Double();
         healthBarOutline.setRoundRect(100, 10, 200, 20, 10, 10);
         healthBar = new Rectangle2D.Double(102, 12, 196, 16);
+    }
 
-
+    public void Dispose() {
+        if (bumpTimer != null) {
+            bumpTimer.stop();
+        }
+        if (dieTimer != null) {
+            dieTimer.stop();
+        }
     }
 
     public void setHealth(int health) {
@@ -87,23 +94,23 @@ public class Cat extends Entity {
     }
 
     public void bump(double enemy_Midpoint_x) {
-        if (!Dying && !Dead && Vy >= 0) {
-            if (bumpTimer != null && bumpTimer.isRunning()) {
-                return;
-            }
-            bumping = true;
-            //if (Vy == 0) {
-                y -= 5;
-                Vy = -2;
-            //}
-            bumpTimer = new Timer(5, bumpAction);
-            if (enemy_Midpoint_x < x + width / 2) {
-                bumpVx = 2;
-            } else {
-                bumpVx = -2;
-            }
-            bumpTimer.start();
-        }
+//        if (!Dying && !Dead && Vy >= 0) {
+//            if (bumpTimer != null && bumpTimer.isRunning()) {
+//                return;
+//            }
+//            bumping = true;
+//            //if (Vy == 0) {
+//                y -= 5;
+//                Vy = -2;
+//            //}
+//            bumpTimer = new Timer(5, bumpAction);
+//            if (enemy_Midpoint_x < x + width / 2) {
+//                bumpVx = 2;
+//            } else {
+//                bumpVx = -2;
+//            }
+//            bumpTimer.start();
+//        }
     }
     private ActionListener bumpAction = new ActionListener() {
         @Override
@@ -119,7 +126,10 @@ public class Cat extends Entity {
     };
 
     public void entityHit(int healthHit) {
-        health -= healthHit;
+        //health -= healthHit;
+        if (healthHit == 200) {
+            health = 0;
+        }
         if (Dying) {
             return;
         }

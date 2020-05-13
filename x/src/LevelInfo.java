@@ -25,9 +25,15 @@ public class LevelInfo {
 
 
     public LevelInfo(RoundRectangle2D[] floors, RoundRectangle2D[] walls, Cat cat) {
-        this.floors = floors.clone();
-        this.walls = walls.clone();
-        this.cat = cat;
+        if (floors != null) {
+            this.floors = floors.clone();
+        }
+        if (walls != null) {
+            this.walls = walls.clone();
+        }
+        if (cat != null) {
+            this.cat = cat;
+        }
     }
 
 }

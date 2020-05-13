@@ -16,6 +16,8 @@ public abstract class Entity {
     public boolean Dead = false;
     public boolean Dying = false;
 
+    public abstract void Dispose();
+
     public abstract void paintComponent(Graphics g);
 
     protected static BufferedImage getBufferedImage(String filePath, int scaledWidth, int scaledHeight) {

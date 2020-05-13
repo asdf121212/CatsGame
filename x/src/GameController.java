@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.*;
+import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
 
 public class GameController {
@@ -8,7 +9,7 @@ public class GameController {
     private Level currentLevel;
     private int extraLives = 3;
     private int levelIndex = 0;
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class };
+    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class };
 
     private KeyAdapter keyAdapter;
 
@@ -25,11 +26,16 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        currentLevel = new Level1();
-        //currentLevel = new Level2();/////////////////////for development purposes
-        //currentLevel = new Level3();/////////////////////for development purposes
+        //Level startLevel = new Level1();
+        //Level startLevel = new Level2();/////////////////////for development purposes
+        //Level startLevel = new Level3();/////////////////////for development purposes
+        Level startLevel = new Level4();/////////////////////for development purposes
         viewController = new ViewController();
-        SwingUtilities.invokeLater(() -> InitializeLevel(currentLevel));
+        SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
+
+        //java.awt.event.KeyListener
+
+
     }
 
     ActionListener updateListener = new ActionListener() {
@@ -89,9 +95,12 @@ public class GameController {
         level.setNumLives(extraLives);
         //cat.Vx = 0;
         //cat.Vy = 0;
+        if (currentLevel != null) {
+            currentLevel.Dispose();
+        }
         viewController.changeLevel(level);
         currentLevel = level;
-        //currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
+        currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
         displayList = currentLevel.displayList;
         cat = displayList.cat;
         updateTimer = new Timer(5, updateListener);
@@ -220,11 +229,22 @@ public class GameController {
         });
     }
 
+    private Point2D prevPoint = null;
+    private int indexxx = 3;
     //development method to see where to place stuff
     MouseAdapter mouseAdapter = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println(String.format("x:  %d    y:  %d", e.getX(), e.getY()));
+            if (prevPoint == null) {
+                prevPoint = e.getPoint();
+            } else {
+                System.out.println(String.format("private RoundRectangle2D jumpPad%d = new RoundRectangle2D.Double" +
+                        "(%f, %f, %f, %f, 10, 10);", indexxx, prevPoint.getX(), prevPoint.getY(),
+                        e.getX() - prevPoint.getX(), e.getY() - prevPoint.getY()));
+                prevPoint = null;
+                indexxx++;
+            }
+            //System.out.println(String.format("x:  %d    y:  %d", e.getX(), e.getY()));
         }
     };
 

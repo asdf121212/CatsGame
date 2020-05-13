@@ -7,13 +7,13 @@ import java.awt.image.BufferedImage;
 
 public class Yarnball extends Enemy {
 
-    private static BufferedImage yarnball0 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-0.png", 140, 140);
-    private static BufferedImage yarnball1 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-1.png", 140, 140);
-    private static BufferedImage yarnball2 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-2.png", 140, 140);
-    private static BufferedImage yarnball2Flash = Entity.getBufferedImage("sprites/yarnBall/yarnBall-2-Flash.png", 140, 140);
+    private BufferedImage yarnball0 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-0.png", 140, 140);
+    private BufferedImage yarnball1 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-1.png", 140, 140);
+    private BufferedImage yarnball2 = Entity.getBufferedImage("sprites/yarnBall/yarnBall-2.png", 140, 140);
+    private BufferedImage yarnball2Flash = Entity.getBufferedImage("sprites/yarnBall/yarnBall-2-Flash.png", 140, 140);
 
-    private static AutoResetSound yarnballDieSound = new AutoResetSound("SoundFiles/yarnballdie.wav");
-    private static AutoResetSound pantherRoar = new AutoResetSound("SoundFiles/panther-roar2-2.wav");
+    private AutoResetSound yarnballDieSound = new AutoResetSound("SoundFiles/yarnballdie.wav");
+    private AutoResetSound pantherRoar = new AutoResetSound("SoundFiles/panther-roar2-2.wav");
 
     private int imageChangeTicks = 0;
     private Timer attackTimer;
@@ -32,6 +32,18 @@ public class Yarnball extends Enemy {
         height = 120;
         this.Range = range;
         health = 30;
+    }
+
+    public void Dispose() {
+        if (attackTimer != null) {
+            attackTimer.stop();
+        }
+        if (dieTimer != null) {
+            dieTimer.stop();
+        }
+        if (flashTimer != null) {
+            flashTimer.stop();
+        }
     }
 
     public int getContactDamage() {
