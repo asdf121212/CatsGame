@@ -30,12 +30,17 @@ public class GameOverPanel extends Level {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(1200, 700));
 
-        quitBox = new Rectangle2D.Double();
-        retryBox = new Rectangle2D.Double();
-        quitBox.setRect(366, 474, 171, 90);
-        retryBox.setRect(676, 474, 171, 90);
+        quitBox = new Rectangle2D.Double(366, 474, 171, 90);
+        retryBox = new Rectangle2D.Double(676, 474, 171, 90);
 
     }
+
+//    public static void Load() {
+//        quitDark = Entity.getBufferedImage("sprites/gameOverButtons/QuitDark.png", 300, 180);
+//        quitLight = Entity.getBufferedImage("sprites/gameOverButtons/QuitLight.png", 300, 180);
+//        retryDark = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainDark.png", 300, 180);
+//        retryLight = Entity.getBufferedImage("sprites/gameOverButtons/TryAgainLight.png", 300, 180);
+//    }
 
     ///change so it changes a boolean property and check from mouse controller
     public boolean clickedRetry(int x, int y) {

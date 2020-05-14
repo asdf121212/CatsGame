@@ -18,14 +18,16 @@ public class Ball extends Enemy {
     private int leftBound = -60;
     private int rightBound = 1300;
 
-    public Ball(double x, double y, double xVel, double yVel) {
+    public Ball(double x, double y, int width, double xVel, double yVel) {
         hittable = false;
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = width;
         this.xVel = xVel;
         this.yVel = yVel;
         image = ballImage;
-        moveTimer = new Timer(10, move);
+        moveTimer = new Timer(5, move);
         moveTimer.start();
     }
 
@@ -43,12 +45,14 @@ public class Ball extends Enemy {
     }
 
     public Rectangle2D getHitBox() {
-        return new Rectangle2D.Double(x + 9, y + 4, 20, 30);
+        return new Rectangle2D.Double(x + width/5.0, y + width/10.0, width - width/2.5, height - height/5.0);
     }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), 50, 50, null);
+        g2.drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
+        //g2.setColor(Color.magenta);
+        //g2.draw(getHitBox());
     }
 
     public void entityHit(int damage) {

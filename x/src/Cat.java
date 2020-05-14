@@ -71,8 +71,8 @@ public class Cat extends Entity {
         catImage = still;
 
         healthBarOutline = new RoundRectangle2D.Double();
-        healthBarOutline.setRoundRect(100, 10, 200, 20, 10, 10);
-        healthBar = new Rectangle2D.Double(102, 12, 196, 16);
+        healthBarOutline.setRoundRect(10, 10, 200, 20, 10, 10);
+        healthBar = new Rectangle2D.Double(12, 12, 196, 16);
     }
 
     public void Dispose() {
@@ -87,30 +87,30 @@ public class Cat extends Entity {
     public void setHealth(int health) {
         this.health = health;
         double width = (health / 100.0)*200;
-        healthBar.setRect(102, 12, width, 16);
+        healthBar.setRect(12, 12, width, 16);
     }
     public int getHealth() {
         return health;
     }
 
     public void bump(double enemy_Midpoint_x) {
-//        if (!Dying && !Dead && Vy >= 0) {
-//            if (bumpTimer != null && bumpTimer.isRunning()) {
-//                return;
-//            }
-//            bumping = true;
-//            //if (Vy == 0) {
-//                y -= 5;
-//                Vy = -2;
-//            //}
-//            bumpTimer = new Timer(5, bumpAction);
-//            if (enemy_Midpoint_x < x + width / 2) {
-//                bumpVx = 2;
-//            } else {
-//                bumpVx = -2;
-//            }
-//            bumpTimer.start();
-//        }
+        if (!Dying && !Dead && Vy >= 0) {
+            if (bumpTimer != null && bumpTimer.isRunning()) {
+                return;
+            }
+            bumping = true;
+            //if (Vy == 0) {
+                y -= 5;
+                Vy = -2;
+            //}
+            bumpTimer = new Timer(5, bumpAction);
+            if (enemy_Midpoint_x < x + width / 2) {
+                bumpVx = 2;
+            } else {
+                bumpVx = -2;
+            }
+            bumpTimer.start();
+        }
     }
     private ActionListener bumpAction = new ActionListener() {
         @Override
@@ -126,10 +126,7 @@ public class Cat extends Entity {
     };
 
     public void entityHit(int healthHit) {
-        //health -= healthHit;
-        if (healthHit == 200) {
-            health = 0;
-        }
+        health -= healthHit;
         if (Dying) {
             return;
         }
@@ -140,7 +137,7 @@ public class Cat extends Entity {
             //
             double width = (health / 100.0)*200;
             //double width = healthBar.getWidth() - 40;
-            healthBar.setRect(102, 12, width, 16);
+            healthBar.setRect(12, 12, width, 16);
         }
     }
 
@@ -153,7 +150,7 @@ public class Cat extends Entity {
         }
 
         Dying = true;///////
-        healthBar.setRect(102, 12, 0, 16);
+        healthBar.setRect(12, 12, 0, 16);
 
         dieTimer = new Timer(30, die);
         dieTimer.setInitialDelay(30);

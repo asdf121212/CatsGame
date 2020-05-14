@@ -10,11 +10,15 @@ import java.awt.geom.RoundRectangle2D;
 
 public abstract class Level extends JPanel {
 
-
-    //protected final float GRAV = 0.25f;
     protected int GroundLevel;
     protected DisplayList displayList;
-    protected ZinzanLife[] zinzanLives;
+    protected ZinzanLife[] zinzanLives = new ZinzanLife[] {
+            new ZinzanLife(230, 10),
+            new ZinzanLife(257, 10),
+            new ZinzanLife(284, 10),
+            new ZinzanLife(311, 10),
+            new ZinzanLife(338, 10)
+    };
     protected static int numLives = 3;
     protected boolean reachedNextLevel = false;
 
@@ -93,6 +97,13 @@ public abstract class Level extends JPanel {
             }
         }
 
+        for (ZinzanLife extraLife : displayList.getExtraLives()) {
+            if (displayList.cat.getHitBox().intersects(extraLife.getHitBox())) {
+                numLives++;
+                SwingUtilities.invokeLater(() -> displayList.removeExtraLife(extraLife));
+            }
+        }
+
         if (movingRectangles != null) {
             for (MovingRectangle movingRect : movingRectangles) {
                 movingRect.update();
@@ -109,9 +120,10 @@ public abstract class Level extends JPanel {
 
     protected void paintDisplayList(Graphics2D g2) {
 
-//        for (Shape shape : displayList.getBackgroundShapes()) {
-//            g2.draw(shape);
-//        }
+        for (int i = 0; i < numLives && i < zinzanLives.length; i++) {
+            zinzanLives[i].paintComponent(g2);
+        }
+
         for (Entity enemy : displayList.getEnemies()) {
             enemy.paintComponent(g2);
         }
@@ -121,9 +133,10 @@ public abstract class Level extends JPanel {
         if (displayList.cat != null) {
             displayList.cat.paintComponent(g2);
         }
-//        for (Entity danger : displayList.getDangers()) {
-//            danger.paintComponent(g2);
-//        }
+
+        for (ZinzanLife life : displayList.getExtraLives()) {
+            life.paintComponent(g2);
+        }
 
 
     }

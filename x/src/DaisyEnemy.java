@@ -85,7 +85,7 @@ public class DaisyEnemy extends SolidEnemy {
 
         width = 60;
         height = 50;
-        health = 400;
+        health = 300;
 
         x = (int)Math.round(rightFloor.getX());
         y = (int)Math.round(rightFloor.getY()) - height;

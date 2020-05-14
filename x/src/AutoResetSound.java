@@ -18,10 +18,12 @@ public class AutoResetSound {
             stream = AudioSystem.getAudioInputStream(AutoResetSound.class.getResource(relativePath));
             clip = AudioSystem.getClip();
             clip.open(stream);
-//            AudioFormat format = stream.getFormat();
-//            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            //AudioFormat format = stream.getFormat();
+            //DataLine.Info info = new DataLine.Info(Clip.class, format);
 //            Clip clip = (Clip) AudioSystem.getLine(info);
 //            return clip;
+            //clip = (Clip) AudioSystem.getLine(info);
+            decreaseGain();
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -30,12 +32,14 @@ public class AutoResetSound {
         }
     }
 
-//    public void halfGain() {
-//        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-//        gainControl.setValue(0.1f);
-//        System.out.println(gainControl.getValue());
-//        System.out.println(gainControl.getMaximum());
-//    }
+    public void decreaseGain() {
+        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-5);
+    }
+
+    public boolean isRunning() {
+        return clip.isRunning();
+    }
 
     public boolean canStart() {
         return (endTimer == null || !endTimer.isRunning());

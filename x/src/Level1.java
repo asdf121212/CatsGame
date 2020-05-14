@@ -27,11 +27,11 @@ public class Level1 extends Level {
         displayList.AddEnemy(squirrel);
         setFocusable(true);
 
-        zinzanLives = new ZinzanLife[] {
-                new ZinzanLife(10, 10),
-                new ZinzanLife(37, 10),
-                new ZinzanLife(64, 10),
-        };
+//        zinzanLives = new ZinzanLife[] {
+//                new ZinzanLife(10, 10),
+//                new ZinzanLife(37, 10),
+//                new ZinzanLife(64, 10),
+//        };
 
         floors = new RoundRectangle2D[] {
                 ground
@@ -47,7 +47,7 @@ public class Level1 extends Level {
         ////make the squirrel shoot balls
         if (squirrel != null && !squirrel.Dying && !squirrel.Dead) {
             if (tickCount == 220) {
-                Ball ball = squirrel.generateBall(-5);
+                Ball ball = squirrel.generateBall(-2.5);
                 SwingUtilities.invokeLater(() -> displayList.AddEnemy(ball));
                 tickCount = 0;
             } else {
@@ -75,9 +75,9 @@ public class Level1 extends Level {
         g2.fill(ground);
 
 
-        for (int i = 0; i < numLives; i++) {
-            zinzanLives[i].paintComponent(g);
-        }
+//        for (int i = 0; i < numLives; i++) {
+//            zinzanLives[i].paintComponent(g);
+//        }
 
         paintDisplayList(g2);
 

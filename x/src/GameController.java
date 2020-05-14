@@ -7,17 +7,23 @@ import java.awt.geom.RoundRectangle2D;
 public class GameController {
 
     private Level currentLevel;
-    private int extraLives = 3;
+    //private int extraLives = 3;
     private int levelIndex = 0;
     private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class };
+
+    private Song[] songs = new Song[] {
+        new Song("SoundFiles/Songs/trinoculars2.aif", -5),
+        new Song("SoundFiles/Songs/anc2.aif", -5),
+        new Song("SoundFiles/Songs/Ganymede.aif", -4),
+        new Song("SoundFiles/Songs/Sand edit.aif", -5)
+    };
+    private boolean play = false;
+    private int songIndex = 0;
 
     private KeyAdapter keyAdapter;
 
     private Timer updateTimer;
 
-    //private float cat_Vy = 0;
-    //private double cat_Vx = 0;
-    //private double Gravity = 0.20;
 
     private DisplayList displayList;
     private Cat cat;
@@ -26,16 +32,30 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        //Level startLevel = new Level1();
+        Level startLevel = new Level1();
         //Level startLevel = new Level2();/////////////////////for development purposes
         //Level startLevel = new Level3();/////////////////////for development purposes
-        Level startLevel = new Level4();/////////////////////for development purposes
+        //Level startLevel = new Level4();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
 
-        //java.awt.event.KeyListener
 
+        //Song song = new Song("SoundFiles/Songs/Ganymede.aif");
+        //Thread songThread = new Thread(songs[songIndex]::Start);
+        Thread songThread = new Thread(GameController.this::playSongs);
+        //Song.initializeLine();
+        play = true;
+        songThread.start();
+    }
 
+    public void playSongs() {
+        while (play) {
+            songs[songIndex].Start();
+            songIndex++;
+            if (songIndex >= songs.length) {
+                songIndex = 0;
+            }
+        }
     }
 
     ActionListener updateListener = new ActionListener() {
@@ -92,7 +112,7 @@ public class GameController {
     };
 
     private void InitializeLevel(Level level) {
-        level.setNumLives(extraLives);
+        //level.setNumLives(extraLives);
         //cat.Vx = 0;
         //cat.Vy = 0;
         if (currentLevel != null) {
@@ -100,7 +120,7 @@ public class GameController {
         }
         viewController.changeLevel(level);
         currentLevel = level;
-        currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
+        //currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
         displayList = currentLevel.displayList;
         cat = displayList.cat;
         updateTimer = new Timer(5, updateListener);
@@ -184,10 +204,10 @@ public class GameController {
 //            }
 //        }
 
-        if (extraLives <= 0) {
+        if (Level.numLives <= 0) {
             GameOver();
         } else {
-            extraLives--;
+            Level.numLives--;
             try {
                 updateTimer.stop();
                 Level level = currentLevel.getClass().newInstance();
@@ -200,6 +220,10 @@ public class GameController {
     }
 
     private void GameOver() {
+
+        play = false;
+        songs[songIndex].Stop();
+
         GameOverPanel gameOverPanel = new GameOverPanel();
         AutoResetSound s = new AutoResetSound("SoundFiles/gameOver.wav");
         viewController.changeLevel(gameOverPanel);
@@ -214,10 +238,15 @@ public class GameController {
                     System.exit(0);
                 }else if (gameOverPanel.clickedRetry(e.getX(), e.getY())) {
                     updateTimer.stop();
-                    extraLives = 3;
+                    Level.numLives = 3;
                     levelIndex = 0;
                     Level level = new Level1();
                     InitializeLevel(level);//, true);
+                    //Thread songThread = new Thread(soundTrack::Start);
+                    //songThread.start();
+                    Thread songThread = new Thread(GameController.this::playSongs);
+                    play = true;
+                    songThread.start();
                 }
             }
         });
@@ -229,24 +258,24 @@ public class GameController {
         });
     }
 
-    private Point2D prevPoint = null;
-    private int indexxx = 3;
+    //private Point2D prevPoint = null;
+    //private int indexxx = 3;
     //development method to see where to place stuff
-    MouseAdapter mouseAdapter = new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if (prevPoint == null) {
-                prevPoint = e.getPoint();
-            } else {
-                System.out.println(String.format("private RoundRectangle2D jumpPad%d = new RoundRectangle2D.Double" +
-                        "(%f, %f, %f, %f, 10, 10);", indexxx, prevPoint.getX(), prevPoint.getY(),
-                        e.getX() - prevPoint.getX(), e.getY() - prevPoint.getY()));
-                prevPoint = null;
-                indexxx++;
-            }
+    //MouseAdapter mouseAdapter = new MouseAdapter() {
+        //@Override
+        //public void mouseClicked(MouseEvent e) {
+//            if (prevPoint == null) {
+//                prevPoint = e.getPoint();
+//            } else {
+//                System.out.println(String.format("private RoundRectangle2D jumpPad%d = new RoundRectangle2D.Double" +
+//                        "(%f, %f, %f, %f, 10, 10);", indexxx, prevPoint.getX(), prevPoint.getY(),
+//                        e.getX() - prevPoint.getX(), e.getY() - prevPoint.getY()));
+//                prevPoint = null;
+//                indexxx++;
+//            }
             //System.out.println(String.format("x:  %d    y:  %d", e.getX(), e.getY()));
-        }
-    };
+        //}
+    //};
 
 
 }

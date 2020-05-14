@@ -11,6 +11,8 @@ public class Level3 extends Level {
 
     private DaisyEnemy daisy = new DaisyEnemy(new Rectangle2D.Double(70, 650, 620, 60), rightFloor.getFrame());
 
+    private ZinzanLife extraLife = new ZinzanLife(850, 870, 30, 21);
+
     private boolean floorRaising = false;
 
     public Level3() {
@@ -20,13 +22,14 @@ public class Level3 extends Level {
         setBackground(Color.CYAN);
         setFocusable(true);
         displayList.cat.SetXY(-5, 140);
-        zinzanLives = new ZinzanLife[] {
-                new ZinzanLife(10, 10),
-                new ZinzanLife(37, 10),
-                new ZinzanLife(64, 10),
-        };
+//        zinzanLives = new ZinzanLife[] {
+//                new ZinzanLife(10, 10),
+//                new ZinzanLife(37, 10),
+//                new ZinzanLife(64, 10),
+//        };
 
         displayList.AddEnemy(daisy);
+        displayList.AddExtraLive(extraLife);
 
         walls = new RoundRectangle2D[] {
                 leftWall
@@ -52,6 +55,7 @@ public class Level3 extends Level {
         }
         if (floorRaising) {
             if (hiddenFloor.getY() > 650) {
+                extraLife.y--;
                 hiddenFloor.setRoundRect(hiddenFloor.getX(), hiddenFloor.getY() - 1,
                         hiddenFloor.getWidth(), hiddenFloor.getHeight(), 10, 10);
             } else {
@@ -78,9 +82,9 @@ public class Level3 extends Level {
             g2.fill(rect);
         }
 
-        for (int i = 0; i < numLives; i++) {
-            zinzanLives[i].paintComponent(g);
-        }
+//        for (int i = 0; i < numLives; i++) {
+//            zinzanLives[i].paintComponent(g);
+//        }
 
         paintDisplayList(g2);
 

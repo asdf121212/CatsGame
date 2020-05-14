@@ -10,12 +10,12 @@ public class Level4 extends Level {
     private RoundRectangle2D jumpPad3 = new RoundRectangle2D.Double(430, 520, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad4 = new RoundRectangle2D.Double(300, 430, 60, 20, 10, 10);
     //private RoundRectangle2D jumpPad5 = new RoundRectangle2D.Double(140, 430, 60, 20, 10, 10);
-    private RoundRectangle2D jumpPad6 = new RoundRectangle2D.Double(-10, 330, 240, 20, 10, 10);
+    private RoundRectangle2D jumpPad6 = new RoundRectangle2D.Double(-10, 340, 240, 20, 10, 10);
     private RoundRectangle2D jumpPad7 = new RoundRectangle2D.Double(900, 200, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad8 = new RoundRectangle2D.Double(1000, 145, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad9 = new RoundRectangle2D.Double(1100, 90, 110, 50, 10, 10);
 
-    private MovingRectangle movePad1 = new MovingRectangle(285, 280, 120, 20, 285, 1000, 2);
+    private MovingRectangle movePad1 = new MovingRectangle(280, 280, 120, 20, 280, 1000, 2);
 
     private Vacuum vacuum;
     private int shootTicks = 200;
@@ -27,11 +27,11 @@ public class Level4 extends Level {
         setBackground(Color.BLACK);
         setFocusable(true);
         displayList.cat.SetXY(-5, 600);
-        zinzanLives = new ZinzanLife[] {
-                new ZinzanLife(10, 10),
-                new ZinzanLife(37, 10),
-                new ZinzanLife(64, 10),
-        };
+//        zinzanLives = new ZinzanLife[] {
+//                new ZinzanLife(10, 10),
+//                new ZinzanLife(37, 10),
+//                new ZinzanLife(64, 10),
+//        };
 
         vacuum = new Vacuum(60, 30, 60, 1000, new LevelInfo(null, null, displayList.cat));
         displayList.AddEnemy(vacuum);
@@ -89,9 +89,9 @@ public class Level4 extends Level {
             g2.fill(rect);
         }
 
-        for (int i = 0; i < numLives; i++) {
-            zinzanLives[i].paintComponent(g);
-        }
+//        for (int i = 0; i < numLives; i++) {
+//            zinzanLives[i].paintComponent(g2);
+//        }
 
         paintDisplayList(g2);
 

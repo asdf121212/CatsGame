@@ -89,10 +89,10 @@ public class Squirrel extends Enemy {
         }
     }
 
-    public Ball generateBall(int xVelocity) {
+    public Ball generateBall(double xVelocity) {
         //generateBallClip.Stop();
         generateBallClip.Start();
-        return new Ball(x - 20, y + 50, xVelocity, 0);
+        return new Ball(x - 20, y + 65, 40, xVelocity, 0);
     }
 
     private ActionListener flash = new ActionListener() {

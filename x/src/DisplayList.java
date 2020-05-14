@@ -7,10 +7,12 @@ public class DisplayList {
     public Cat cat;
     private ArrayList<Fluffball> fluffballs;
     private ArrayList<Enemy> enemies;
+    private ArrayList<ZinzanLife> extraLives;
 
     public DisplayList() {
         fluffballs = new ArrayList<>();
         enemies = new ArrayList<>();
+        extraLives = new ArrayList<>();
         cat = new Cat();
     }
 
@@ -20,6 +22,7 @@ public class DisplayList {
     public void AddEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
+    public void AddExtraLive(ZinzanLife life) { extraLives.add(life); }
 
 
     public ArrayList<Fluffball> getFluffballs() {
@@ -28,7 +31,7 @@ public class DisplayList {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
-
+    public ArrayList<ZinzanLife> getExtraLives() { return extraLives; }
 
     public void removeFluffball(Fluffball fluffball) {
         fluffballs.remove(fluffball);
@@ -36,5 +39,6 @@ public class DisplayList {
     public void removeEnemy(Entity enemy) {
         enemies.remove(enemy);
     }
+    public void removeExtraLife(ZinzanLife life) { extraLives.remove(life); }
 
 }

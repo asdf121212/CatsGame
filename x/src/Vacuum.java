@@ -60,10 +60,10 @@ public class Vacuum extends Enemy{
         double xDist = levelInfo.getCatX() + 20 - x0;
         double yDist = levelInfo.getCatY() + 15 - y0;
         double hyp = Math.sqrt(xDist * xDist + yDist * yDist);
-        double delta_t = hyp / 8;
+        double delta_t = hyp / 5;
         double ballVx = xDist / delta_t;
         double ballVy = yDist / delta_t;
-        return new Ball(x0, y0, ballVx, ballVy);
+        return new Ball(x0, y0, 25, ballVx, ballVy);
     }
 
     public void Dispose() {

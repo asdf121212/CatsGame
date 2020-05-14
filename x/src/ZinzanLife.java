@@ -5,11 +5,14 @@ import java.awt.image.BufferedImage;
 public class ZinzanLife extends Entity {
     private BufferedImage zinzan = getBufferedImage("sprites/zinzan/zinzanStill.png", 50, 25);
 
-    public ZinzanLife(int x, int y) {
+    public ZinzanLife(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-        width = 22;
-        height = 15;
+        this.width = width;
+        this.height = height;
+    }
+    public ZinzanLife(int x, int y) {
+        this(x, y, 22, 15);
     }
 
     @Override
@@ -23,7 +26,7 @@ public class ZinzanLife extends Entity {
 
     @Override
     public Rectangle2D getHitBox() {
-        return null;
+        return new Rectangle2D.Double(x, y, width, height);
     }
 
     @Override

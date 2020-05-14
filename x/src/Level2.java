@@ -25,11 +25,11 @@ public class Level2 extends Level {
         setBackground(Color.BLACK);
         setFocusable(true);
         displayList.cat.SetXY(-5, 105);
-        zinzanLives = new ZinzanLife[] {
-                new ZinzanLife(10, 10),
-                new ZinzanLife(37, 10),
-                new ZinzanLife(64, 10),
-        };
+//        zinzanLives = new ZinzanLife[] {
+//                new ZinzanLife(10, 10),
+//                new ZinzanLife(37, 10),
+//                new ZinzanLife(64, 10),
+//        };
 
         displayList.AddEnemy(topYarnball);
         displayList.AddEnemy(bottomYarnball);
@@ -86,9 +86,9 @@ public class Level2 extends Level {
             g2.fill(rect);
         }
 
-        for (int i = 0; i < numLives; i++) {
-            zinzanLives[i].paintComponent(g);
-        }
+//        for (int i = 0; i < numLives; i++) {
+//            zinzanLives[i].paintComponent(g);
+//        }
 
         paintDisplayList(g2);
 
