@@ -12,9 +12,9 @@ public class GameController {
     private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class };
 
     private Song[] songs = new Song[] {
-        new Song("SoundFiles/Songs/trinoculars2.aif", -5),
-        new Song("SoundFiles/Songs/anc2.aif", -5),
         new Song("SoundFiles/Songs/Ganymede.aif", -4),
+        new Song("SoundFiles/Songs/trinoculars2.aif", -5),
+        new Song("SoundFiles/Songs/ancalagon.aif", -5),
         new Song("SoundFiles/Songs/Sand edit.aif", -5)
     };
     private boolean play = false;

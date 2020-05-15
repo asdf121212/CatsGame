@@ -11,7 +11,7 @@ public class Level2 extends Level {
     private RoundRectangle2D middleRightRect = new RoundRectangle2D.Double(145, 400, 1055, 95, 10, 10);
     private RoundRectangle2D leftWall = new RoundRectangle2D.Double(-10, 210,  35, 440, 0, 0);
     private RoundRectangle2D leftFloor = new RoundRectangle2D.Double(-10, 650, 550, 60, 10, 10);
-    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(660, 650, 570, 60, 10, 10);
+    private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(640, 650, 590, 60, 10, 10);
     private RoundRectangle2D topLeftWall = new RoundRectangle2D.Double(-10, -5, 4, 155, 0, 0);
 
     private Yarnball topYarnball = new Yarnball(1070, 30, 455);
