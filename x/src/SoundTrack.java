@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//this class doesn't do anything right now
 public class SoundTrack {
 
     private Timer nextSongTimer;

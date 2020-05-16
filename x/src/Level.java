@@ -1,4 +1,4 @@
-import com.sun.deploy.pings.Pings;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +24,7 @@ public abstract class Level extends JPanel {
 
     protected int levelWidth = 1200;
     protected int levelHeight = 700;
+
 
     protected RoundRectangle2D[] walls;
     protected RoundRectangle2D[] floors;
