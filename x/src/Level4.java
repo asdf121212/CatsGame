@@ -33,7 +33,7 @@ public class Level4 extends Level {
 //                new ZinzanLife(64, 10),
 //        };
 
-        vacuum = new Vacuum(60, 30, 60, 1000, new LevelInfo(null, null, displayList.cat));
+        vacuum = new Vacuum(60, 30, 60, 1000, new LevelInfo(floors, walls, displayList.cat));
         displayList.AddEnemy(vacuum);
 
         walls = new RoundRectangle2D[] {

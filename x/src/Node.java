@@ -15,6 +15,10 @@ public class Node {
         this.owner = owner;
     }
 
+    public void removeNeighbor(Node node) {
+        neighbors.remove(node);
+    }
+
     public void addNeighbor(Node node) {
         double xDist = node.x - x;
         double yDist = node.y - y;

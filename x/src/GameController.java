@@ -85,10 +85,12 @@ public class GameController {
             if (floor_Rect == null || cat.Vy < 0) {
                 displayList.cat.state = (byte)(displayList.cat.state | 100);
                 cat.Vy += cat.Gravity;
+                //displayList.cat.currentFloor = null;
             } else {
                 if (cat.Vy > 0) {
                     //make sure it's level with floor
                     displayList.cat.SetY((int)Math.round(floor_Rect.getY()) - 50);
+                    displayList.cat.currentFloor = floor_Rect;
                 }
                 cat.Vy = 0;
                 displayList.cat.state = (byte)(displayList.cat.state & 011);

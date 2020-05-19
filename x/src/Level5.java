@@ -43,6 +43,8 @@ public class Level5 extends Level {
 
         midFloorL1.addNeighbor(jp1L);
         midFloorL2.addNeighbor(jp1L);
+        midFloorL1.addNeighbor(midFloorL2);
+        midFloorL2.addNeighbor(midFloorL1);
         jp1L.addNeighbor(midFloorL1);
         //jp1L.addNeighbor(j);
         jp1L.addNeighbor(midFloorL2);
@@ -77,8 +79,8 @@ public class Level5 extends Level {
         };
         CreateNodes();
 
-        pigMouse = new PigMouse(300, 250);
-        pigMouse.addLevelInfo(new LevelInfo((JumpingRect[])floors, displayList.cat));
+        pigMouse = new PigMouse(300, midFloorL);
+        pigMouse.addLevelInfo(new LevelInfo((JumpingRect[])floors, nodeList, displayList.cat));
         displayList.AddEnemy(pigMouse);
 
     }
@@ -105,13 +107,13 @@ public class Level5 extends Level {
             g2.fill(rect);
         }
 
-        g2.setColor(Color.blue);
-        for (Node node : nodeList) {
-            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
-            for (Node neighbor : node.neighbors.keySet()) {
-                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
-            }
-        }
+//        g2.setColor(Color.blue);
+//        for (Node node : nodeList) {
+//            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
+//            for (Node neighbor : node.neighbors.keySet()) {
+//                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
+//            }
+//        }
 
 //        for (int i = 0; i < numLives; i++) {
 //            zinzanLives[i].paintComponent(g2);

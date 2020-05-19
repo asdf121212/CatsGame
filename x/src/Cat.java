@@ -62,6 +62,8 @@ public class Cat extends Entity {
     public double Vx = 0;
     public double Gravity = 0.2;
 
+    public RoundRectangle2D currentFloor;
+
     public Cat() {
         x = 150;
         y = 350;
