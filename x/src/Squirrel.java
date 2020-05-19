@@ -20,19 +20,26 @@ public class Squirrel extends Enemy {
     private AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
 
     //private ArrayList<Ball> BallList;
+    public int ticks = 0;
 
-    public Squirrel() {
-        //BallList = new ArrayList<>();
-
-        image = squirrelImage;
-        x = 100;
-        y = 100;
+    public Squirrel(int x, int y) {
+        this.x = x;
+        this.y = y;
         width = 150;
         height = 120;
-
-        //generateBallClip.halfGain();
-
+        image = squirrelImage;
     }
+
+//    public Squirrel() {
+//        //BallList = new ArrayList<>();
+//        this(100, 100);
+////        image = squirrelImage;
+////        x = 100;
+////        y = 100;
+////        width = 150;
+////        height = 120;
+//        //generateBallClip.halfGain();
+//    }
 
     @Override
     public void Dispose() {

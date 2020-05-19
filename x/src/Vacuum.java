@@ -22,6 +22,8 @@ public class Vacuum extends Enemy{
 
     private LevelInfo levelInfo;
 
+    public int shootTicks = 200;
+
     public Vacuum(int x, int y, int leftBound, int rightBound, LevelInfo levelInfo) {
         this.x = x;
         this.y = y;

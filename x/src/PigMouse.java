@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ public class PigMouse extends SolidEnemy {
     private Timer traverseTimer;
 
     private Node nextNode;
-    private JumpingRect currentFloor;
+    private NodeFloor currentFloor;
     private double xVel = 0;
     private double yVel = 0;
     private final double grav = 0.2;
@@ -33,11 +31,10 @@ public class PigMouse extends SolidEnemy {
     private boolean jumping = false;
     private boolean fall = false;
 
-    public PigMouse(int x, JumpingRect currentFloor) {
+    public PigMouse(int x, NodeFloor currentFloor) {
         width = 59;
         height = 60;
         this.x = x;
-        //this.y = y;
         this.currentFloor = currentFloor;
         this.y = currentFloor.y - height;
         image = pigMouse1;
@@ -47,7 +44,6 @@ public class PigMouse extends SolidEnemy {
         traverseTimer = new Timer(5, traverse);
         planTimer.start();
         traverseTimer.setInitialDelay(200);
-        //planTimer.setInitialDelay(100);
         traverseTimer.start();
     }
 
@@ -61,7 +57,7 @@ public class PigMouse extends SolidEnemy {
                 return;
             }
             path = currentFloor.getShortestPath(x, y, levelInfo.getCatX(),
-                    levelInfo.getCatY(), (JumpingRect)levelInfo.getCatFloor(), levelInfo.nodes);
+                    levelInfo.getCatY(), (NodeFloor)levelInfo.getCatFloor(), levelInfo.nodes);
         }
     };
     private ActionListener traverse = new ActionListener() {
@@ -75,7 +71,7 @@ public class PigMouse extends SolidEnemy {
                 return;
             }
             if (levelInfo.getCatFloor() != null && levelInfo.getCatFloor() == currentFloor) {
-                nextNode = new Node(levelInfo.getCatX() + 50, levelInfo.getCatY(), (JumpingRect) levelInfo.getCatFloor());
+                nextNode = new Node(levelInfo.getCatX() + 50, levelInfo.getCatY(), (NodeFloor) levelInfo.getCatFloor());
             }
             else if ((nextNode == null || !jumping)) {
                 ArrayList<Node> pathClone = (ArrayList<Node>) path.clone();
@@ -110,8 +106,8 @@ public class PigMouse extends SolidEnemy {
                     yVel = jump_yVel;
                 }
             }
-            JumpingRect floor = null;
-            for (JumpingRect rect : levelInfo.jumpingRects) {
+            NodeFloor floor = null;
+            for (NodeFloor rect : levelInfo.nodeFloors) {
                 if (rect.contains(x + width / 2.0 + xVel, y + height + 1 + yVel)) {
                     floor = rect;
                     break;

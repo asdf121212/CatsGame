@@ -1,4 +1,3 @@
-import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 
 public class Node {
@@ -7,9 +6,9 @@ public class Node {
     public double y;
 
     public HashMap<Node, Double> neighbors = new HashMap<>();
-    public JumpingRect owner;
+    public NodeFloor owner;
 
-    public Node(double x, double y, JumpingRect owner) {
+    public Node(double x, double y, NodeFloor owner) {
         this.x = x;
         this.y = y;
         this.owner = owner;

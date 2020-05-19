@@ -1,4 +1,3 @@
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
@@ -7,7 +6,7 @@ public class LevelInfo {
     public RoundRectangle2D[] floors;
     public RoundRectangle2D[] walls;
 
-    public JumpingRect[] jumpingRects;
+    public NodeFloor[] nodeFloors;
     public ArrayList<Node> nodes;
 
     private Cat cat;
@@ -31,8 +30,8 @@ public class LevelInfo {
         }
     }
 
-    public LevelInfo(JumpingRect[] rects, ArrayList<Node> nodes, Cat cat) {
-        jumpingRects = rects;
+    public LevelInfo(NodeFloor[] rects, ArrayList<Node> nodes, Cat cat) {
+        nodeFloors = rects;
         this.cat = cat;
         this.nodes = nodes;
     }
@@ -47,7 +46,7 @@ public class LevelInfo {
         if (cat != null) {
             this.cat = cat;
         }
-        jumpingRects = null;
+        nodeFloors = null;
     }
 
 }

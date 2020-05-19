@@ -1,11 +1,5 @@
-
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
 public abstract class Level extends JPanel {
@@ -33,13 +27,8 @@ public abstract class Level extends JPanel {
     public boolean hasReachedNextLevel() {
         return reachedNextLevel;
     }
-    //public float getGRAV() {
-        //return GRAV;
-    //}
-
 
     public RoundRectangle2D[] getWalls() {
-        //walls.clone() ?
         return walls;
     }
     public RoundRectangle2D[] getFloors() {

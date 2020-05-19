@@ -1,21 +1,19 @@
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
 public class Level5 extends Level {
-    private JumpingRect bottomFloor = new JumpingRect(-10, 650, 1220, 60);
-    private JumpingRect jumpPad1 = new JumpingRect(170, 280, 80, 20);
+    private NodeFloor bottomFloor = new NodeFloor(-10, 650, 1220, 60);
+    private NodeFloor jumpPad1 = new NodeFloor(170, 280, 80, 20);
     //private JumpingRect jumpPad2 = new JumpingRect(300, 245, 80, 20);
     //private JumpingRect jumpPad3 = new JumpingRect(430, 190, 80, 20);
-    private JumpingRect jumpPad3 = new JumpingRect(330, 230, 80, 20);
+    private NodeFloor jumpPad3 = new NodeFloor(330, 230, 80, 20);
     //private RoundRectangle2D jumpPad4 = new RoundRectangle2D.Double(300, 430, 60, 20, 10, 10);
-    private JumpingRect midFloorL = new JumpingRect(-10, 340, 570, 20);
-    private JumpingRect midFloorR = new JumpingRect(630, 340, 590, 20);
-    private JumpingRect jumpPad7 = new JumpingRect(800, 300, 80, 20);
-    private JumpingRect jumpPad8 = new JumpingRect(900, 245, 80, 20);
-    private JumpingRect jumpPad9 = new JumpingRect(1000, 190, 80, 20);
+    private NodeFloor midFloorL = new NodeFloor(-10, 340, 570, 20);
+    private NodeFloor midFloorR = new NodeFloor(630, 340, 590, 20);
+    private NodeFloor jumpPad7 = new NodeFloor(800, 300, 80, 20);
+    private NodeFloor jumpPad8 = new NodeFloor(900, 245, 80, 20);
+    private NodeFloor jumpPad9 = new NodeFloor(1000, 190, 80, 20);
 
     private ArrayList<Node> nodeList = new ArrayList<>();
 
@@ -66,7 +64,7 @@ public class Level5 extends Level {
         walls = new RoundRectangle2D[] {
 
         };
-        floors = new JumpingRect[] {
+        floors = new NodeFloor[] {
                 bottomFloor,
                 jumpPad1,
                 //jumpPad2,
@@ -80,7 +78,7 @@ public class Level5 extends Level {
         CreateNodes();
 
         pigMouse = new PigMouse(300, midFloorL);
-        pigMouse.addLevelInfo(new LevelInfo((JumpingRect[])floors, nodeList, displayList.cat));
+        pigMouse.addLevelInfo(new LevelInfo((NodeFloor[])floors, nodeList, displayList.cat));
         displayList.AddEnemy(pigMouse);
 
     }

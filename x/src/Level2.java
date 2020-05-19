@@ -47,7 +47,6 @@ public class Level2 extends Level {
                 leftFloor,
                 rightFloor
         };
-
     }
 
 

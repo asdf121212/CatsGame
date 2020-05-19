@@ -21,9 +21,9 @@ public class Level1 extends Level {
         setBackground(Color.BLACK);
         ground = new RoundRectangle2D.Double(0, GroundLevel + 50, 1250, 300, 0, 0);
         displayList.cat.SetXY(150, 350);
-        squirrel = new Squirrel();
-        squirrel.x = 1000;
-        squirrel.y = 280;
+        squirrel = new Squirrel(1000, 280);
+        //squirrel.x = 1000;
+        //squirrel.y = 280;
         displayList.AddEnemy(squirrel);
         setFocusable(true);
 
