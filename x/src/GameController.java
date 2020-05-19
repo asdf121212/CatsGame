@@ -9,7 +9,7 @@ public class GameController {
     private Level currentLevel;
     //private int extraLives = 3;
     private int levelIndex = 0;
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class };
+    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
 
     private Song[] songs = new Song[] {
         new Song("SoundFiles/Songs/Ganymede.aif", -4),
@@ -32,11 +32,11 @@ public class GameController {
     private ViewController viewController;
 
     public GameController() {
-        //Level startLevel = new Level1();
+        Level startLevel = new Level1();
         //Level startLevel = new Level2();/////////////////////for development purposes
         //Level startLevel = new Level3();/////////////////////for development purposes
         //Level startLevel = new Level4();/////////////////////for development purposes
-        Level startLevel = new Level5();/////////////////////for development purposes
+        //Level startLevel = new Level5();/////////////////////for development purposes
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
 

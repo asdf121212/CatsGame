@@ -24,12 +24,20 @@ public class GenericLevel extends Level {
         setBackground(Color.BLACK);
         setFocusable(true);
 
+        ///just need to set the cat and the pigmouse
+
     }
 
     public void ConfigureLevel(LevelConfigurationObject configObj) {
-        for (Vacuum vac : configObj.vacuumList) {
-            vacuumList.add(vac);
-            displayList.AddEnemy(vac);
+        floors = configObj.indexedNodeFloors.toArray(new RoundRectangle2D[0]);
+        walls = configObj.walls.toArray(new RoundRectangle2D[0]);
+        nodeList = configObj.indexedNodes;
+        ConnectNodesAndFloors();
+
+        for (Vacuum vacuum : configObj.vacuumList) {
+            vacuumList.add(vacuum);
+            displayList.AddEnemy(vacuum);
+            vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
         }
         for (Yarnball yarnball : configObj.yarnballList) {
             yarnballList.add(yarnball);
@@ -51,10 +59,6 @@ public class GenericLevel extends Level {
             spikesList.add(spikes);
             displayList.AddEnemy(spikes);
         }
-        floors = configObj.indexedNodeFloors.toArray(new RoundRectangle2D[0]);
-        walls = configObj.walls.toArray(new RoundRectangle2D[0]);
-        nodeList = configObj.indexedNodes;
-        ConnectNodesAndFloors();
     }
 
     //I think I need to set up references at runtime if this is loaded from serialized data

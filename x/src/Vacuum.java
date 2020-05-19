@@ -24,21 +24,32 @@ public class Vacuum extends Enemy{
 
     public int shootTicks = 200;
 
-    public Vacuum(int x, int y, int leftBound, int rightBound, LevelInfo levelInfo) {
+    public Vacuum(int x, int y, int leftBound, int rightBound) {
         this.x = x;
         this.y = y;
         this.leftBound = leftBound;
         this.rightBound = rightBound;
-        this.levelInfo = levelInfo;
+        //this.levelInfo = levelInfo;
         hittable = false;
 
         width = 150;
         height = 50;
         xVel = 1;
         image = vacuumR;
-        moveTimer = new Timer(5, move);
-        moveTimer.start();
+        //moveTimer = new Timer(5, move);
+        //moveTimer.start();
 
+    }
+
+    public void Start() {
+        if (levelInfo != null) {
+            moveTimer = new Timer(5, move);
+            moveTimer.start();
+        }
+    }
+
+    public void addLevelInfo(LevelInfo levelInfo) {
+        this.levelInfo = levelInfo;
     }
 
     private ActionListener move = new ActionListener() {

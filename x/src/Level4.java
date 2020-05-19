@@ -33,7 +33,9 @@ public class Level4 extends Level {
 //                new ZinzanLife(64, 10),
 //        };
 
-        vacuum = new Vacuum(60, 30, 60, 1000, new LevelInfo(floors, walls, displayList.cat));
+        vacuum = new Vacuum(60, 30, 60, 1000);
+        vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
+        vacuum.Start();
         displayList.AddEnemy(vacuum);
 
         walls = new RoundRectangle2D[] {
@@ -71,7 +73,9 @@ public class Level4 extends Level {
             shootTicks = 0;
             displayList.AddEnemy(vacuum.generateBall());
         }
-
+        if (displayList.cat.x > 1185 && displayList.cat.y < 90) {
+            reachedNextLevel = true;
+        }
         super.update();
     }
 
