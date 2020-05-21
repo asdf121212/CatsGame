@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 
 public class TinyMouse extends Enemy {
 
@@ -33,6 +36,16 @@ public class TinyMouse extends Enemy {
         image = mouseImage_R;
         width = 60;
         height = 25;
+    }
+
+    public void setLeft_xBound(int left_xBound) {
+        this.left_xBound = left_xBound;
+    }
+    public void setRight_xBound(int right_xBound) {
+        this.right_xBound = right_xBound;
+    }
+    public double getRightBound() {
+        return right_xBound;
     }
 
     public void Dispose() {

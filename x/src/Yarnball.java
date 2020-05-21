@@ -34,6 +34,13 @@ public class Yarnball extends Enemy {
         health = 30;
     }
 
+    public void setRange(double range) {
+        Range = range;
+    }
+    public double getRange() {
+        return Range;
+    }
+
     public void Dispose() {
         if (attackTimer != null) {
             attackTimer.stop();

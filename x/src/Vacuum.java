@@ -38,7 +38,16 @@ public class Vacuum extends Enemy{
         image = vacuumR;
         //moveTimer = new Timer(5, move);
         //moveTimer.start();
+    }
 
+    public void setLeftBound(int leftBound) {
+        this.leftBound = leftBound;
+    }
+    public void setRightBound(int rightBound) {
+        this.rightBound = rightBound;
+    }
+    public double getRightBound() {
+        return rightBound;
     }
 
     public void Start() {

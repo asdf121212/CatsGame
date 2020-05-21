@@ -1,17 +1,18 @@
 import java.awt.geom.RoundRectangle2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LevelConfigurationObject {
+public class LevelConfigurationObject implements Serializable {
 
     //enemies
-    public ArrayList<Vacuum> vacuumList = new ArrayList<>();
-    public ArrayList<Yarnball> yarnballList = new ArrayList<>();
-    public ArrayList<TinyMouse> tinyMouseList = new ArrayList<>();
-    public ArrayList<Squirrel> squirrelList = new ArrayList<>();
-    public ArrayList<Spikes> spikesList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> vacuumConfigList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> yarnballConfigList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> tinyMouseConfigList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> squirrelConfigList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> acidConfigList = new ArrayList<>();
 
     //teleporters
-    public ArrayList<Teleporter> teleporters = new ArrayList<>();
+    //public ArrayList<Teleporter> teleporters = new ArrayList<>();
 
     //walls, floors, nodes
     public ArrayList<IndexedNodeFloor> indexedNodeFloors = new ArrayList<>();

@@ -2,14 +2,20 @@ import javafx.scene.input.SwipeEvent;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
-public class Spikes extends Enemy {
+public class Acid extends Enemy {
 
-    public Spikes(double x, double y) {
+    private BufferedImage image = Entity.getBufferedImage("sprites/acid/acid.png", 100, 100);
+
+    public Acid(double x, double y, int width, int height) {
         this.x = x;
         this.y = y;
-        width = 50;
-        height = 50;
+        this.width = width;
+        this.height = height;
+    }
+    public Acid(double x, double y) {
+        this(x, y, 50, 50);
     }
 
     @Override
@@ -29,7 +35,7 @@ public class Spikes extends Enemy {
 
     @Override
     public void paintComponent(Graphics g) {
-
+        g.drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
     }
 
     @Override

@@ -1,5 +1,3 @@
-import sun.jvm.hotspot.jdi.ArrayReferenceImpl;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
@@ -11,9 +9,9 @@ public class GenericLevel extends Level {
     public ArrayList<Yarnball> yarnballList = new ArrayList<>();
     public ArrayList<TinyMouse> tinyMouseList = new ArrayList<>();
     public ArrayList<Squirrel> squirrelList = new ArrayList<>();
-    public ArrayList<Spikes> spikesList = new ArrayList<>();
+    public ArrayList<Acid> acidList = new ArrayList<>();
 
-    public ArrayList<Teleporter> teleporters = new ArrayList<>();
+    //public ArrayList<Teleporter> teleporters = new ArrayList<>();
 
     private ArrayList<IndexedNode> nodeList = new ArrayList<>();
 
@@ -34,20 +32,24 @@ public class GenericLevel extends Level {
         nodeList = configObj.indexedNodes;
         ConnectNodesAndFloors();
 
-        for (Vacuum vacuum : configObj.vacuumList) {
+        for (EntityConfigurationObject vacuumConfig : configObj.vacuumConfigList) {
+            Vacuum vacuum = new Vacuum(vacuumConfig.x, vacuumConfig.y, vacuumConfig.x, vacuumConfig.optionalRangeOrBound);
             vacuumList.add(vacuum);
             displayList.AddEnemy(vacuum);
             vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
         }
-        for (Yarnball yarnball : configObj.yarnballList) {
+        for (EntityConfigurationObject yarnballConfig : configObj.yarnballConfigList) {
+            Yarnball yarnball = new Yarnball(yarnballConfig.x, yarnballConfig.y, yarnballConfig.optionalRangeOrBound);
             yarnballList.add(yarnball);
             displayList.AddEnemy(yarnball);
         }
-        for (TinyMouse tinyMouse : configObj.tinyMouseList) {
+        for (EntityConfigurationObject tinyMouseConfig : configObj.tinyMouseConfigList) {
+            TinyMouse tinyMouse = new TinyMouse(tinyMouseConfig.x, tinyMouseConfig.optionalRangeOrBound, tinyMouseConfig.y);
             tinyMouseList.add(tinyMouse);
             displayList.AddEnemy(tinyMouse);
         }
-        for (Squirrel squirrel : configObj.squirrelList) {
+        for (EntityConfigurationObject squirrelConfig : configObj.squirrelConfigList) {
+            Squirrel squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
             squirrelList.add(squirrel);
             displayList.AddEnemy(squirrel);
         }
@@ -55,9 +57,10 @@ public class GenericLevel extends Level {
 //            teleporters.add(teleporter);
 //            displayList........
 //        }
-        for (Spikes spikes : configObj.spikesList) {
-            spikesList.add(spikes);
-            displayList.AddEnemy(spikes);
+        for (EntityConfigurationObject acidConfig : configObj.acidConfigList) {
+            Acid acid = new Acid(acidConfig.x, acidConfig.y, acidConfig.width, acidConfig.height);
+            acidList.add(acid);
+            displayList.AddEnemy(acid);
         }
     }
 

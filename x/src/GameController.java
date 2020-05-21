@@ -24,7 +24,6 @@ public class GameController {
 
     private Timer updateTimer;
 
-
     private DisplayList displayList;
     private Cat cat;
     private boolean spaceReleased = true;

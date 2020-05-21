@@ -1,8 +1,9 @@
 import java.awt.geom.RoundRectangle2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NodeFloor extends RoundRectangle2D.Double {
+public class NodeFloor extends RoundRectangle2D.Double implements Serializable {
 
 
     private ArrayList<Node> nodes = new ArrayList<>();

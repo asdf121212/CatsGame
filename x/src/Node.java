@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Node {
+public class Node implements Serializable {
 
     public double x;
     public double y;
