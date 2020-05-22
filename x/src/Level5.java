@@ -77,7 +77,7 @@ public class Level5 extends Level {
         };
         CreateNodes();
 
-        pigMouse = new PigMouse(300, midFloorL);
+        pigMouse = new PigMouse(300, 260);
         pigMouse.addLevelInfo(new LevelInfo((NodeFloor[])floors, nodeList, displayList.cat));
         displayList.AddEnemy(pigMouse);
 
@@ -105,6 +105,9 @@ public class Level5 extends Level {
             g2.fill(rect);
         }
 
+        if (displayList.cat.x > 1170) {
+            reachedNextLevel = true;
+        }
 //        g2.setColor(Color.blue);
 //        for (Node node : nodeList) {
 //            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));

@@ -15,6 +15,14 @@ public class GenericLevel extends Level {
 
     private ArrayList<IndexedNode> nodeList = new ArrayList<>();
 
+    private boolean levelEntered = false;
+
+    public boolean pigMouseWaiting = false;
+    public int pigMouseWaitTicks = 0;
+    public int elapsedWaitTicks = 0;
+    public int pigMouseX_0 = 0;
+    public int pigMouseY_0 = 0;
+    public PigMouse pigMouse;
 
     public GenericLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));
@@ -65,7 +73,7 @@ public class GenericLevel extends Level {
     }
 
     //I think I need to set up references at runtime if this is loaded from serialized data
-    public void ConnectNodesAndFloors() {
+    private void ConnectNodesAndFloors() {
         for (IndexedNode node : nodeList) {
             for (int neighborID : node.neighborIDs) {
                 if (nodeList.get(neighborID).ID == neighborID) {
@@ -134,6 +142,16 @@ public class GenericLevel extends Level {
                 } else {
                     squirrel.ticks++;
                 }
+            }
+        }
+
+        if (pigMouseWaiting) {
+            if (elapsedWaitTicks >= pigMouseWaitTicks) {
+                pigMouseWaiting = false;
+                //pigMouse = new PigMouse()
+            }
+            else {
+                elapsedWaitTicks++;
             }
         }
 

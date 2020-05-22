@@ -31,21 +31,50 @@ public class PigMouse extends SolidEnemy {
     private boolean jumping = false;
     private boolean fall = false;
 
-    public PigMouse(int x, NodeFloor currentFloor) {
+    private Timer initialFallTimer;
+
+    public PigMouse(int x, int y) {
         width = 59;
         height = 60;
         this.x = x;
-        this.currentFloor = currentFloor;
-        this.y = currentFloor.y - height;
+        //this.currentFloor = currentFloor;
+        //this.y = currentFloor.y - height;
+        this.y = y;
         image = pigMouse1;
         hittable = false;
-
-        planTimer = new Timer(5, plan);
-        traverseTimer = new Timer(5, traverse);
-        planTimer.start();
-        traverseTimer.setInitialDelay(200);
-        traverseTimer.start();
+        initialFallTimer = new Timer(5, initialFall);
+        initialFallTimer.start();
     }
+
+    private ActionListener initialFall = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            NodeFloor floor = null;
+            for (NodeFloor rect : levelInfo.nodeFloors) {
+                if (rect.contains(x + width / 2.0 + xVel, y + height + 1 + yVel)) {
+                    floor = rect;
+                    break;
+                }
+            }
+            if (floor == null) {
+                y += yVel;
+                yVel += grav;
+            } else {
+                yVel = 0;
+                y = floor.y - height;
+                currentFloor = floor;
+
+                initialFallTimer.stop();
+
+                planTimer = new Timer(5, plan);
+                traverseTimer = new Timer(5, traverse);
+                planTimer.start();
+                traverseTimer.setInitialDelay(200);
+                traverseTimer.start();
+
+            }
+        }
+    };
 
     private ActionListener plan = new ActionListener() {
         @Override
@@ -137,8 +166,15 @@ public class PigMouse extends SolidEnemy {
     }
 
     public void Dispose() {
-        planTimer.stop();
-        traverseTimer.stop();
+        if (planTimer != null) {
+            planTimer.stop();
+        }
+        if (traverseTimer != null) {
+            traverseTimer.stop();
+        }
+        if (initialFallTimer != null) {
+            initialFallTimer.stop();
+        }
     }
 
     @Override

@@ -3,13 +3,18 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class GameController {
 
-    private Level currentLevel;
-    //private int extraLives = 3;
-    private int levelIndex = 0;
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
+    protected Level currentLevel;
+    protected LevelSet currentLevelSet;
+    //private int levelIndex = 0;
+    //private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
+
+    //private boolean inTheMaze = false;
 
     private Song[] songs = new Song[] {
         new Song("SoundFiles/Songs/Ganymede.aif", -4),
@@ -17,33 +22,27 @@ public class GameController {
         new Song("SoundFiles/Songs/ancalagon.aif", -5),
         new Song("SoundFiles/Songs/Sand edit.aif", -5)
     };
-    private boolean play = false;
+    protected boolean play;
     private int songIndex = 0;
 
-    private KeyAdapter keyAdapter;
+    protected KeyAdapter keyAdapter;
 
-    private Timer updateTimer;
+    protected Timer updateTimer;
 
-    private DisplayList displayList;
-    private Cat cat;
-    private boolean spaceReleased = true;
+    protected DisplayList displayList;
+    protected Cat cat;
+    protected boolean spaceReleased = true;
 
-    private ViewController viewController;
+    protected ViewController viewController;
 
     public GameController() {
-        Level startLevel = new Level1();
-        //Level startLevel = new Level2();/////////////////////for development purposes
-        //Level startLevel = new Level3();/////////////////////for development purposes
-        //Level startLevel = new Level4();/////////////////////for development purposes
-        //Level startLevel = new Level5();/////////////////////for development purposes
+        //currentLevelSet = new FirstLevels();
+        currentLevelSet = new MazeLevels();
+        Level startLevel = currentLevelSet.getFirstLevel();
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
 
-
-        //Song song = new Song("SoundFiles/Songs/Ganymede.aif");
-        //Thread songThread = new Thread(songs[songIndex]::Start);
         Thread songThread = new Thread(GameController.this::playSongs);
-        //Song.initializeLine();
         play = true;
         songThread.start();
     }
@@ -113,10 +112,7 @@ public class GameController {
         }
     };
 
-    private void InitializeLevel(Level level) {
-        //level.setNumLives(extraLives);
-        //cat.Vx = 0;
-        //cat.Vy = 0;
+    protected void InitializeLevel(Level level) {
         if (currentLevel != null) {
             currentLevel.Dispose();
         }
@@ -175,14 +171,13 @@ public class GameController {
         viewController.revalidateFrame();
     }
 
-    private void advance_levels() {
-        if (levelIndex < levelClasses.length - 1) {
-            levelIndex++;
+    protected void advance_levels() {
+        if (!currentLevelSet.lastLevel()) {
             try {
                 int health = cat.getHealth();
                 currentLevel.removeKeyListener(keyAdapter);
                 updateTimer.stop();
-                Level nextLevel = (Level)levelClasses[levelIndex].newInstance();
+                Level nextLevel = currentLevelSet.getNextLevel();
                 nextLevel.displayList.cat.setHealth(health);
                 InitializeLevel(nextLevel);
             }
@@ -196,7 +191,7 @@ public class GameController {
 
 
 
-    private void cat_die() {
+    protected void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);
         updateTimer.stop();
         cat = null;
@@ -212,7 +207,8 @@ public class GameController {
             Level.numLives--;
             try {
                 updateTimer.stop();
-                Level level = currentLevel.getClass().newInstance();
+                //Level level = currentLevel.getClass().newInstance();
+                Level level = currentLevelSet.getSameLevel();
                 SwingUtilities.invokeLater(() -> InitializeLevel(level));
             }
             catch (Exception ex) {
@@ -221,7 +217,7 @@ public class GameController {
         }
     }
 
-    private void GameOver() {
+    protected void GameOver() {
 
         play = false;
         songs[songIndex].Stop();
@@ -241,8 +237,9 @@ public class GameController {
                 }else if (gameOverPanel.clickedRetry(e.getX(), e.getY())) {
                     updateTimer.stop();
                     Level.numLives = 3;
-                    levelIndex = 0;
-                    Level level = new Level1();
+                    //levelIndex = 0;
+                    //Level level = new Level1();
+                    Level level = currentLevelSet.getFirstLevel();
                     InitializeLevel(level);//, true);
                     //Thread songThread = new Thread(soundTrack::Start);
                     //songThread.start();
