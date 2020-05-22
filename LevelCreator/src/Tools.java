@@ -6,6 +6,7 @@ public enum Tools {
     YARNBALL,
     TINYMOUSE,
     SQUIRREL,
+    RSQUIRREL,
     FLOOR,
     WALL,
     ACID,

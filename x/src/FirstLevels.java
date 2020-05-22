@@ -29,8 +29,8 @@ public class FirstLevels extends LevelSet {
 
     @Override
     public Level getFirstLevel() {
-        levelIndex = 4;//////////////////testing
-        //levelIndex = 0;
+        //levelIndex = 4;//////////////////testing
+        levelIndex = 0;
         Level nextLevel = null;
         try {
             nextLevel = (Level)levelClasses[levelIndex].newInstance();

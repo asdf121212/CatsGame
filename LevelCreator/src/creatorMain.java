@@ -64,6 +64,7 @@ public class creatorMain {
         JButton tinyMouseButton = createButton("Images/tinyMouse1_RC.png");
         JButton yarnballButton = createButton("Images/yarnBall-2C.png");
         JButton squirrelButton = createButton("Images/squirrelC.png");
+        JButton rsquirrelButton = createButton("Images/r_squirrelC.png");
         JButton deleteButton = createButton("Images/X.png");
 
         toolbar.add(floorButton);
@@ -75,6 +76,7 @@ public class creatorMain {
         toolbar.add(tinyMouseButton);
         toolbar.add(yarnballButton);
         toolbar.add(squirrelButton);
+        toolbar.add(rsquirrelButton);
         toolbar.add(deleteButton);
 
         toolbar.revalidate();
@@ -151,6 +153,14 @@ public class creatorMain {
             squirrelButton.setSelected(true);
             currentArea.SetTool(Tools.SQUIRREL);
             selectedButton = squirrelButton;
+        });
+        rsquirrelButton.addActionListener(e -> {
+            if (selectedButton != null) {
+                selectedButton.setSelected(false);
+            }
+            rsquirrelButton.setSelected(true);
+            currentArea.SetTool(Tools.RSQUIRREL);
+            selectedButton = rsquirrelButton;
         });
         deleteButton.addActionListener(e -> {
             if (selectedButton == selectButton) {

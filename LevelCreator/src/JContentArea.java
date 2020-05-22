@@ -226,8 +226,12 @@ public class JContentArea extends JPanel {
                         displayList.yarnballs.add((Yarnball) currentEntity);
                     }
                 }
-                else if (currentTool == Tools.SQUIRREL) {
-                    currentEntity = new Squirrel(e.getX() - 75, e.getY() - 60);
+                else if (currentTool == Tools.SQUIRREL || currentTool == Tools.RSQUIRREL) {
+                    if (currentTool == Tools.SQUIRREL) {
+                        currentEntity = new Squirrel(e.getX() - 75, e.getY() - 60);
+                    } else {
+                        currentEntity = new RSquirrel(e.getX() - 75, e.getY() - 60);
+                    }
                     displayList.squirrels.add((Squirrel)currentEntity);
                 }
                 else if (currentTool == Tools.SELECT) {
@@ -520,7 +524,7 @@ public class JContentArea extends JPanel {
                     }
                 }
                 else if (currentTool == Tools.VACUUM || currentTool == Tools.SQUIRREL || currentTool == Tools.TINYMOUSE
-                    || currentTool == Tools.YARNBALL) {
+                    || currentTool == Tools.YARNBALL || currentTool == Tools.RSQUIRREL) {
                     if (currentEntity != null) {
                         currentEntity.x = e.getX() - currentEntity.width / 2.0;
                         currentEntity.y = e.getY() - currentEntity.height / 2.0;

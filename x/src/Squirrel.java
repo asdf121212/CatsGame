@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 public class Squirrel extends Enemy {
 
-    private BufferedImage squirrelImage = getBufferedImage("sprites/squirrel/squirrel.png", 100, 100);
-    private BufferedImage squirrelFlashImage = getBufferedImage("sprites/squirrel/squirrelFlash.png", 100, 100);
-    private BufferedImage squirrelExp1 = getBufferedImage("sprites/squirrel/squirrelExp1.png", 100, 100);
-    private BufferedImage squirrelExp2 = getBufferedImage("sprites/squirrel/squirrelExp2.png", 100, 100);
-    private BufferedImage squirrelExp3 = getBufferedImage("sprites/squirrel/squirrelExp3.png", 100, 100);
-    private BufferedImage image;
+    protected BufferedImage squirrelImage;
+    protected BufferedImage squirrelFlashImage;
+    protected BufferedImage squirrelExp1;
+    protected BufferedImage squirrelExp2;
+    protected BufferedImage squirrelExp3;
+    protected BufferedImage image;
     private Timer flashTimer;
     private Timer explodeTimer;
     private AutoResetSound explodeClip = new AutoResetSound("SoundFiles/Explosion.wav");
-    private AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
+    protected AutoResetSound generateBallClip = new AutoResetSound("SoundFiles/ballShoot.wav");
 
     //private ArrayList<Ball> BallList;
     public int ticks = 0;
@@ -27,7 +27,16 @@ public class Squirrel extends Enemy {
         this.y = y;
         width = 150;
         height = 120;
+        LoadImages();
         image = squirrelImage;
+    }
+
+    public void LoadImages() {
+        squirrelImage = getBufferedImage("sprites/squirrel/squirrel.png", 100, 100);
+        squirrelFlashImage = getBufferedImage("sprites/squirrel/squirrelFlash.png", 100, 100);
+        squirrelExp1 = getBufferedImage("sprites/squirrel/squirrelExp1.png", 100, 100);
+        squirrelExp2 = getBufferedImage("sprites/squirrel/squirrelExp2.png", 100, 100);
+        squirrelExp3 = getBufferedImage("sprites/squirrel/squirrelExp3.png", 100, 100);
     }
 
 //    public Squirrel() {
