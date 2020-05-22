@@ -108,6 +108,10 @@ public class JContentArea extends JPanel {
             }
         } else if (currentNode != null) {
             //this will mess up all the nodes. Should't do this unless you re-initialize all nodes
+        } else if (currentlySelectedDrawingAcid != null) {
+            displayList.drawingAcids.remove(currentlySelectedDrawingAcid);
+            currentlySelectedDrawingAcid = null;
+            repaint();
         }
     }
 

@@ -57,7 +57,12 @@ public class GenericLevel extends Level {
             displayList.AddEnemy(tinyMouse);
         }
         for (EntityConfigurationObject squirrelConfig : configObj.squirrelConfigList) {
-            Squirrel squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
+            Squirrel squirrel;
+            if (squirrelConfig.x < 580) {
+                squirrel = new RSquirrel(squirrelConfig.x, squirrelConfig.y);
+            } else {
+                squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
+            }
             squirrelList.add(squirrel);
             displayList.AddEnemy(squirrel);
         }
