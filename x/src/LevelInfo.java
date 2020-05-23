@@ -7,7 +7,7 @@ public class LevelInfo {
     public RoundRectangle2D[] walls;
 
     public NodeFloor[] nodeFloors;
-    public ArrayList<Node> nodes;
+    public ArrayList<? extends Node> nodes;
 
     private Cat cat;
 
@@ -28,6 +28,12 @@ public class LevelInfo {
         } else {
             return cat.GetY();
         }
+    }
+
+    public LevelInfo(IndexedNodeFloor[] rects, ArrayList<IndexedNode> nodes, Cat cat) {
+        nodeFloors = rects;
+        this.nodes = nodes;
+        this.cat = cat;
     }
 
     public LevelInfo(NodeFloor[] rects, ArrayList<Node> nodes, Cat cat) {

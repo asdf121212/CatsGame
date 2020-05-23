@@ -85,7 +85,7 @@ public class GameController {
                 cat.Vy += cat.Gravity;
                 //displayList.cat.currentFloor = null;
             } else {
-                if (cat.Vy > 0) {
+                if (cat.Vy >= 0) {
                     //make sure it's level with floor
                     displayList.cat.SetY((int)Math.round(floor_Rect.getY()) - 50);
                     displayList.cat.currentFloor = floor_Rect;

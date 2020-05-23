@@ -24,7 +24,7 @@ public class TinyMouse extends Enemy {
     private int left_xBound;
     //private Timer moveTimer;
     private Timer hitTimer;
-    private static BufferedImage image;
+    private BufferedImage image;
     int cooldownTicks = 0;
 
     public TinyMouse(int left_xBound, int right_xBound, int y) {

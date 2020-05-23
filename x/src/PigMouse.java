@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ public class PigMouse extends SolidEnemy {
     private double xVel = 0;
     private double yVel = 0;
     private final double grav = 0.2;
-    private final double jump_yVel = -7;
+    private final double jump_yVel = -6.5;
 
-    private final double defaultVx = 1;
+    private final double defaultVx = 1.2;
 
     private boolean jumping = false;
     private boolean fall = false;
@@ -49,6 +50,13 @@ public class PigMouse extends SolidEnemy {
     private ActionListener initialFall = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            while (levelInfo == null) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }
             NodeFloor floor = null;
             for (NodeFloor rect : levelInfo.nodeFloors) {
                 if (rect.contains(x + width / 2.0 + xVel, y + height + 1 + yVel)) {
@@ -115,7 +123,7 @@ public class PigMouse extends SolidEnemy {
                 if (pathClone.size() == 0) { return; }
             }
 
-            if (nextNode.x > x + width / 2.0) {
+            if (nextNode.x >= x + width / 2.0) {
                 xVel = defaultVx;
             } else if (nextNode.x < x + width / 2.0) {
                 xVel = defaultVx * -1;
@@ -124,7 +132,7 @@ public class PigMouse extends SolidEnemy {
             }
             if (!nextNode.owner.equals(currentFloor) && !jumping) {
                 jumping = true;
-                if (nextNode.owner.y >= currentFloor.y) {
+                if (nextNode.owner.y >= currentFloor.y + 10) {
                     if (nextNode.owner.contains(currentFloor.x, nextNode.owner.y + 1)
                         || nextNode.owner.contains(currentFloor.x + currentFloor.width, nextNode.owner.y + 1)) {
                         yVel = -1.0;
@@ -141,6 +149,9 @@ public class PigMouse extends SolidEnemy {
                     floor = rect;
                     break;
                 }
+            }
+            if (jumping && floor != nextNode.owner) {
+                floor = null;
             }
             if (floor == null && !jumping && !fall) {
                 xVel = 0;
@@ -202,10 +213,10 @@ public class PigMouse extends SolidEnemy {
     @Override
     public void paintComponent(Graphics g) {
         ((Graphics2D)g).drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
-//        g.setColor(Color.white);
-//        if (nextNode != null) {
-//            ((Graphics2D) g).fill(new Ellipse2D.Double(nextNode.x - 5, nextNode.y -5, 10, 10));
-//        }
+        g.setColor(Color.white);
+        if (nextNode != null) {
+            ((Graphics2D) g).fill(new Ellipse2D.Double(nextNode.x - 5, nextNode.y -5, 10, 10));
+        }
 //        g.setColor(Color.magenta);
 //        ((Graphics2D)g).draw(getHitBox());
     }

@@ -18,7 +18,7 @@ public class NodeFloor extends RoundRectangle2D.Double implements Serializable {
 
     //Should use dynamic programming? - store a list of shortest paths from each node to the others. Probably not necessary
     public ArrayList<Node> getShortestPath(double mouse_x, double mouse_y, double cat_x, double cat_y,
-                                           NodeFloor catFloor, ArrayList<Node> nodeList) {
+                                           NodeFloor catFloor, ArrayList<? extends Node> nodeList) {
         //create new nodes for mousePosition and catPosition
         ////need to have these node from the beginning so the other nodes don't have a bunch of neighbors they don't need
         Node mouseNode = new Node(mouse_x, mouse_y, this);

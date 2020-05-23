@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
@@ -30,12 +32,13 @@ public class GenericLevel extends Level {
         setBackground(Color.BLACK);
         setFocusable(true);
 
+        //floors = new IndexedNodeFloor[0];
         ///just need to set the cat and the pigmouse
 
     }
 
     public void ConfigureLevel(LevelConfigurationObject configObj) {
-        floors = configObj.indexedNodeFloors.toArray(new RoundRectangle2D[0]);
+        floors = configObj.indexedNodeFloors.toArray(new IndexedNodeFloor[0]);
         walls = configObj.walls.toArray(new RoundRectangle2D[0]);
         nodeList = configObj.indexedNodes;
         ConnectNodesAndFloors();
@@ -45,6 +48,7 @@ public class GenericLevel extends Level {
             vacuumList.add(vacuum);
             displayList.AddEnemy(vacuum);
             vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
+            vacuum.Start();
         }
         for (EntityConfigurationObject yarnballConfig : configObj.yarnballConfigList) {
             Yarnball yarnball = new Yarnball(yarnballConfig.x, yarnballConfig.y, yarnballConfig.optionalRangeOrBound);
@@ -81,7 +85,7 @@ public class GenericLevel extends Level {
     private void ConnectNodesAndFloors() {
         for (IndexedNode node : nodeList) {
             for (int neighborID : node.neighborIDs) {
-                if (nodeList.get(neighborID).ID == neighborID) {
+                if (neighborID < nodeList.size() && nodeList.get(neighborID).ID == neighborID) {
                     node.addNeighbor(nodeList.get(neighborID));
                 } else {
                     for (IndexedNode indexedNode : nodeList) {
@@ -95,6 +99,7 @@ public class GenericLevel extends Level {
             for (RoundRectangle2D floor : floors) {
                 if (floor instanceof IndexedNodeFloor && ((IndexedNodeFloor)floor).ID == node.ownerID) {
                     node.SetOwner((IndexedNodeFloor) floor);
+                    ((IndexedNodeFloor) floor).addNode(node);
                     break;
                 }
             }
@@ -153,11 +158,29 @@ public class GenericLevel extends Level {
         if (pigMouseWaiting) {
             if (elapsedWaitTicks >= pigMouseWaitTicks) {
                 pigMouseWaiting = false;
-                //pigMouse = new PigMouse()
+                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+                pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
+                displayList.AddEnemy(pigMouse);
             }
             else {
                 elapsedWaitTicks++;
             }
+        }
+
+        boolean tempReached = false;
+        if (displayList.cat.x > 1170) {
+            tempReached = true;
+        } else if (displayList.cat.x < -50) {
+            tempReached = true;
+        } else if (displayList.cat.y > 680) {
+            tempReached = true;
+        } else if (displayList.cat.y < -20) {
+            tempReached = true;
+        }
+        if (tempReached && levelEntered) {
+            reachedNextLevel = true;
+        } else if (!tempReached && !levelEntered) {
+            levelEntered = true;
         }
 
         super.update();
@@ -173,6 +196,13 @@ public class GenericLevel extends Level {
         }
         for (RoundRectangle2D rect : floors) {
             g2.fill(rect);
+        }
+        g2.setColor(Color.blue);
+        for (Node node : nodeList) {
+            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
+            for (Node neighbor : node.neighbors.keySet()) {
+                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
+            }
         }
         paintDisplayList(g2);
     }
