@@ -197,13 +197,13 @@ public class GenericLevel extends Level {
         for (RoundRectangle2D rect : floors) {
             g2.fill(rect);
         }
-        g2.setColor(Color.blue);
-        for (Node node : nodeList) {
-            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
-            for (Node neighbor : node.neighbors.keySet()) {
-                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
-            }
-        }
+//        g2.setColor(Color.blue);
+//        for (Node node : nodeList) {
+//            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
+//            for (Node neighbor : node.neighbors.keySet()) {
+//                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
+//            }
+//        }
         paintDisplayList(g2);
     }
 

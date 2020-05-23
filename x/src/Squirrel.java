@@ -27,6 +27,7 @@ public class Squirrel extends Enemy {
         this.y = y;
         width = 150;
         height = 120;
+        health = 50;
         LoadImages();
         image = squirrelImage;
     }

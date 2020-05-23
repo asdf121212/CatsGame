@@ -213,10 +213,10 @@ public class PigMouse extends SolidEnemy {
     @Override
     public void paintComponent(Graphics g) {
         ((Graphics2D)g).drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
-        g.setColor(Color.white);
-        if (nextNode != null) {
-            ((Graphics2D) g).fill(new Ellipse2D.Double(nextNode.x - 5, nextNode.y -5, 10, 10));
-        }
+//        g.setColor(Color.white);
+//        if (nextNode != null) {
+//            ((Graphics2D) g).fill(new Ellipse2D.Double(nextNode.x - 5, nextNode.y -5, 10, 10));
+//        }
 //        g.setColor(Color.magenta);
 //        ((Graphics2D)g).draw(getHitBox());
     }

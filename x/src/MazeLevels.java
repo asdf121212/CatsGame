@@ -14,14 +14,14 @@ public class MazeLevels extends LevelSet {
 
     private int prevMazeIndex_i = 0;
     private int prevMazeIndex_j = 0;
-    private int prevPigX = 0;
+    private int prevPigX = 600;
     private int prevPigY = 0;
 
-    int newCatX;
-    int newCatY;
-    double dist;
-    int newPigX;
-    int newPigY;
+    int newCatX = 100;
+    int newCatY = 100;
+    double dist = 0;
+    int newPigX = 600;
+    int newPigY = 0;
 
     private int mazeIndex_i = 0;
     private int mazeIndex_j = 0;
@@ -86,7 +86,6 @@ public class MazeLevels extends LevelSet {
             return new WinLevel();
         }
 
-        double pigMouseX;
         if (currentLevel.pigMouseWaiting) {
             if (mazeIndex_j == prevMazeIndex_j && mazeIndex_i == prevMazeIndex_i) {
                 dist = 0;
@@ -98,8 +97,9 @@ public class MazeLevels extends LevelSet {
                 newPigY = newCatY - 15;
             }
         } else {
-            pigMouseX = currentLevel.pigMouse.x;
-            dist = Math.abs(catX - pigMouseX);
+            double pigMouseX = currentLevel.pigMouse.x;
+            double pigMouseY = currentLevel.pigMouse.y;
+            dist = Math.sqrt((catX - pigMouseX) * (catX - pigMouseX) + (catY - pigMouseY) * (catY - pigMouseY));
             newPigX = newCatX;
             newPigY = newCatY - 15;
         }
@@ -131,18 +131,18 @@ public class MazeLevels extends LevelSet {
     ///return getFirstLevel --- the maze starts over buddy
     @Override
     public Level getSameLevel() {
-        //currentLevel = (GenericLevel)getFirstLevel();
-        //return currentLevel;
-        GenericLevel lvl = new GenericLevel();
-        lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
-        currentLevel = lvl;
-        currentLevel.displayList.cat.x = newCatX;
-        currentLevel.displayList.cat.y = newCatY;
-        currentLevel.pigMouseWaiting = true;
-        currentLevel.pigMouseWaitTicks = (int)dist;
-        currentLevel.pigMouseX_0 = newPigX;
-        currentLevel.pigMouseY_0 = newPigY;
-        return lvl;
+        currentLevel = (GenericLevel)getFirstLevel();
+        return currentLevel;
+//        GenericLevel lvl = new GenericLevel();
+//        lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
+//        currentLevel = lvl;
+//        currentLevel.displayList.cat.x = newCatX;
+//        currentLevel.displayList.cat.y = newCatY;
+//        currentLevel.pigMouseWaiting = true;
+//        currentLevel.pigMouseWaitTicks = (int)dist;
+//        currentLevel.pigMouseX_0 = newPigX;
+//        currentLevel.pigMouseY_0 = newPigY;
+//        return lvl;
     }
 
     @Override
