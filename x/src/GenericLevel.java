@@ -104,22 +104,23 @@ public class GenericLevel extends Level {
                 }
             }
         }
-        for (RoundRectangle2D floor : floors) {
-            if (floor instanceof IndexedNodeFloor) {
-                for (int nodeID : ((IndexedNodeFloor)floor).nodeIDs) {
-                    if (nodeList.get(nodeID).ID == nodeID) {
-                        ((IndexedNodeFloor)floor).addNode(nodeList.get(nodeID));
-                    } else {
-                        for (IndexedNode indexedNode : nodeList) {
-                            if (indexedNode.ID == nodeID) {
-                                ((IndexedNodeFloor)floor).addNode(indexedNode);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //I think I forgot to add nodes to the node list in the level designer. but it's good because this was inefficient
+//        for (RoundRectangle2D floor : floors) {
+//            if (floor instanceof IndexedNodeFloor) {
+//                for (int nodeID : ((IndexedNodeFloor)floor).nodeIDs) {
+//                    if (nodeList.get(nodeID).ID == nodeID) {
+//                        ((IndexedNodeFloor)floor).addNode(nodeList.get(nodeID));
+//                    } else {
+//                        for (IndexedNode indexedNode : nodeList) {
+//                            if (indexedNode.ID == nodeID) {
+//                                ((IndexedNodeFloor)floor).addNode(indexedNode);
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     @Override
@@ -177,7 +178,7 @@ public class GenericLevel extends Level {
         } else if (displayList.cat.y < -20) {
             tempReached = true;
         }
-        if (tempReached && levelEntered) {
+        if (tempReached && levelEntered && !(displayList.cat.Dying || displayList.cat.Dead)) {
             reachedNextLevel = true;
         } else if (!tempReached && !levelEntered) {
             levelEntered = true;

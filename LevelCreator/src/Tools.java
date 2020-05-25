@@ -10,6 +10,8 @@ public enum Tools {
     FLOOR,
     WALL,
     ACID,
-    NODE
+    NODE,
+    SPAWN,
+    TRAP_SPAWN
 
 }

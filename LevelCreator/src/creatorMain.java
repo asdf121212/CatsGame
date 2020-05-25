@@ -13,6 +13,9 @@ public class creatorMain {
 
     private static JButton selectedButton = null;
     private JContentArea currentArea;
+    private JCheckBox checkBox;
+
+    private String parentDirectory = "";
 
     public creatorMain() {
 
@@ -20,7 +23,6 @@ public class creatorMain {
         frame.setFocusable(true);
         Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(screenDimensions.width / 2 - 660, screenDimensions.height / 2 - 410);
-        //frame.setSize(1300,800);
         currentArea = new JContentArea();
         currentArea.setVisible(true);
         currentArea.setPreferredSize(new Dimension(1300, 800));
@@ -35,10 +37,12 @@ public class creatorMain {
         JMenuItem newItem = new JMenuItem("New");
         JMenuItem quitItem = new JMenuItem("Quit");
         JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem saveNewFormat = new JMenuItem("Save (new format)");
         JMenuItem openItem = new JMenuItem("Open");
         fileMenu.add(newItem);
         fileMenu.add(openItem);
         fileMenu.add(saveItem);
+        fileMenu.add(saveNewFormat);
         fileMenu.add(quitItem);
         menuBar.add(fileMenu);
 
@@ -58,7 +62,7 @@ public class creatorMain {
 
         JButton floorButton = createButton("Images/floor.png");
         JButton wallButton = createButton("Images/wall.png");
-        JButton aicdButton = createButton("Images/acid.png");
+        JButton acidButton = createButton("Images/acid.png");
         JButton nodeButton = createButton("Images/Node.png");
         JButton vacuumButton = createButton("Images/vacuumBlast1RC.png");
         JButton tinyMouseButton = createButton("Images/tinyMouse1_RC.png");
@@ -66,11 +70,17 @@ public class creatorMain {
         JButton squirrelButton = createButton("Images/squirrelC.png");
         JButton rsquirrelButton = createButton("Images/r_squirrelC.png");
         JButton deleteButton = createButton("Images/X.png");
+        JButton spawnButton = createButton("Images/spawnPoint.png");
+
+        checkBox = new JCheckBox("Trap", false);
+        checkBox.setVisible(false);
 
         toolbar.add(floorButton);
         toolbar.add(wallButton);
-        toolbar.add(aicdButton);
+        toolbar.add(acidButton);
         toolbar.add(nodeButton);
+        toolbar.add(spawnButton);
+        toolbar.add(checkBox);
         toolbar.add(lineButton);
         toolbar.add(vacuumButton);
         toolbar.add(tinyMouseButton);
@@ -83,81 +93,61 @@ public class creatorMain {
         frame.pack();
 
         selectButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             selectButton.setSelected(true);
             currentArea.SetTool(Tools.SELECT);
             selectedButton = selectButton;
         });
         lineButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             lineButton.setSelected(true);
             currentArea.SetTool(Tools.LINE);
             selectedButton = lineButton;
         });
         floorButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             floorButton.setSelected(true);
             currentArea.SetTool(Tools.FLOOR);
             selectedButton = floorButton;
         });
         wallButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             wallButton.setSelected(true);
             currentArea.SetTool(Tools.WALL);
             selectedButton = wallButton;
         });
         nodeButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             nodeButton.setSelected(true);
             currentArea.SetTool(Tools.NODE);
             selectedButton = nodeButton;
         });
         vacuumButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             vacuumButton.setSelected(true);
             currentArea.SetTool(Tools.VACUUM);
             selectedButton = vacuumButton;
         });
         tinyMouseButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             tinyMouseButton.setSelected(true);
             currentArea.SetTool(Tools.TINYMOUSE);
             selectedButton = tinyMouseButton;
         });
         yarnballButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             yarnballButton.setSelected(true);
             currentArea.SetTool(Tools.YARNBALL);
             selectedButton = yarnballButton;
         });
         squirrelButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             squirrelButton.setSelected(true);
             currentArea.SetTool(Tools.SQUIRREL);
             selectedButton = squirrelButton;
         });
         rsquirrelButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
+            buttonSelect();
             rsquirrelButton.setSelected(true);
             currentArea.SetTool(Tools.RSQUIRREL);
             selectedButton = rsquirrelButton;
@@ -167,13 +157,32 @@ public class creatorMain {
                 currentArea.delete();
             }
         });
-        aicdButton.addActionListener(e -> {
-            if (selectedButton != null) {
-                selectedButton.setSelected(false);
-            }
-            aicdButton.setSelected(true);
+        acidButton.addActionListener(e -> {
+            buttonSelect();
+            acidButton.setSelected(true);
             currentArea.SetTool(Tools.ACID);
-            selectedButton = aicdButton;
+            selectedButton = acidButton;
+        });
+        spawnButton.addActionListener(e -> {
+            buttonSelect();
+            checkBox.setVisible(true);
+            spawnButton.setSelected(true);
+            if (checkBox.isSelected()) {
+                currentArea.SetTool(Tools.TRAP_SPAWN);
+            } else {
+                currentArea.SetTool(Tools.SPAWN);
+            }
+            selectedButton = spawnButton;
+        });
+
+        checkBox.addActionListener(e -> {
+            if (selectedButton == spawnButton) {
+                if (checkBox.isSelected()) {
+                    currentArea.SetTool(Tools.TRAP_SPAWN);
+                } else {
+                    currentArea.SetTool(Tools.SPAWN);
+                }
+            }
         });
 
         newItem.addActionListener(e -> {
@@ -211,13 +220,36 @@ public class creatorMain {
             }
         });
 
+        saveNewFormat.addActionListener(e -> {
+            LevelConfigObj2 configObj = currentArea.displayList.getConfigObj2();
+            try {
+                JFileChooser fileChooser = new JFileChooser();
+                if (!parentDirectory.equals(""))  {
+                    fileChooser.setCurrentDirectory(new File(parentDirectory));
+                }
+                int result = fileChooser.showSaveDialog(frame);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    FileOutputStream fStream = new FileOutputStream(fileChooser.getSelectedFile());
+                    ObjectOutputStream oStream = new ObjectOutputStream(fStream);
+                    oStream.writeObject(configObj);
+                    parentDirectory = fileChooser.getSelectedFile().getParent();
+                }
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+
         openItem.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             //fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("lvl"));
             //fileChooser.setCurrentDirectory(new File("../../"));
+            if (!parentDirectory.equals(""))  {
+                fileChooser.setCurrentDirectory(new File(parentDirectory));
+            }
             int result = fileChooser.showOpenDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
                 try {
+                    parentDirectory = fileChooser.getSelectedFile().getParent();
                     FileInputStream fStream = new FileInputStream(fileChooser.getSelectedFile());
                     ObjectInputStream oStream = new ObjectInputStream(fStream);
                     LevelConfigurationObject configObj = (LevelConfigurationObject) oStream.readObject();
@@ -244,6 +276,13 @@ public class creatorMain {
         });
 
 
+    }
+
+    private void buttonSelect() {
+        if (selectedButton != null) {
+            selectedButton.setSelected(false);
+        }
+        checkBox.setVisible(false);
     }
 
     public JButton createButton(String pathToImage) {
