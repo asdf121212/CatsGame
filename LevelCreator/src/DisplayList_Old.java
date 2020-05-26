@@ -45,7 +45,11 @@ public class DisplayList_Old {
         }
         for (Squirrel squirrel : squirrels) {
             EntityConfigurationObject squirrelObj = new EntityConfigurationObject((int)squirrel.x - 50, (int)squirrel.y - 50);
-            configObj.squirrelConfigList.add(squirrelObj);
+            if (squirrel instanceof RSquirrel) {
+                configObj.rSquirrelConfigList.add(squirrelObj);
+            } else {
+                configObj.squirrelConfigList.add(squirrelObj);
+            }
         }
         for (DrawingAcid drawingAcid : drawingAcids) {
             EntityConfigurationObject acidObj = new EntityConfigurationObject((int)drawingAcid.getAcid().x - 50,
@@ -68,7 +72,7 @@ public class DisplayList_Old {
         configObj.leftSpawnPoint = leftSpawnPoint;
         configObj.rightSpawnPoint = rightSpawnPoint;
         configObj.topSpawnPoint = topSpawnPoint;
-        configObj.bottoomSpawnPoint = bottomSpawnPoint;
+        configObj.bottomSpawnPoint = bottomSpawnPoint;
         return configObj;
     }
 

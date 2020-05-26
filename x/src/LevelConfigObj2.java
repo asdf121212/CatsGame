@@ -9,13 +9,14 @@ public class LevelConfigObj2 implements Serializable {
     public ArrayList<EntityConfigurationObject> yarnballConfigList = new ArrayList<>();
     public ArrayList<EntityConfigurationObject> tinyMouseConfigList = new ArrayList<>();
     public ArrayList<EntityConfigurationObject> squirrelConfigList = new ArrayList<>();
+    public ArrayList<EntityConfigurationObject> rSquirrelConfigList = new ArrayList<>();
     public ArrayList<EntityConfigurationObject> acidConfigList = new ArrayList<>();
 
 
     public SpawnPoint leftSpawnPoint;
     public SpawnPoint rightSpawnPoint;
     public SpawnPoint topSpawnPoint;
-    public SpawnPoint bottoomSpawnPoint;
+    public SpawnPoint bottomSpawnPoint;
 
 
     //walls, floors, nodes

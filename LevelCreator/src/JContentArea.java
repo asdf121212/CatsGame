@@ -2,12 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
 
 public class JContentArea extends JPanel {
 
     private Tools currentTool;
     private Color currentColor = Color.BLACK;
     private int currentWidth = 2;
+
+    private BufferedImage zinzanImage = Entity.getBufferedImage("Images/zinzanStill.png", 100, 100);
 
     private Rectangle2D border = new Rectangle2D.Double(50, 50, 1200, 700);
 
@@ -72,7 +75,9 @@ public class JContentArea extends JPanel {
         for (IndexedNodeFloor nodeFloor : configObj.indexedNodeFloors) {
             nodeFloor.x += 50;
             nodeFloor.y += 50;
-            displayList.drawingFloors.add(new DrawingFloor(nodeFloor));
+            DrawingFloor floor = new DrawingFloor(nodeFloor);
+            floor.isAlsoWall = configObj.walls.contains(nodeFloor);
+            displayList.drawingFloors.add(floor);
             if (nodeFloor.ID > maxFloorID) {
                 maxFloorID = nodeFloor.ID;
             }
@@ -146,6 +151,7 @@ public class JContentArea extends JPanel {
                 displayList.bottomSpawnPoint = null;
             }
             currentlySelectedSpawnPoint = null;
+            repaint();
         }
     }
 
@@ -304,6 +310,7 @@ public class JContentArea extends JPanel {
                     movingEntity = false;
                     movingNode = false;
                     movingAcid = false;
+                    movingSpawnPoint = false;
                     resizing = false;
                     resizingAcid = false;
                     currentResizeBox = null;
@@ -816,6 +823,7 @@ public class JContentArea extends JPanel {
         for (SpawnPoint spawnPoint : new SpawnPoint[] { currentSpawnPoint, displayList.leftSpawnPoint, displayList.rightSpawnPoint,
             displayList.topSpawnPoint, displayList.bottomSpawnPoint }) {
             if (spawnPoint != null) {
+                g2.drawImage(zinzanImage, spawnPoint.x, spawnPoint.y, 75, 50, null);
                 if (spawnPoint.isFallTrap) {
                     g2.setColor(Color.RED);
                 } else {

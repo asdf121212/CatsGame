@@ -7,31 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/artifacts/LevelCreator_jar/LevelCreator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/artifacts/LevelCreator_jar/LevelCreator.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/DisplayList_Old.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/DisplayList_Old.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/Tools.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/Tools.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/creatorMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/creatorMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/src/DisplayList_Old.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/DisplayList_Old.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/src/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/Tools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LevelCreator/src/creatorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/creatorMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GenericLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GenericLevel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Ganymede 3.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Ganymede.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Sand edit 3.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Sand edit.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/ancalagon.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/trinoculars2.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/LevelConfigObj2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/LevelConfigObj2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GenericLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoundFiles/Songs/Ganymede.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoundFiles/Songs/Sand edit.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoundFiles/Songs/ancalagon.aif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoundFiles/Songs/trinoculars2.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LevelConfigObj2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelConfigObj2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,25 +127,25 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="336" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.875@0.0.1440.875" timestamp="1590016207115" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590330270411">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590501528701">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590330270411" />
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590501528701" />
     <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590330270410">
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590501528700">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590330270410" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590501528700" />
     <state width="1398" height="224" key="GridCell.Tab.0.center/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590330270410">
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590501528699">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590330270410" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590501528699" />
     <state width="1398" height="224" key="GridCell.Tab.0.left/0.23.1440.852@0.23.1440.852" timestamp="1587672873320" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590330270410">
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590501528700">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590330270410" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590501528700" />
     <state width="1398" height="224" key="GridCell.Tab.0.right/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
     <state width="1398" height="244" key="GridCell.Tab.1.bottom" timestamp="1590265462874">
       <screen x="0" y="0" width="1440" height="875" />

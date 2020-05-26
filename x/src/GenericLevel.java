@@ -169,11 +169,11 @@ public class GenericLevel extends Level {
         }
 
         boolean tempReached = false;
-        if (displayList.cat.x > 1170) {
+        if (displayList.cat.x > 1165) {
             tempReached = true;
-        } else if (displayList.cat.x < -50) {
+        } else if (displayList.cat.x < -35) {
             tempReached = true;
-        } else if (displayList.cat.y > 680) {
+        } else if (displayList.cat.y > 670) {
             tempReached = true;
         } else if (displayList.cat.y < -20) {
             tempReached = true;

@@ -4,6 +4,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.util.logging.Level;
@@ -264,6 +265,7 @@ public class creatorMain {
                     selectButton.setSelected(true);
                     newArea.SetTool(Tools.SELECT);
                     currentArea = newArea;
+                    frame.setTitle(fileChooser.getSelectedFile().getName());
                     frame.pack();
                     frame.repaint();
 
