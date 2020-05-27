@@ -37,14 +37,16 @@ public class creatorMain {
         JMenu fileMenu = new JMenu("File");
         JMenuItem newItem = new JMenuItem("New");
         JMenuItem quitItem = new JMenuItem("Quit");
-        JMenuItem saveItem = new JMenuItem("Save");
-        JMenuItem saveNewFormat = new JMenuItem("Save (new format)");
+        //JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem saveNewFormat = new JMenuItem("Save");
         JMenuItem openItem = new JMenuItem("Open");
+        //JMenuItem convertFolderItem = new JMenuItem("Add 50 to folder sp's");
         fileMenu.add(newItem);
         fileMenu.add(openItem);
-        fileMenu.add(saveItem);
+        //fileMenu.add(saveItem);
         fileMenu.add(saveNewFormat);
         fileMenu.add(quitItem);
+        //fileMenu.add(convertFolderItem);
         menuBar.add(fileMenu);
 
         JToolBar toolbar = new JToolBar(JToolBar.VERTICAL);
@@ -206,20 +208,20 @@ public class creatorMain {
             System.exit(0);
         });
 
-        saveItem.addActionListener(e -> {
-            LevelConfigurationObject configObj = currentArea.displayList.getConfigObj();
-            try {
-                JFileChooser fileChooser = new JFileChooser();
-                int result = fileChooser.showSaveDialog(frame);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    FileOutputStream fStream = new FileOutputStream(fileChooser.getSelectedFile());
-                    ObjectOutputStream oStream = new ObjectOutputStream(fStream);
-                    oStream.writeObject(configObj);
-                }
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        });
+//        saveItem.addActionListener(e -> {
+//            LevelConfigurationObject configObj = currentArea.displayList.getConfigObj();
+//            try {
+//                JFileChooser fileChooser = new JFileChooser();
+//                int result = fileChooser.showSaveDialog(frame);
+//                if (result == JFileChooser.APPROVE_OPTION) {
+//                    FileOutputStream fStream = new FileOutputStream(fileChooser.getSelectedFile());
+//                    ObjectOutputStream oStream = new ObjectOutputStream(fStream);
+//                    oStream.writeObject(configObj);
+//                }
+//            } catch (IOException ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//        });
 
         saveNewFormat.addActionListener(e -> {
             LevelConfigObj2 configObj = currentArea.displayList.getConfigObj2();
@@ -253,7 +255,7 @@ public class creatorMain {
                     parentDirectory = fileChooser.getSelectedFile().getParent();
                     FileInputStream fStream = new FileInputStream(fileChooser.getSelectedFile());
                     ObjectInputStream oStream = new ObjectInputStream(fStream);
-                    LevelConfigurationObject configObj = (LevelConfigurationObject) oStream.readObject();
+                    LevelConfigObj2 configObj = (LevelConfigObj2) oStream.readObject();
 
                     JContentArea newArea = new JContentArea();
                     newArea.setPreferredSize(currentArea.getPreferredSize());
@@ -269,13 +271,50 @@ public class creatorMain {
                     frame.pack();
                     frame.repaint();
 
-                    currentArea.loadConfigObj(configObj);
+                    currentArea.loadConfigObj2(configObj);
 
                 } catch (IOException | ClassNotFoundException ex) {
                     System.out.println(ex.getMessage());
                 }
             }
         });
+
+//        convertFolderItem.addActionListener(e -> {
+//            JFileChooser fileChooser = new JFileChooser();
+//            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//            if (!parentDirectory.equals(""))  {
+//                fileChooser.setCurrentDirectory(new File(parentDirectory));
+//            }
+//            int result = fileChooser.showOpenDialog(frame);
+//            if (result == JFileChooser.APPROVE_OPTION) {
+//                try {
+//                    for (File file : fileChooser.getSelectedFile().listFiles()) {
+//                        System.out.println(file.getName());
+//                        FileInputStream fStream = new FileInputStream(file);
+//                        ObjectInputStream oStream = new ObjectInputStream(fStream);
+//                        LevelConfigObj2 configObj = (LevelConfigObj2) oStream.readObject();
+//                        configObj.leftSpawnPoint.x -= 50;
+//                        configObj.leftSpawnPoint.y -= 50;
+//                        configObj.rightSpawnPoint.x -= 50;
+//                        configObj.rightSpawnPoint.y -= 50;
+//                        configObj.topSpawnPoint.x -= 50;
+//                        configObj.topSpawnPoint.y -= 50;
+//                        configObj.bottomSpawnPoint.x -= 50;
+//                        configObj.bottomSpawnPoint.y -= 50;
+//                        FileOutputStream fOutStream = new FileOutputStream(file);
+//                        ObjectOutputStream oOutStream = new ObjectOutputStream(fOutStream);
+//                        oOutStream.writeObject(configObj);
+//                        fStream.close();
+//                        oStream.close();
+//                        fOutStream.close();
+//                        oOutStream.close();
+//                    }
+//
+//                } catch (IOException | ClassNotFoundException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//            }
+//        });
 
 
     }

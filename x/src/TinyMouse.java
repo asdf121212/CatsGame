@@ -53,14 +53,6 @@ public class TinyMouse extends Enemy {
             hitTimer.stop();
         }
     }
-//    public void Stop() {
-//        if (hitTimer != null) {
-//            hitTimer.stop();
-//        }
-////        if (moveTimer != null) {
-////            moveTimer.stop();
-////        }
-//    }
 
     public void update() {
         if (cooldownTicks > 0) {

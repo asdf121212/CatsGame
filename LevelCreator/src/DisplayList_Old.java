@@ -69,6 +69,14 @@ public class DisplayList_Old {
                 configObj.walls.add(drawingFloor.getShape());
             }
         }
+        leftSpawnPoint.x -= 50;
+        leftSpawnPoint.y -= 50;
+        rightSpawnPoint.x -= 50;
+        rightSpawnPoint.y -= 50;
+        topSpawnPoint.x -= 50;
+        topSpawnPoint.y -= 50;
+        bottomSpawnPoint.x -= 50;
+        bottomSpawnPoint.y -= 50;
         configObj.leftSpawnPoint = leftSpawnPoint;
         configObj.rightSpawnPoint = rightSpawnPoint;
         configObj.topSpawnPoint = topSpawnPoint;

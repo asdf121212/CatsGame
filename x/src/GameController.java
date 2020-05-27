@@ -103,7 +103,7 @@ public class GameController {
             }
 
             currentLevel.update();
-
+            currentLevel.repaint();
             if (cat.Dead) {
                 cat_die();
             } else if (currentLevel.hasReachedNextLevel()) {
@@ -166,7 +166,7 @@ public class GameController {
         f = null;
         currentLevel.addKeyListener(keyAdapter);
         currentLevel.requestFocus();
-        viewController.StartRepaintTimer();
+        //viewController.StartRepaintTimer();
         updateTimer.start();
         viewController.revalidateFrame();
     }
@@ -182,7 +182,7 @@ public class GameController {
                 InitializeLevel(nextLevel);
             }
             catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                System.out.println(ex.getMessage() + " GameController: advance levels error");
             }
         } else {
             return;

@@ -54,7 +54,7 @@ public class Yarnball extends Enemy {
     }
 
     public int getContactDamage() {
-        return 50;
+        return 100;
     }
 
     public void Start() {

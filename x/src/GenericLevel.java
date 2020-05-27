@@ -12,6 +12,10 @@ public class GenericLevel extends Level {
     public ArrayList<TinyMouse> tinyMouseList = new ArrayList<>();
     public ArrayList<Squirrel> squirrelList = new ArrayList<>();
     public ArrayList<Acid> acidList = new ArrayList<>();
+    public SpawnPoint leftSpawn;
+    public SpawnPoint rightSpawn;
+    public SpawnPoint topSpawn;
+    public SpawnPoint bottomSpawn;
 
     //public ArrayList<Teleporter> teleporters = new ArrayList<>();
 
@@ -37,7 +41,7 @@ public class GenericLevel extends Level {
 
     }
 
-    public void ConfigureLevel(LevelConfigurationObject configObj) {
+    public void ConfigureLevel(LevelConfigObj2 configObj) {
         floors = configObj.indexedNodeFloors.toArray(new IndexedNodeFloor[0]);
         walls = configObj.walls.toArray(new RoundRectangle2D[0]);
         nodeList = configObj.indexedNodes;
@@ -61,14 +65,14 @@ public class GenericLevel extends Level {
             displayList.AddEnemy(tinyMouse);
         }
         for (EntityConfigurationObject squirrelConfig : configObj.squirrelConfigList) {
-            Squirrel squirrel;
-            if (squirrelConfig.x < 580) {
-                squirrel = new RSquirrel(squirrelConfig.x, squirrelConfig.y);
-            } else {
-                squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
-            }
+            Squirrel squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
             squirrelList.add(squirrel);
             displayList.AddEnemy(squirrel);
+        }
+        for (EntityConfigurationObject squirrelConfig : configObj.rSquirrelConfigList) {
+            RSquirrel rSquirrel = new RSquirrel(squirrelConfig.x, squirrelConfig.y);
+            squirrelList.add(rSquirrel);
+            displayList.AddEnemy(rSquirrel);
         }
 //        for (Teleporter teleporter : configObj.teleporters) {
 //            teleporters.add(teleporter);
@@ -79,6 +83,10 @@ public class GenericLevel extends Level {
             acidList.add(acid);
             displayList.AddEnemy(acid);
         }
+        leftSpawn = configObj.leftSpawnPoint;
+        rightSpawn = configObj.rightSpawnPoint;
+        topSpawn = configObj.topSpawnPoint;
+        bottomSpawn = configObj.bottomSpawnPoint;
     }
 
     //I think I need to set up references at runtime if this is loaded from serialized data
@@ -156,25 +164,35 @@ public class GenericLevel extends Level {
             }
         }
 
-        if (pigMouseWaiting) {
-            if (elapsedWaitTicks >= pigMouseWaitTicks) {
-                pigMouseWaiting = false;
-                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
-                pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
-                displayList.AddEnemy(pigMouse);
-            }
-            else {
-                elapsedWaitTicks++;
-            }
-        }
+//        if (pigMouseWaiting) {
+//            if (elapsedWaitTicks >= pigMouseWaitTicks) {
+//                pigMouseWaiting = false;
+//                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+//                pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
+//                displayList.AddEnemy(pigMouse);
+//            }
+//            else {
+//                elapsedWaitTicks++;
+//            }
+//        }
 
         boolean tempReached = false;
+        boolean absoluteReached = false;
         if (displayList.cat.x > 1165) {
             tempReached = true;
+            if (displayList.cat.x > 1195) {
+                absoluteReached = true;
+            }
         } else if (displayList.cat.x < -35) {
             tempReached = true;
+            if (displayList.cat.x < -70) {
+                absoluteReached = true;
+            }
         } else if (displayList.cat.y > 670) {
             tempReached = true;
+            if (displayList.cat.y > 695) {
+                absoluteReached = true;
+            }
         } else if (displayList.cat.y < -20) {
             tempReached = true;
         }
@@ -182,6 +200,8 @@ public class GenericLevel extends Level {
             reachedNextLevel = true;
         } else if (!tempReached && !levelEntered) {
             levelEntered = true;
+        } else if (absoluteReached && !(displayList.cat.Dying || displayList.cat.Dead)) {
+            reachedNextLevel = true;
         }
 
         super.update();

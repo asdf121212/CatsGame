@@ -28,6 +28,7 @@ public class JContentArea extends JPanel {
     private Entity currentEntity;
     private Entity currentlySelectedEntity;
     private IndexedNode currentNode;
+    private IndexedNode currentlySelectedNode;
     private SpawnPoint currentSpawnPoint;
     private SpawnPoint currentlySelectedSpawnPoint;
 
@@ -54,10 +55,12 @@ public class JContentArea extends JPanel {
 
     private Point2D currentStartPoint;
 
-
-    public void loadConfigObj(LevelConfigurationObject configObj) {
+    public void loadConfigObj2(LevelConfigObj2 configObj) {
         for (EntityConfigurationObject squirrelObj : configObj.squirrelConfigList) {
             displayList.squirrels.add(new Squirrel(squirrelObj.x + 50, squirrelObj.y + 50));
+        }
+        for (EntityConfigurationObject rSquirrelObj : configObj.rSquirrelConfigList) {
+            displayList.squirrels.add(new Squirrel(rSquirrelObj.x + 50, rSquirrelObj.y + 50));
         }
         for (EntityConfigurationObject vacuumObj : configObj.vacuumConfigList) {
             displayList.vacuums.add(new Vacuum(vacuumObj.x + 50, vacuumObj.y + 50, vacuumObj.x + 50, vacuumObj.optionalRangeOrBound + 50));
@@ -94,7 +97,61 @@ public class JContentArea extends JPanel {
         IndexedNode.IDcount = maxNodeID + 1;
         IndexedNodeFloor.IDcount = maxFloorID + 1;
         ConnectNodesAndFloors();
+
+        displayList.leftSpawnPoint = configObj.leftSpawnPoint;
+        displayList.rightSpawnPoint = configObj.rightSpawnPoint;
+        displayList.topSpawnPoint = configObj.topSpawnPoint;
+        displayList.bottomSpawnPoint = configObj.bottomSpawnPoint;
+        displayList.leftSpawnPoint.x += 50;
+        displayList.leftSpawnPoint.y += 50;
+        displayList.rightSpawnPoint.x += 50;
+        displayList.rightSpawnPoint.y += 50;
+        displayList.topSpawnPoint.x += 50;
+        displayList.topSpawnPoint.y += 50;
+        displayList.bottomSpawnPoint.x += 50;
+        displayList.bottomSpawnPoint.y += 50;
     }
+
+//    public void loadConfigObj(LevelConfigurationObject configObj) {
+//        for (EntityConfigurationObject squirrelObj : configObj.squirrelConfigList) {
+//            displayList.squirrels.add(new Squirrel(squirrelObj.x + 50, squirrelObj.y + 50));
+//        }
+//        for (EntityConfigurationObject vacuumObj : configObj.vacuumConfigList) {
+//            displayList.vacuums.add(new Vacuum(vacuumObj.x + 50, vacuumObj.y + 50, vacuumObj.x + 50, vacuumObj.optionalRangeOrBound + 50));
+//        }
+//        for (EntityConfigurationObject tinyMouseObj : configObj.tinyMouseConfigList) {
+//            displayList.tinyMice.add(new TinyMouse(tinyMouseObj.x + 50, tinyMouseObj.optionalRangeOrBound + 50, tinyMouseObj.y + 50));
+//        }
+//        for (EntityConfigurationObject yarnballObj : configObj.yarnballConfigList) {
+//            displayList.yarnballs.add(new Yarnball(yarnballObj.x + 50, yarnballObj.y + 50, yarnballObj.optionalRangeOrBound));
+//        }
+//        for (EntityConfigurationObject acidObj : configObj.acidConfigList) {
+//            displayList.drawingAcids.add(new DrawingAcid(acidObj.x + 50, acidObj.y + 50, acidObj.width, acidObj.height));
+//        }
+//        int maxFloorID = 0;
+//        for (IndexedNodeFloor nodeFloor : configObj.indexedNodeFloors) {
+//            nodeFloor.x += 50;
+//            nodeFloor.y += 50;
+//            DrawingFloor floor = new DrawingFloor(nodeFloor);
+//            floor.isAlsoWall = configObj.walls.contains(nodeFloor);
+//            displayList.drawingFloors.add(floor);
+//            if (nodeFloor.ID > maxFloorID) {
+//                maxFloorID = nodeFloor.ID;
+//            }
+//        }
+//        int maxNodeID = 0;
+//        for (IndexedNode node : configObj.indexedNodes) {
+//            node.x += 50;
+//            node.y += 50;
+//            displayList.nodes.add(node);
+//            if (node.ID > maxNodeID) {
+//                maxNodeID = node.ID;
+//            }
+//        }
+//        IndexedNode.IDcount = maxNodeID + 1;
+//        IndexedNodeFloor.IDcount = maxFloorID + 1;
+//        ConnectNodesAndFloors();
+//    }
 
     private void ConnectNodesAndFloors() {
         for (IndexedNode node : displayList.nodes) {
@@ -134,8 +191,6 @@ public class JContentArea extends JPanel {
                 currentlySelectedEntity = null;
                 repaint();
             }
-        } else if (currentNode != null) {
-            //this will mess up all the nodes. Should't do this unless you re-initialize all nodes or something
         } else if (currentlySelectedDrawingAcid != null) {
             displayList.drawingAcids.remove(currentlySelectedDrawingAcid);
             currentlySelectedDrawingAcid = null;
@@ -306,6 +361,14 @@ public class JContentArea extends JPanel {
                 }
                 else if (currentTool == Tools.SELECT) {
                     Rectangle2D selectBox = new Rectangle2D.Double(e.getX() - 2, e.getY() - 2, 4, 4);
+                    Ellipse2D spawnEllipse = null;
+                    Ellipse2D nodeEllipse = null;
+                    if (currentlySelectedSpawnPoint != null) {
+                        spawnEllipse = new Ellipse2D.Double(currentlySelectedSpawnPoint.x - 10, currentlySelectedSpawnPoint.y - 10, 20, 20);
+                    }
+                    if (currentlySelectedNode != null) {
+                        nodeEllipse = new Ellipse2D.Double(currentlySelectedNode.x - 5, currentlySelectedNode.y - 5, 10, 10);
+                    }
                     movingRect = false;
                     movingEntity = false;
                     movingNode = false;
@@ -353,30 +416,23 @@ public class JContentArea extends JPanel {
                         offsetX = e.getX() - currentlySelectedEntity.getHitBox().getX();
                         offsetY = e.getY() - currentlySelectedEntity.getHitBox().getY();
 
-                    } else if (currentlySelectedSpawnPoint != null) {
-                        Ellipse2D ellipse = new Ellipse2D.Double(currentlySelectedSpawnPoint.x - 10, currentlySelectedSpawnPoint.y - 10,
-                            20, 20);
-                        if (ellipse.contains(selectBox) || ellipse.intersects(selectBox)) {
-                            movingSpawnPoint = true;
-                            offsetX = e.getX() - currentlySelectedSpawnPoint.x;
-                            offsetY = e.getY() - currentlySelectedSpawnPoint.y;
-                        }
+                    } else if (currentlySelectedSpawnPoint != null && (spawnEllipse.contains(selectBox) || spawnEllipse.intersects(selectBox))) {
+                        movingSpawnPoint = true;
+                        offsetX = e.getX() - currentlySelectedSpawnPoint.x;
+                        offsetY = e.getY() - currentlySelectedSpawnPoint.y;
                     }
-//                    else if (currentlySelectedNode != null) {
-//                        Ellipse2D ellipse = new Ellipse2D.Double(currentlySelectedNode.x - 5, currentlySelectedNode.y - 5, 10, 10);
-//                        if (ellipse.getFrame().contains(selectBox) || ellipse.getFrame().intersects(selectBox)) {
-//                            ///////moving
-//                            movingNode = true;
-//                            //offsetX = e.getX() - currentlySelectedNode.x;
-//                            //offsetY = e.getY() - currentlySelectedNode.y;
-//                        }
-//                    }
+                    else if (currentlySelectedNode != null && (nodeEllipse.getFrame().contains(selectBox) || nodeEllipse.getFrame().intersects(selectBox))) {
+                            ///////moving
+                            movingNode = true;
+                            offsetX = e.getX() - currentlySelectedNode.x;
+                            offsetY = e.getY() - currentlySelectedNode.y;
+                    }
                     else {
                         currentlySelectedDrawingFloor = null;
                         currentlySelectedEntity = null;
                         currentlySelectedDrawingAcid = null;
                         currentlySelectedSpawnPoint = null;
-                        //currentlySelectedNode = null;
+                        currentlySelectedNode = null;
                         ///deselect
                         resizeBox1 = null;
                         //resizeBox2 = null;
@@ -456,15 +512,15 @@ public class JContentArea extends JPanel {
                                     }
                                 }
                             }
-//                            if (currentlySelectedNode == null) {
-//                                for (IndexedNode node : displayList.nodes) {
-//                                    Ellipse2D ellipse = new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10);
-//                                    if (selectBox.intersects(ellipse.getFrame())) {
-//                                        currentlySelectedNode = node;
-//                                        movingNode = true;
-//                                    }
-//                                }
-//                            }
+                            if (currentlySelectedEntity == null) {
+                                for (IndexedNode node : displayList.nodes) {
+                                    Ellipse2D ellipse = new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10);
+                                    if (selectBox.intersects(ellipse.getFrame())) {
+                                        currentlySelectedNode = node;
+                                        movingNode = true;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -709,8 +765,8 @@ public class JContentArea extends JPanel {
                             ((TinyMouse)currentlySelectedEntity).setRight_xBound((int)Math.round(currentlySelectedEntity.x) + diff);
                         }
                     } else if (movingNode) {
-                        //currentlySelectedNode.x = e.getX();
-                        //currentlySelectedNode.y = e.getY();
+                        currentlySelectedNode.x = e.getX();
+                        currentlySelectedNode.y = e.getY();
                     } else if (movingSpawnPoint) {
                         currentlySelectedSpawnPoint.x = e.getX();
                         currentlySelectedSpawnPoint.y = e.getY();
