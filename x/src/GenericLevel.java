@@ -4,6 +4,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GenericLevel extends Level {
 
@@ -21,6 +22,8 @@ public class GenericLevel extends Level {
 
     private ArrayList<IndexedNode> nodeList = new ArrayList<>();
 
+    private HashMap<Enemy, Integer> enemyIndexMap = new HashMap<>();
+
     private boolean levelEntered = false;
 
     public boolean pigMouseWaiting = false;
@@ -28,7 +31,11 @@ public class GenericLevel extends Level {
     public int elapsedWaitTicks = 0;
     public int pigMouseX_0 = 0;
     public int pigMouseY_0 = 0;
+    public int respawnPigMouseX_0 = 0;
+    public int respawnPigMouseY_0 = 0;
     public PigMouse pigMouse;
+
+    private LevelConfigObj2 configObj;
 
     public GenericLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));
@@ -42,37 +49,53 @@ public class GenericLevel extends Level {
     }
 
     public void ConfigureLevel(LevelConfigObj2 configObj) {
+        this.configObj = configObj;
         floors = configObj.indexedNodeFloors.toArray(new IndexedNodeFloor[0]);
         walls = configObj.walls.toArray(new RoundRectangle2D[0]);
         nodeList = configObj.indexedNodes;
         ConnectNodesAndFloors();
 
+        int index = 0;
         for (EntityConfigurationObject vacuumConfig : configObj.vacuumConfigList) {
             Vacuum vacuum = new Vacuum(vacuumConfig.x, vacuumConfig.y, vacuumConfig.x, vacuumConfig.optionalRangeOrBound);
             vacuumList.add(vacuum);
             displayList.AddEnemy(vacuum);
             vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
             vacuum.Start();
+            enemyIndexMap.put(vacuum, index);
+            index++;
         }
+        index = 0;
         for (EntityConfigurationObject yarnballConfig : configObj.yarnballConfigList) {
             Yarnball yarnball = new Yarnball(yarnballConfig.x, yarnballConfig.y, yarnballConfig.optionalRangeOrBound);
             yarnballList.add(yarnball);
             displayList.AddEnemy(yarnball);
+            enemyIndexMap.put(yarnball, index);
+            index++;
         }
+        index = 0;
         for (EntityConfigurationObject tinyMouseConfig : configObj.tinyMouseConfigList) {
             TinyMouse tinyMouse = new TinyMouse(tinyMouseConfig.x, tinyMouseConfig.optionalRangeOrBound, tinyMouseConfig.y);
             tinyMouseList.add(tinyMouse);
             displayList.AddEnemy(tinyMouse);
+            enemyIndexMap.put(tinyMouse, index);
+            index++;
         }
+        index = 0;
         for (EntityConfigurationObject squirrelConfig : configObj.squirrelConfigList) {
             Squirrel squirrel = new Squirrel(squirrelConfig.x, squirrelConfig.y);
             squirrelList.add(squirrel);
             displayList.AddEnemy(squirrel);
+            enemyIndexMap.put(squirrel, index);
+            index++;
         }
+        index = 0;
         for (EntityConfigurationObject squirrelConfig : configObj.rSquirrelConfigList) {
             RSquirrel rSquirrel = new RSquirrel(squirrelConfig.x, squirrelConfig.y);
             squirrelList.add(rSquirrel);
             displayList.AddEnemy(rSquirrel);
+            enemyIndexMap.put(rSquirrel, index);
+            index++;
         }
 //        for (Teleporter teleporter : configObj.teleporters) {
 //            teleporters.add(teleporter);
@@ -133,6 +156,9 @@ public class GenericLevel extends Level {
 
     @Override
     public void update() {
+//        if (displayList.cat == null) {
+//            return;
+//        }
         //Vacuums
         for (Vacuum vacuum : vacuumList) {
             vacuum.shootTicks++;
@@ -147,11 +173,6 @@ public class GenericLevel extends Level {
                 yarnball.Start();
             }
         }
-        //TinyMice
-        for (TinyMouse tinyMouse : tinyMouseList) {
-            tinyMouse.update();
-        }
-        //Squirrels
         for (Squirrel squirrel : squirrelList) {
             if (squirrel != null && !squirrel.Dying && !squirrel.Dead) {
                 if (squirrel.ticks == 220) {
@@ -163,18 +184,23 @@ public class GenericLevel extends Level {
                 }
             }
         }
-
-//        if (pigMouseWaiting) {
-//            if (elapsedWaitTicks >= pigMouseWaitTicks) {
-//                pigMouseWaiting = false;
-//                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
-//                pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
-//                displayList.AddEnemy(pigMouse);
-//            }
-//            else {
-//                elapsedWaitTicks++;
-//            }
-//        }
+        if (pigMouseWaiting) {
+            if (elapsedWaitTicks >= pigMouseWaitTicks) {
+                pigMouseWaiting = false;
+                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+                pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
+                displayList.AddEnemy(pigMouse);
+            }
+            else {
+                elapsedWaitTicks++;
+            }
+        } else if (pigMouse != null && pigMouse.needsToRespawn) {
+            pigMouse.Dispose();
+            displayList.removeEnemy(pigMouse);
+            pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+            pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
+            displayList.AddEnemy(pigMouse);
+        }
 
         boolean tempReached = false;
         boolean absoluteReached = false;
@@ -204,7 +230,73 @@ public class GenericLevel extends Level {
             reachedNextLevel = true;
         }
 
-        super.update();
+
+        if (displayList.cat.GetY() > 800) {
+            displayList.cat.entityHit(200);
+        }
+        for (Enemy enemy : displayList.getEnemies()) {
+            if (enemy.Dead) {
+                SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
+                SwingUtilities.invokeLater(() -> removeFromConfigObj(enemy));
+                continue;
+            } else if (enemy.Dying) {
+                continue;
+            }
+            for (Fluffball fluffball : displayList.getFluffballs()) {
+                if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
+                    fluffball.stop();
+                    SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                    SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
+                }
+            }
+            if (enemy.getHitBox().intersects(displayList.cat.getHitBox()) && !enemy.hitCoolingDown) {
+                if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
+                    //SwingUtilities.invokeLater(() -> displayList.cat.entityHit(enemy.getContactDamage()));///threw error
+                    displayList.cat.entityHit(enemy.getContactDamage());
+                    SwingUtilities.invokeLater(() -> displayList.cat.bump(enemy.x + enemy.width / 2.0));
+                }
+                enemy.hitCat();
+            }
+        }
+        //check if fluffballs are dead or hit a wall
+        for (Fluffball fluffball : displayList.getFluffballs()) {
+            if (fluffball.Dead) {
+                SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+            } else {
+                for (RoundRectangle2D wall : walls) {
+                    if (fluffball.getHitBox().intersects(wall.getFrame())) {
+                        fluffball.stop();
+                        SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                    }
+                }
+            }
+        }
+
+        for (ZinzanLife extraLife : displayList.getExtraLives()) {
+            if (displayList.cat.getHitBox().intersects(extraLife.getHitBox())) {
+                numLives++;
+                SwingUtilities.invokeLater(() -> displayList.removeExtraLife(extraLife));
+            }
+        }
+
+    }
+
+    private void removeFromConfigObj(Enemy enemy) {
+        if (configObj != null) {
+            if (enemy instanceof Squirrel) {
+                if (enemy instanceof RSquirrel) {
+                    configObj.rSquirrelConfigList.remove((int)enemyIndexMap.get(enemy));
+                } else {
+                    configObj.squirrelConfigList.remove((int)enemyIndexMap.get(enemy));
+                }
+            } else if (enemy instanceof TinyMouse) {
+                configObj.tinyMouseConfigList.remove((int)enemyIndexMap.get(enemy));
+            } else if (enemy instanceof Vacuum) {
+                configObj.vacuumConfigList.remove((int)enemyIndexMap.get(enemy));
+            } else if (enemy instanceof  Yarnball) {
+                configObj.yarnballConfigList.remove((int)enemyIndexMap.get(enemy));
+            }
+        }
     }
 
     @Override

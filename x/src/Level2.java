@@ -63,7 +63,7 @@ public class Level2 extends Level {
         } else if (bottomYarnball.enteredAttackZone(displayList.cat.GetX() + 75, displayList.cat.GetY() + 25)) {
             bottomYarnball.Start();
         }
-        tinyMouse.update();
+        //tinyMouse.update();
 
         if (displayList.cat.GetX() >= 1170 && displayList.cat.GetY() >= 600) {
             reachedNextLevel = true;

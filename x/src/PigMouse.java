@@ -31,6 +31,7 @@ public class PigMouse extends SolidEnemy {
 
     private boolean jumping = false;
     private boolean fall = false;
+    public boolean needsToRespawn = false;
 
     private Timer initialFallTimer;
 
@@ -56,6 +57,9 @@ public class PigMouse extends SolidEnemy {
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
+            }
+            if (x > 1300 || x < -200 || y > 900 || y < -1000) {
+                needsToRespawn = true;
             }
             NodeFloor floor = null;
             for (NodeFloor rect : levelInfo.nodeFloors) {
@@ -100,9 +104,10 @@ public class PigMouse extends SolidEnemy {
     private ActionListener traverse = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (x > 1300 || x < -100 || y > 800 || y < -100) {
+            if (x > 1300 || x < -200 || y > 900 || y < -1000) {
                 planTimer.stop();
                 traverseTimer.stop();
+                needsToRespawn = true;
             }
             if (path == null) {
                 return;

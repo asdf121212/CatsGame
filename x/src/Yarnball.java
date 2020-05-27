@@ -21,7 +21,7 @@ public class Yarnball extends Enemy {
     private Timer flashTimer;
     private BufferedImage image = yarnball0;
     private double Range;
-    private boolean active = false;
+    //private boolean active = false;
     private double yVel = 0;
     private double xVel = -3;
 
@@ -61,7 +61,7 @@ public class Yarnball extends Enemy {
         attackTimer = new Timer(5, attack);
         attackTimer.start();
         image = yarnball1;
-        active = true;
+        //active = true;
         pantherRoar.Start();
     }
 
@@ -69,12 +69,12 @@ public class Yarnball extends Enemy {
         if ((attackTimer != null && attackTimer.isRunning()) || Dead || Dying) {
             return false;
         } else {
-            return x - xCoord < Range && yCoord <= y + width + 10 && yCoord >= y - 10;
+            return x - xCoord < Range && x - xCoord > -10 && yCoord <= y + width + 10 && yCoord >= y - 10;
         }
     }
 
     public void hitCat() {
-
+        hitCoolingDown = true;
     }
 
     public void startDying() {
@@ -90,12 +90,14 @@ public class Yarnball extends Enemy {
 
     @Override
     public void entityHit(int damage) {
-        if (!active) {
-            return;
-        }
+//        if (!active) {
+//            return;
+//        }
         health -= damage;
         if (health <= 0) {
-            attackTimer.stop();
+            if (attackTimer != null) {
+                attackTimer.stop();
+            }
             startDying();
         } else {
             if (flashTimer != null && flashTimer.isRunning()) {
@@ -139,15 +141,15 @@ public class Yarnball extends Enemy {
             y += yVel;
             x += xVel;
             yVel += 0.1;
-//            if (image.equals(yarnball-explode1)) {
-//                image = yarnball1;
-//            } else if (image.equals(yarnball1)) {
-//                image = yarnball1;
-//            } else {
-//                Dying = false;
-//                Dead = true;
-//                dieTimer.stop();
-//            }
+            if (x < -70 || y > 720) {
+                Dead = true;
+                if (attackTimer != null) {
+                    attackTimer.stop();
+                }
+                if (dieTimer != null) {
+                    dieTimer.stop();
+                }
+            }
         }
     };
 
@@ -162,13 +164,13 @@ public class Yarnball extends Enemy {
             }
             x += xVel;
             //should put boundary based deaths in Entity class
-            if (x < -70 || y > 720) {
-                Dead = true;
-                attackTimer.stop();
-                if (dieTimer != null) {
-                    dieTimer.stop();
-                }
-            }
+//            if (x < -70 || y > 720) {
+//                Dead = true;
+//                attackTimer.stop();
+//                if (dieTimer != null) {
+//                    dieTimer.stop();
+//                }
+//            }
         }
     };
 

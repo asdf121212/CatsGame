@@ -22,7 +22,7 @@ public class TinyMouse extends Enemy {
     private double xVel;
     private int right_xBound;
     private int left_xBound;
-    //private Timer moveTimer;
+    private Timer moveTimer;
     private Timer hitTimer;
     private BufferedImage image;
     int cooldownTicks = 0;
@@ -36,6 +36,8 @@ public class TinyMouse extends Enemy {
         image = mouseImage_R;
         width = 60;
         height = 25;
+        moveTimer = new Timer(5, move);
+        moveTimer.start();
     }
 
     public void setLeft_xBound(int left_xBound) {
@@ -52,24 +54,33 @@ public class TinyMouse extends Enemy {
         if (hitTimer != null) {
             hitTimer.stop();
         }
+        if (moveTimer != null) {
+            moveTimer.stop();
+        }
     }
 
-    public void update() {
-        if (cooldownTicks > 0) {
-            cooldownTicks--;
-            if (cooldownTicks == 0) {
-                hitCoolingDown = false;
+    public ActionListener move = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (cooldownTicks > 0) {
+                cooldownTicks--;
+                if (cooldownTicks == 0) {
+                    hitCoolingDown = false;
+                }
             }
+            if (x >= right_xBound) {
+                image = mouseImage_L;
+                xVel = -3;
+            } else if (x <= left_xBound) {
+                image = mouseImage_R;
+                xVel = 3;
+            }
+            x += xVel;
         }
-        if (x >= right_xBound) {
-            image = mouseImage_L;
-            xVel = -3;
-        } else if (x <= left_xBound) {
-            image = mouseImage_R;
-            xVel = 3;
-        }
-        x += xVel;
-    }
+    };
+//    public void update() {
+//
+//    }
 
     @Override
     public int getContactDamage() {

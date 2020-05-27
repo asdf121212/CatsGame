@@ -62,6 +62,9 @@ public class Fluffball extends Entity {
 
     public void stop() {
         moveTimer.stop();
+        if (disappearTimer != null) {
+            disappearTimer.stop();
+        }
     }
 
     private ActionListener moveAction = new ActionListener() {

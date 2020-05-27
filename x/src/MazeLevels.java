@@ -92,10 +92,14 @@ public class MazeLevels extends LevelSet {
         if (prevMazeIndex_i == mazeIndex_i && prevMazeIndex_j == mazeIndex_j && currentLevel.pigMouseWaiting) {
             lvl.pigMouseX_0 = prevPigX;
             lvl.pigMouseY_0 = prevPigY;
+            lvl.respawnPigMouseX_0 = prevSpawnPoint.x;
+            lvl.respawnPigMouseY_0 = prevSpawnPoint.y;
             dist = 0;
         } else {
             lvl.pigMouseX_0 = currentSpawnPoint.x;
             lvl.pigMouseY_0 = currentSpawnPoint.y;
+            lvl.respawnPigMouseX_0 = currentSpawnPoint.x;
+            lvl.respawnPigMouseY_0 = currentSpawnPoint.y;
             if (currentLevel.pigMouseWaiting) {
                 dist = 900;
             } else {
@@ -147,10 +151,15 @@ public class MazeLevels extends LevelSet {
         mazeIndex_j = 3;
         prevMazeIndex_i = 0;
         prevMazeIndex_j = 3;
-        //insert pigmouse and cat at standard first level spot
+
         lvl.ConfigureLevel(mazeLevels[0][3]);
+        //lvl.ConfigureLevel(mazeLevels[6][2]);/////////////////////////development
+
         currentLevel = lvl;
+
         currentSpawnPoint = lvl.topSpawn;
+        //currentSpawnPoint = lvl.leftSpawn;//////////////////////development
+
         prevSpawnPoint = lvl.topSpawn;
         currentLevel.displayList.cat.x = currentSpawnPoint.x;
         currentLevel.displayList.cat.y = currentSpawnPoint.y;
@@ -161,6 +170,15 @@ public class MazeLevels extends LevelSet {
         return lvl;
     }
 
+    public void ReloadLevels() {
+        mazeLevels = new LevelConfigObj2[7][7];
+        try {
+            load49LevelConfigObjects();
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public void load49LevelConfigObjects() throws IOException, ClassNotFoundException {
         for (int i = 0; i <= 6; i++) {

@@ -36,7 +36,9 @@ public abstract class Level extends JPanel {
     }
 
     public void Dispose() {
-        displayList.cat.Dispose();
+        if (displayList.cat != null) {
+            displayList.cat.Dispose();
+        }
         for (Enemy enemy : displayList.getEnemies()) {
             enemy.Dispose();
         }
@@ -47,6 +49,9 @@ public abstract class Level extends JPanel {
 
     public void update() {
         ////check if fluffballs hit enemies, remove dead enemies--
+//        if (displayList.cat == null) {
+//            return;
+//        }
         if (displayList.cat.GetY() > 800) {
             displayList.cat.entityHit(200);
         }
@@ -68,7 +73,7 @@ public abstract class Level extends JPanel {
                 if (displayList.cat != null && !(displayList.cat.Dying || displayList.cat.Dead)) {
                     //SwingUtilities.invokeLater(() -> displayList.cat.entityHit(enemy.getContactDamage()));///threw error
                     displayList.cat.entityHit(enemy.getContactDamage());
-                    SwingUtilities.invokeLater(() -> displayList.cat.bump(enemy.x + enemy.width / 2));
+                    SwingUtilities.invokeLater(() -> displayList.cat.bump(enemy.x + enemy.width / 2.0));
                 }
                 enemy.hitCat();
             }
@@ -120,7 +125,7 @@ public abstract class Level extends JPanel {
         for (Fluffball fluffball : displayList.getFluffballs()) {
             fluffball.paintComponent(g2);
         }
-        if (displayList.cat != null) {
+        if (displayList.cat != null && !displayList.cat.Dead) {
             displayList.cat.paintComponent(g2);
         }
 

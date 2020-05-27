@@ -85,47 +85,47 @@ public class DisplayList_Old {
     }
 
     //adjust for border
-    public LevelConfigurationObject getConfigObj() {
-        LevelConfigurationObject configObj = new LevelConfigurationObject();
-        for (Vacuum vacuum : vacuums) {
-            EntityConfigurationObject vacuumObj = new EntityConfigurationObject((int)vacuum.x - 50,
-                    (int)vacuum.y - 50, (int)vacuum.getRightBound() - 50);
-            configObj.vacuumConfigList.add(vacuumObj);
-        }
-        for (Yarnball yarnball : yarnballs) {
-            EntityConfigurationObject yarnballObj = new EntityConfigurationObject((int)yarnball.x - 50,
-                    (int)yarnball.y - 50, (int)yarnball.getRange());
-            configObj.yarnballConfigList.add(yarnballObj);
-        }
-        for (TinyMouse tinyMouse : tinyMice) {
-            EntityConfigurationObject tinyMouseObj = new EntityConfigurationObject((int)tinyMouse.x - 50,
-                    (int)tinyMouse.y - 50, (int)tinyMouse.getRightBound() - 50);
-            configObj.tinyMouseConfigList.add(tinyMouseObj);
-        }
-        for (Squirrel squirrel : squirrels) {
-            EntityConfigurationObject squirrelObj = new EntityConfigurationObject((int)squirrel.x - 50, (int)squirrel.y - 50);
-            configObj.squirrelConfigList.add(squirrelObj);
-        }
-        for (DrawingAcid drawingAcid : drawingAcids) {
-            EntityConfigurationObject acidObj = new EntityConfigurationObject((int)drawingAcid.getAcid().x - 50,
-                    (int)drawingAcid.getAcid().y - 50, drawingAcid.getAcid().width, drawingAcid.getAcid().height);
-            configObj.acidConfigList.add(acidObj);
-        }
-        for (IndexedNode node : nodes) {
-            node.x -= 50;
-            node.y -= 50;
-            configObj.indexedNodes.add(node);
-        }
-        for (DrawingFloor drawingFloor : drawingFloors) {
-            drawingFloor.getShape().x -= 50;
-            drawingFloor.getShape().y -= 50;
-            configObj.indexedNodeFloors.add(drawingFloor.getShape());
-            if (drawingFloor.isAlsoWall) {
-                configObj.walls.add(drawingFloor.getShape());
-            }
-        }
-        return configObj;
-    }
+//    public LevelConfigurationObject getConfigObj() {
+//        LevelConfigurationObject configObj = new LevelConfigurationObject();
+//        for (Vacuum vacuum : vacuums) {
+//            EntityConfigurationObject vacuumObj = new EntityConfigurationObject((int)vacuum.x - 50,
+//                    (int)vacuum.y - 50, (int)vacuum.getRightBound() - 50);
+//            configObj.vacuumConfigList.add(vacuumObj);
+//        }
+//        for (Yarnball yarnball : yarnballs) {
+//            EntityConfigurationObject yarnballObj = new EntityConfigurationObject((int)yarnball.x - 50,
+//                    (int)yarnball.y - 50, (int)yarnball.getRange());
+//            configObj.yarnballConfigList.add(yarnballObj);
+//        }
+//        for (TinyMouse tinyMouse : tinyMice) {
+//            EntityConfigurationObject tinyMouseObj = new EntityConfigurationObject((int)tinyMouse.x - 50,
+//                    (int)tinyMouse.y - 50, (int)tinyMouse.getRightBound() - 50);
+//            configObj.tinyMouseConfigList.add(tinyMouseObj);
+//        }
+//        for (Squirrel squirrel : squirrels) {
+//            EntityConfigurationObject squirrelObj = new EntityConfigurationObject((int)squirrel.x - 50, (int)squirrel.y - 50);
+//            configObj.squirrelConfigList.add(squirrelObj);
+//        }
+//        for (DrawingAcid drawingAcid : drawingAcids) {
+//            EntityConfigurationObject acidObj = new EntityConfigurationObject((int)drawingAcid.getAcid().x - 50,
+//                    (int)drawingAcid.getAcid().y - 50, drawingAcid.getAcid().width, drawingAcid.getAcid().height);
+//            configObj.acidConfigList.add(acidObj);
+//        }
+//        for (IndexedNode node : nodes) {
+//            node.x -= 50;
+//            node.y -= 50;
+//            configObj.indexedNodes.add(node);
+//        }
+//        for (DrawingFloor drawingFloor : drawingFloors) {
+//            drawingFloor.getShape().x -= 50;
+//            drawingFloor.getShape().y -= 50;
+//            configObj.indexedNodeFloors.add(drawingFloor.getShape());
+//            if (drawingFloor.isAlsoWall) {
+//                configObj.walls.add(drawingFloor.getShape());
+//            }
+//        }
+//        return configObj;
+//    }
 
     //public void addNiceShape(NiceShape shape) {
         //niceShapes.add(shape);

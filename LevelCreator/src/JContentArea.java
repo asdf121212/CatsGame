@@ -60,7 +60,7 @@ public class JContentArea extends JPanel {
             displayList.squirrels.add(new Squirrel(squirrelObj.x + 50, squirrelObj.y + 50));
         }
         for (EntityConfigurationObject rSquirrelObj : configObj.rSquirrelConfigList) {
-            displayList.squirrels.add(new Squirrel(rSquirrelObj.x + 50, rSquirrelObj.y + 50));
+            displayList.squirrels.add(new RSquirrel(rSquirrelObj.x + 50, rSquirrelObj.y + 50));
         }
         for (EntityConfigurationObject vacuumObj : configObj.vacuumConfigList) {
             displayList.vacuums.add(new Vacuum(vacuumObj.x + 50, vacuumObj.y + 50, vacuumObj.x + 50, vacuumObj.optionalRangeOrBound + 50));

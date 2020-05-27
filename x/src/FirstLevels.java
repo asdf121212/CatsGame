@@ -7,6 +7,10 @@ public class FirstLevels extends LevelSet {
 
     }
 
+    public void ReloadLevels() {
+
+    }
+
     @Override
     public boolean lastLevel() {
         return levelIndex >= 4;
