@@ -7,120 +7,118 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/DisplayList_Old.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/DisplayList_Old.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/src/DisplayList_Old.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/DisplayList_Old.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Cat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Cat$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/FirstLevels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/FirstLevels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Fluffball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Fluffball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GenericLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GenericLevel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Level2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/LevelSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/LevelSet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/0_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/1_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/2_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/3_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/4_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/5_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Levels/6_6.lvl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/MazeLevels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/MazeLevels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/TinyMouse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/TinyMouse$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/TinyMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/TinyMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/Yarnball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Yarnball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/1_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/1_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/1_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_0.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/3_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_0.level" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/4_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_0.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/6_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/6_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/6_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/6_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/6_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FirstLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FirstLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Fluffball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fluffball.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GenericLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericLevel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LevelSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/0_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/1_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/2_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/3_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/4_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/5_6.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_0.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_1.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_2.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_3.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_4.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_5.lvl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Levels/6_6.lvl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PigMouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PigMouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TinyMouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TinyMouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Yarnball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Yarnball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/1_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/1_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/1_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/1_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/1_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/1_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_0.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/3_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/3_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_0.level" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/newLevels/4_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/4_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/4_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_0.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/6_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/6_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/6_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/6_2.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/6_3.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/6_3.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/6_4.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/6_4.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/6_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/6_5.level" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,25 +223,25 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="336" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.875@0.0.1440.875" timestamp="1590016207115" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590618263395">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590621795753">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590618263395" />
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590621795753" />
     <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590618263394">
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590621795752">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590618263394" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590621795752" />
     <state width="1398" height="224" key="GridCell.Tab.0.center/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590618263394">
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590621795752">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590618263394" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590621795752" />
     <state width="1398" height="224" key="GridCell.Tab.0.left/0.23.1440.852@0.23.1440.852" timestamp="1587672873320" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590618263395">
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590621795753">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590618263395" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590621795753" />
     <state width="1398" height="224" key="GridCell.Tab.0.right/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
     <state width="1398" height="292" key="GridCell.Tab.1.bottom" timestamp="1590616679390">
       <screen x="0" y="0" width="1440" height="875" />
@@ -269,10 +267,10 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state width="600" height="428" key="javadoc.popup/0.0.1440.875@0.0.1440.875" timestamp="1587225962330" />
-    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1590523359562">
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup" timestamp="1590620363509">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup/0.0.1440.875@0.0.1440.875" timestamp="1590523359562" />
+    <state x="385" y="189" width="670" height="676" key="search.everywhere.popup/0.0.1440.875@0.0.1440.875" timestamp="1590620363509" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -156,9 +156,6 @@ public class GenericLevel extends Level {
 
     @Override
     public void update() {
-//        if (displayList.cat == null) {
-//            return;
-//        }
         //Vacuums
         for (Vacuum vacuum : vacuumList) {
             vacuum.shootTicks++;
@@ -197,7 +194,7 @@ public class GenericLevel extends Level {
         } else if (pigMouse != null && pigMouse.needsToRespawn) {
             pigMouse.Dispose();
             displayList.removeEnemy(pigMouse);
-            pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+            pigMouse = new PigMouse(respawnPigMouseX_0, respawnPigMouseY_0);
             pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
             displayList.AddEnemy(pigMouse);
         }

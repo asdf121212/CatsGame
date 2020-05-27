@@ -130,6 +130,8 @@ public class GameController {
         };
         Fluffball f = cat.generateFluffball();
         f = null;
+        Ball b = new Ball(0, 0, 50, 0, 0);
+        b = null;
         currentLevel.addKeyListener(keyAdapter);
         currentLevel.requestFocus();
         //viewController.StartRepaintTimer();

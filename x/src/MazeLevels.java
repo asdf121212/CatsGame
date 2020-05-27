@@ -3,6 +3,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.URL;
 
@@ -133,13 +134,15 @@ public class MazeLevels extends LevelSet {
         } else {
             GenericLevel lvl = new GenericLevel();
             lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
+            lvl.pigMouseX_0 = currentLevel.respawnPigMouseX_0;
+            lvl.pigMouseY_0 = currentLevel.respawnPigMouseY_0;
+            lvl.respawnPigMouseX_0 = currentLevel.respawnPigMouseX_0;
+            lvl.respawnPigMouseY_0 = currentLevel.respawnPigMouseY_0;
             currentLevel = lvl;
             currentLevel.displayList.cat.x = currentSpawnPoint.x;
             currentLevel.displayList.cat.y = currentSpawnPoint.y;
             currentLevel.pigMouseWaiting = true;
             currentLevel.pigMouseWaitTicks = 500;
-            currentLevel.pigMouseX_0 = currentSpawnPoint.x;
-            currentLevel.pigMouseY_0 = currentSpawnPoint.y;
             return lvl;
         }
     }
@@ -183,8 +186,10 @@ public class MazeLevels extends LevelSet {
     public void load49LevelConfigObjects() throws IOException, ClassNotFoundException {
         for (int i = 0; i <= 6; i++) {
             for (int j = 0; j <= 6; j++) {
-                URL levelName = MazeLevels.class.getResource(String.format("newLevels/%d_%d.level", i, j));
-                FileInputStream fStream = new FileInputStream(levelName.getPath());
+                //URL levelName = MazeLevels.class.getResource(String.format("newLevels/%d_%d.level", i, j));
+                //FileInputStream fStream = new FileInputStream(levelName.getPath());
+                InputStream fStream = MazeLevels.class.getResourceAsStream(String.format("newLevels/%d_%d.level", i, j));
+                //FileInputStream fStream = new FileInputStream(String.format("/Users/thomas/Desktop/CatRepo/CatsGame/x/src/newLevels/%d_%d.level", i, j));
                 ObjectInputStream oStream = new ObjectInputStream(fStream);
                 LevelConfigObj2 configObj = (LevelConfigObj2) oStream.readObject();
                 mazeLevels[i][j] = configObj;
