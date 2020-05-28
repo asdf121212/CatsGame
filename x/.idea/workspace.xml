@@ -7,24 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/JContentArea.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/NiceLine.class" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/out/production/LevelCreator/NiceLine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/JContentArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LevelCreator/src/NiceLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LevelCreator/src/NiceLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/GenericLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GenericLevel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/x/MazeLevels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/MazeLevels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_2.level" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/TinyMouse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/TinyMouse$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/TinyMouse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/TinyMouse$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/TinyMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/TinyMouse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_0.level" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GenericLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericLevel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PigMouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PigMouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/1_5.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/1_5.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_2.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_2.level" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TinyMouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TinyMouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newLevels/2_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_0.level" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/newLevels/2_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_1.level" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,25 +124,25 @@
       <screen x="0" y="0" width="1440" height="875" />
     </state>
     <state x="336" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.875@0.0.1440.875" timestamp="1590016207115" />
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590677868648">
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom" timestamp="1590691451415">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590677868648" />
+    <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.0.1440.875@0.0.1440.875" timestamp="1590691451415" />
     <state width="1398" height="224" key="GridCell.Tab.0.bottom/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590677868648">
+    <state width="1398" height="224" key="GridCell.Tab.0.center" timestamp="1590691451414">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590677868648" />
+    <state width="1398" height="224" key="GridCell.Tab.0.center/0.0.1440.875@0.0.1440.875" timestamp="1590691451414" />
     <state width="1398" height="224" key="GridCell.Tab.0.center/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
-    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590677868647">
+    <state width="1398" height="224" key="GridCell.Tab.0.left" timestamp="1590691451414">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590677868647" />
+    <state width="1398" height="224" key="GridCell.Tab.0.left/0.0.1440.875@0.0.1440.875" timestamp="1590691451414" />
     <state width="1398" height="224" key="GridCell.Tab.0.left/0.23.1440.852@0.23.1440.852" timestamp="1587672873320" />
-    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590677868648">
+    <state width="1398" height="224" key="GridCell.Tab.0.right" timestamp="1590691451415">
       <screen x="0" y="0" width="1440" height="875" />
     </state>
-    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590677868648" />
+    <state width="1398" height="224" key="GridCell.Tab.0.right/0.0.1440.875@0.0.1440.875" timestamp="1590691451415" />
     <state width="1398" height="224" key="GridCell.Tab.0.right/0.23.1440.852@0.23.1440.852" timestamp="1587672873321" />
     <state width="1398" height="292" key="GridCell.Tab.1.bottom" timestamp="1590616679390">
       <screen x="0" y="0" width="1440" height="875" />

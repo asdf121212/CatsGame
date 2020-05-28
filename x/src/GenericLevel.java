@@ -86,6 +86,7 @@ public class GenericLevel extends Level {
             TinyMouse tinyMouse = new TinyMouse(tinyMouseConfig.x, tinyMouseConfig.optionalRangeOrBound, tinyMouseConfig.y);
             tinyMouseList.add(tinyMouse);
             displayList.AddEnemy(tinyMouse);
+            tinyMouse.Start();
             enemyIndexMap.put(tinyMouse, index);
             index++;
         }

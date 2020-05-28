@@ -8,6 +8,7 @@ public class MazeLevels extends LevelSet {
     //private LevelConfigurationObject testMazeLevel;
     private GenericLevel currentLevel;
     private SpawnPoint currentSpawnPoint;
+    private SpawnPoint preTrapSpawnPoint;
 
     private int pig_i;
     private int pig_j;
@@ -93,60 +94,69 @@ public class MazeLevels extends LevelSet {
         lvl.displayList.cat.y = currentSpawnPoint.y;
 
         pigIsInPreviousLevel = currentLevel.pigMouseWaiting;
-        if (pigIsInPreviousLevel) {
-            if (pig_i == mazeIndex_i && pig_j == mazeIndex_j) {
-                dist = 0;
-                pigIsInPreviousLevel = false;
-                //nextPigSpawnPoint = pigRespawnPoint;///not sure about this one
+        if (currentSpawnPoint.isFallTrap) {
+            if (!tempSpawnPoint.isFallTrap) {
+                preTrapSpawnPoint = tempSpawnPoint;
+            }
+            //pigIsInPreviousLevel = true;
+            lvl.pigMouseWaitTicks = 50000;
+            lvl.pigMouseWaiting = true;
+        } else {
+            if (pigIsInPreviousLevel) {
+                if (pig_i == mazeIndex_i && pig_j == mazeIndex_j) {
+                    dist = 0;
+                    pigIsInPreviousLevel = false;
+                    //nextPigSpawnPoint = pigRespawnPoint;///not sure about this one
+                } else {
+                    //nextPigSpawnPoint = currentSpawnPoint;
+                    pigRespawnX = nextPigSpawnX;
+                    pigRespawnY = nextPigSpawnY;
+                    nextPigSpawnX = currentSpawnPoint.x;
+                    nextPigSpawnY = currentSpawnPoint.y;
+                    //pigRespawnPoint = tempSpawnPoint;
+//                pigRespawnX = currentSpawnPoint.x;
+//                pigRespawnY = currentSpawnPoint.y;
+                    pigX = tempSpawnPoint.x;
+                    pigY = tempSpawnPoint.y;
+                    pig_i = i;
+                    pig_j = j;
+                    dist = 700;
+                }
             } else {
+                pig_i = i;
+                pig_j = j;
                 //nextPigSpawnPoint = currentSpawnPoint;
                 pigRespawnX = nextPigSpawnX;
                 pigRespawnY = nextPigSpawnY;
                 nextPigSpawnX = currentSpawnPoint.x;
                 nextPigSpawnY = currentSpawnPoint.y;
-                //pigRespawnPoint = tempSpawnPoint;
-//                pigRespawnX = currentSpawnPoint.x;
-//                pigRespawnY = currentSpawnPoint.y;
-                pigX = tempSpawnPoint.x;
-                pigY = tempSpawnPoint.y;
-                pig_i = i;
-                pig_j = j;
-                dist = 900;
-            }
-        } else {
-            pig_i = i;
-            pig_j = j;
-            //nextPigSpawnPoint = currentSpawnPoint;
-            pigRespawnX = nextPigSpawnX;
-            pigRespawnY = nextPigSpawnY;
-            nextPigSpawnX = currentSpawnPoint.x;
-            nextPigSpawnY = currentSpawnPoint.y;
 
-            pigX = (int)currentLevel.pigMouse.x;
-            pigY = (int)currentLevel.pigMouse.y;
-            double xDist = catX - currentLevel.pigMouse.x;
-            double yDist = catY - currentLevel.pigMouse.y;
-            dist = Math.sqrt(xDist * xDist + yDist * yDist);
-            pigIsInPreviousLevel = true;
-        }
-        lvl.pigMouseWaitTicks = (int)dist;
-        if (!pigIsInPreviousLevel) {
-            lvl.pigMouseWaiting = false;
-            lvl.pigMouse = new PigMouse(pigX, pigY);
-            lvl.pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) lvl.floors, lvl.nodeList, lvl.displayList.cat));
-            lvl.displayList.AddEnemy(lvl.pigMouse);
-            lvl.pigRespawnX = pigRespawnX;
-            lvl.pigRespawnY = pigRespawnY;
-        } else {
-            //lvl.pigMouseX_0 = pigX;
-            //lvl.pigMouseY_0 = pigY;
-            lvl.pigMouseWaiting = true;
-            //lvl.nextPigSpawn = nextPigSpawnPoint;
-            lvl.nextPigSpawnX = nextPigSpawnX;
-            lvl.nextPigSpawnY = nextPigSpawnY;
-            //lvl.respawnPoint = pigRespawnPoint;
-            lvl.pigRespawnX = pigRespawnX;
-            lvl.pigRespawnY = pigRespawnY;
+                pigX = (int) currentLevel.pigMouse.x;
+                pigY = (int) currentLevel.pigMouse.y;
+                double xDist = catX - currentLevel.pigMouse.x;
+                double yDist = catY - currentLevel.pigMouse.y;
+                dist = Math.sqrt(xDist * xDist + yDist * yDist);
+                pigIsInPreviousLevel = true;
+            }
+            lvl.pigMouseWaitTicks = (int) dist;
+            if (!pigIsInPreviousLevel) {
+                lvl.pigMouseWaiting = false;
+                lvl.pigMouse = new PigMouse(pigX, pigY);
+                lvl.pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) lvl.floors, lvl.nodeList, lvl.displayList.cat));
+                lvl.displayList.AddEnemy(lvl.pigMouse);
+                lvl.pigRespawnX = pigRespawnX;
+                lvl.pigRespawnY = pigRespawnY;
+            } else {
+                //lvl.pigMouseX_0 = pigX;
+                //lvl.pigMouseY_0 = pigY;
+                lvl.pigMouseWaiting = true;
+                //lvl.nextPigSpawn = nextPigSpawnPoint;
+                lvl.nextPigSpawnX = nextPigSpawnX;
+                lvl.nextPigSpawnY = nextPigSpawnY;
+                //lvl.respawnPoint = pigRespawnPoint;
+                lvl.pigRespawnX = pigRespawnX;
+                lvl.pigRespawnY = pigRespawnY;
+            }
         }
 
         currentLevel = lvl;
@@ -157,31 +167,32 @@ public class MazeLevels extends LevelSet {
     @Override
     public Level getSameLevel() {
         if (currentSpawnPoint.isFallTrap) {
-            currentLevel = (GenericLevel) getFirstLevel();
-            return currentLevel;
-        } else {
-            GenericLevel lvl = new GenericLevel();
-            lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
-            //lvl.pigMouseX_0 = currentLevel.respawnPigMouseX_0;
-            //lvl.pigMouseY_0 = currentLevel.respawnPigMouseY_0;
-            //lvl.respawnPigMouseX_0 = currentLevel.respawnPigMouseX_0;
-            //lvl.respawnPigMouseY_0 = currentLevel.respawnPigMouseY_0;
-            currentLevel = lvl;
-            currentLevel.displayList.cat.x = currentSpawnPoint.x;
-            currentLevel.displayList.cat.y = currentSpawnPoint.y;
-            currentLevel.pigMouseWaiting = true;
-            currentLevel.pigMouseWaitTicks = 500;
-            //lvl.pigMouseX_0 = pigX;
-            //lvl.pigMouseY_0 = pigY;
-            //lvl.pigMouseWaiting = true;
-            //lvl.nextPigSpawn = nextPigSpawnPoint;
-            lvl.nextPigSpawnX = nextPigSpawnX;
-            lvl.nextPigSpawnY = nextPigSpawnY;
-            //lvl.respawnPoint = pigRespawnPoint;
-            lvl.pigRespawnX = pigRespawnX;
-            lvl.pigRespawnY = pigRespawnY;
-            return lvl;
+            while (mazeLevels[mazeIndex_i][mazeIndex_j].topSpawnPoint.isFallTrap) {
+                mazeIndex_i--;
+            }
+            currentSpawnPoint = new SpawnPoint();
+            currentSpawnPoint.x = preTrapSpawnPoint.x;
+            currentSpawnPoint.y = preTrapSpawnPoint.y;
+            //currentLevel = (GenericLevel) getFirstLevel();
+            //return currentLevel;
         }
+        GenericLevel lvl = new GenericLevel();
+        lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
+        currentLevel = lvl;
+        currentLevel.displayList.cat.x = currentSpawnPoint.x;
+        currentLevel.displayList.cat.y = currentSpawnPoint.y;
+        currentLevel.pigMouseWaiting = true;
+        currentLevel.pigMouseWaitTicks = 400;
+        //lvl.pigMouseX_0 = pigX;
+        //lvl.pigMouseY_0 = pigY;
+        //lvl.pigMouseWaiting = true;
+        //lvl.nextPigSpawn = nextPigSpawnPoint;
+        lvl.nextPigSpawnX = nextPigSpawnX;
+        lvl.nextPigSpawnY = nextPigSpawnY;
+        //lvl.respawnPoint = pigRespawnPoint;
+        lvl.pigRespawnX = pigRespawnX;
+        lvl.pigRespawnY = pigRespawnY;
+        return lvl;
     }
 
     @Override
@@ -203,7 +214,7 @@ public class MazeLevels extends LevelSet {
         currentLevel.displayList.cat.x = currentSpawnPoint.x;
         currentLevel.displayList.cat.y = currentSpawnPoint.y;
         currentLevel.pigMouseWaiting = true;
-        currentLevel.pigMouseWaitTicks = 500;
+        currentLevel.pigMouseWaitTicks = 400;
         //currentLevel.pigMouseX_0 = currentSpawnPoint.x;
         //currentLevel.pigMouseY_0 = currentSpawnPoint.y;
         pig_i = 0;

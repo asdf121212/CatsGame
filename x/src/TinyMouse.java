@@ -36,6 +36,10 @@ public class TinyMouse extends Enemy {
         image = mouseImage_R;
         width = 60;
         height = 25;
+    }
+
+    public void Start() {
+        Dispose();
         moveTimer = new Timer(5, move);
         moveTimer.start();
     }
