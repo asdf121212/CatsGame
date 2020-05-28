@@ -14,7 +14,17 @@ public class PigMouse extends SolidEnemy {
     private BufferedImage pigMouseHot2 = Entity.getBufferedImage("sprites/pigMouse/pigMouseHot2.png", 100, 100);
     private BufferedImage pigMouseHot3 = Entity.getBufferedImage("sprites/pigMouse/pigMouseHot3.png", 100, 100);
 
-    private BufferedImage image;
+    private BufferedImage[] images = new BufferedImage[] {
+            pigMouse1,
+            pigMouseHot1,
+            pigMouseHot2,
+            pigMouseHot3
+    };
+    private int imageIndex;
+    private boolean heating = false;
+    private boolean cooling = false;
+    private int heatTicks = 0;
+
     private LevelInfo levelInfo;
     private ArrayList<Node> path;
     private Timer planTimer;
@@ -42,7 +52,7 @@ public class PigMouse extends SolidEnemy {
         //this.currentFloor = currentFloor;
         //this.y = currentFloor.y - height;
         this.y = y;
-        image = pigMouse1;
+        imageIndex = 0;
         hittable = false;
         initialFallTimer = new Timer(5, initialFall);
         initialFallTimer.start();
@@ -112,8 +122,44 @@ public class PigMouse extends SolidEnemy {
             if (path == null) {
                 return;
             }
+
+            double xDist = Math.abs(levelInfo.getCatX() - x);
+            double yDist = Math.abs(levelInfo.getCatY() - y);
+            if (xDist >= 150 || yDist > 100) {
+                imageIndex = 0;
+                if (heating) {
+                    heating = false;
+                    cooling = true;
+                    heatTicks = 0;
+                }
+            } else {
+                if (heating) {
+                    if (imageIndex < 3) {
+                        heatTicks++;
+                    }
+                    if (heatTicks >= 10) {
+                        imageIndex++;
+                        heatTicks = 0;
+                    }
+                } else if (cooling) {
+                    if (imageIndex > 0) {
+                        heatTicks++;
+                    } else {
+                        cooling = false;
+                    }
+                    if (heatTicks >= 10) {
+                        imageIndex--;
+                        heatTicks = 0;
+                    }
+                } else {
+                    heating = true;
+                    imageIndex++;
+                }
+            }
+
             if (levelInfo.getCatFloor() != null && levelInfo.getCatFloor() == currentFloor) {
                 nextNode = new Node(levelInfo.getCatX() + 50, levelInfo.getCatY(), (NodeFloor) levelInfo.getCatFloor());
+
             }
             else if ((nextNode == null || !jumping)) {
                 ArrayList<Node> pathClone = (ArrayList<Node>) path.clone();
@@ -222,7 +268,7 @@ public class PigMouse extends SolidEnemy {
 
     @Override
     public void paintComponent(Graphics g) {
-        ((Graphics2D)g).drawImage(image, (int)Math.round(x), (int)Math.round(y), width, height, null);
+        ((Graphics2D)g).drawImage(images[imageIndex], (int)Math.round(x), (int)Math.round(y), width, height, null);
 //        g.setColor(Color.white);
 //        if (nextNode != null) {
 //            ((Graphics2D) g).fill(new Ellipse2D.Double(nextNode.x - 5, nextNode.y -5, 10, 10));

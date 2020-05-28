@@ -22,11 +22,10 @@ public class MazeLevels extends LevelSet {
     private int nextPigSpawnX;
     private int nextPigSpawnY;
 
-    //int newCatX = 100;
-    //int newCatY = 100;
+
     double dist = 0;
-    //int newPigX = 600;
-    //int newPigY = 0;
+
+    private byte catState = 000;
 
     private int mazeIndex_i = 0;
     private int mazeIndex_j = 0;
@@ -53,6 +52,7 @@ public class MazeLevels extends LevelSet {
     @Override
     public Level getNextLevel() {
         //need to find a way to not transition as soon as level starts
+        catState = (byte) (currentLevel.displayList.cat.state & 001);
         double catX = currentLevel.displayList.cat.x;
         double catY = currentLevel.displayList.cat.y;
         int i = mazeIndex_i;
@@ -92,6 +92,7 @@ public class MazeLevels extends LevelSet {
         }
         lvl.displayList.cat.x = currentSpawnPoint.x;
         lvl.displayList.cat.y = currentSpawnPoint.y;
+        lvl.displayList.cat.state = (byte) (lvl.displayList.cat.state | catState);
 
         pigIsInPreviousLevel = currentLevel.pigMouseWaiting;
         if (currentSpawnPoint.isFallTrap) {
@@ -106,7 +107,8 @@ public class MazeLevels extends LevelSet {
                 if (pig_i == mazeIndex_i && pig_j == mazeIndex_j) {
                     dist = 0;
                     pigIsInPreviousLevel = false;
-                    //nextPigSpawnPoint = pigRespawnPoint;///not sure about this one
+                    nextPigSpawnX = pigRespawnX;///not sure about this one
+                    nextPigSpawnY = pigRespawnY;
                 } else {
                     //nextPigSpawnPoint = currentSpawnPoint;
                     pigRespawnX = nextPigSpawnX;
@@ -120,7 +122,7 @@ public class MazeLevels extends LevelSet {
                     pigY = tempSpawnPoint.y;
                     pig_i = i;
                     pig_j = j;
-                    dist = 700;
+                    dist = 600;
                 }
             } else {
                 pig_i = i;
@@ -183,13 +185,11 @@ public class MazeLevels extends LevelSet {
         currentLevel.displayList.cat.y = currentSpawnPoint.y;
         currentLevel.pigMouseWaiting = true;
         currentLevel.pigMouseWaitTicks = 400;
-        //lvl.pigMouseX_0 = pigX;
-        //lvl.pigMouseY_0 = pigY;
-        //lvl.pigMouseWaiting = true;
-        //lvl.nextPigSpawn = nextPigSpawnPoint;
+
+        //might need to set these to the respawn point?? or set
         lvl.nextPigSpawnX = nextPigSpawnX;
         lvl.nextPigSpawnY = nextPigSpawnY;
-        //lvl.respawnPoint = pigRespawnPoint;
+
         lvl.pigRespawnX = pigRespawnX;
         lvl.pigRespawnY = pigRespawnY;
         return lvl;
@@ -248,15 +248,16 @@ public class MazeLevels extends LevelSet {
     public void load49LevelConfigObjects() throws IOException, ClassNotFoundException {
         for (int i = 0; i <= 6; i++) {
             for (int j = 0; j <= 6; j++) {
-                //URL levelName = MazeLevels.class.getResource(String.format("newLevels/%d_%d.level", i, j));
-                //FileInputStream fStream = new FileInputStream(levelName.getPath());
                 InputStream fStream = MazeLevels.class.getResourceAsStream(String.format("newLevels/%d_%d.level", i, j));
-                //FileInputStream fStream = new FileInputStream(String.format("/Users/thomas/Desktop/CatRepo/CatsGame/x/src/newLevels/%d_%d.level", i, j));
                 ObjectInputStream oStream = new ObjectInputStream(fStream);
                 LevelConfigObj2 configObj = (LevelConfigObj2) oStream.readObject();
                 mazeLevels[i][j] = configObj;
                 oStream.close();
                 fStream.close();
+
+//                if (i == 1 && j == 2) {
+//                    System.out.println("");
+//                }
             }
         }
     }

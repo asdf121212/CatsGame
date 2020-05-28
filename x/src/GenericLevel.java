@@ -29,13 +29,7 @@ public class GenericLevel extends Level {
     public boolean pigMouseWaiting = false;
     public int pigMouseWaitTicks = 0;
     public int elapsedWaitTicks = 0;
-    //public int pigMouseX_0 = 0;
-    //public int pigMouseY_0 = 0;
-    //public int respawnPigMouseX_0 = 0;
-    //public int respawnPigMouseY_0 = 0;
 
-    //public SpawnPoint nextPigSpawn;
-    //public SpawnPoint respawnPoint;
     public int pigRespawnX;
     public int pigRespawnY;
     public int nextPigSpawnX;
@@ -313,9 +307,11 @@ public class GenericLevel extends Level {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.ORANGE);
-        for (RoundRectangle2D rect : walls) {
-            g2.fill(rect);
-        }
+
+        //walls are all floors too.
+//        for (RoundRectangle2D rect : walls) {
+//            g2.fill(rect);
+//        }
         for (RoundRectangle2D rect : floors) {
             g2.fill(rect);
         }
