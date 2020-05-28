@@ -112,53 +112,12 @@ public class JContentArea extends JPanel {
         displayList.bottomSpawnPoint.y += 50;
     }
 
-//    public void loadConfigObj(LevelConfigurationObject configObj) {
-//        for (EntityConfigurationObject squirrelObj : configObj.squirrelConfigList) {
-//            displayList.squirrels.add(new Squirrel(squirrelObj.x + 50, squirrelObj.y + 50));
-//        }
-//        for (EntityConfigurationObject vacuumObj : configObj.vacuumConfigList) {
-//            displayList.vacuums.add(new Vacuum(vacuumObj.x + 50, vacuumObj.y + 50, vacuumObj.x + 50, vacuumObj.optionalRangeOrBound + 50));
-//        }
-//        for (EntityConfigurationObject tinyMouseObj : configObj.tinyMouseConfigList) {
-//            displayList.tinyMice.add(new TinyMouse(tinyMouseObj.x + 50, tinyMouseObj.optionalRangeOrBound + 50, tinyMouseObj.y + 50));
-//        }
-//        for (EntityConfigurationObject yarnballObj : configObj.yarnballConfigList) {
-//            displayList.yarnballs.add(new Yarnball(yarnballObj.x + 50, yarnballObj.y + 50, yarnballObj.optionalRangeOrBound));
-//        }
-//        for (EntityConfigurationObject acidObj : configObj.acidConfigList) {
-//            displayList.drawingAcids.add(new DrawingAcid(acidObj.x + 50, acidObj.y + 50, acidObj.width, acidObj.height));
-//        }
-//        int maxFloorID = 0;
-//        for (IndexedNodeFloor nodeFloor : configObj.indexedNodeFloors) {
-//            nodeFloor.x += 50;
-//            nodeFloor.y += 50;
-//            DrawingFloor floor = new DrawingFloor(nodeFloor);
-//            floor.isAlsoWall = configObj.walls.contains(nodeFloor);
-//            displayList.drawingFloors.add(floor);
-//            if (nodeFloor.ID > maxFloorID) {
-//                maxFloorID = nodeFloor.ID;
-//            }
-//        }
-//        int maxNodeID = 0;
-//        for (IndexedNode node : configObj.indexedNodes) {
-//            node.x += 50;
-//            node.y += 50;
-//            displayList.nodes.add(node);
-//            if (node.ID > maxNodeID) {
-//                maxNodeID = node.ID;
-//            }
-//        }
-//        IndexedNode.IDcount = maxNodeID + 1;
-//        IndexedNodeFloor.IDcount = maxFloorID + 1;
-//        ConnectNodesAndFloors();
-//    }
-
     private void ConnectNodesAndFloors() {
         for (IndexedNode node : displayList.nodes) {
             for (int neighborID : node.neighborIDs) {
                 for (IndexedNode indexedNode : displayList.nodes) {
                     if (indexedNode.ID == neighborID) {
-                        NiceLine line = new NiceLine(node.x, node.y, indexedNode.x, indexedNode.y);
+                        NiceLine line = new NiceLine(node.x - 3, node.y - 3, indexedNode.x + 3, indexedNode.y + 3);
                         line.good = true;
                         displayList.lines.add(line);
                         break;
@@ -436,6 +395,7 @@ public class JContentArea extends JPanel {
                         ///deselect
                         resizeBox1 = null;
                         //resizeBox2 = null;
+                        deselectNode();
                         currentResizeBox = null;
 
                         for (DrawingFloor drawingFloor : displayList.drawingFloors) {
@@ -518,6 +478,7 @@ public class JContentArea extends JPanel {
                                     if (selectBox.intersects(ellipse.getFrame())) {
                                         currentlySelectedNode = node;
                                         movingNode = true;
+                                        setSelected(node);
                                     }
                                 }
                             }
@@ -777,6 +738,28 @@ public class JContentArea extends JPanel {
         });
     }
 
+    public void deselectNode() {
+        for (NiceLine line : displayList.lines) {
+            line.nodeSelected = false;
+        }
+        for (DrawingFloor floor : displayList.drawingFloors) {
+            floor.highlight = false;
+        }
+    }
+
+    public void setSelected(IndexedNode node) {
+        Ellipse2D ellipse = new Ellipse2D.Double(node.x - 10, node.y - 10, 20, 20);
+        for (NiceLine line : displayList.lines) {
+            if (ellipse.contains(line.getShape().getX1(), line.getShape().getY1())) {
+                line.nodeSelected = true;
+            }
+        }
+        for (DrawingFloor floor : displayList.drawingFloors) {
+            if (floor.getShape().ID == node.ownerID) {
+                floor.highlight = true;
+            }
+        }
+    }
 
     public void setSelected(DrawingFloor drawingFloor) {
         Rectangle2D resizeBox = new Rectangle2D.Double();
@@ -830,11 +813,15 @@ public class JContentArea extends JPanel {
         }
 
         for (NiceLine line : displayList.lines) {
-            g2.setColor(Color.BLUE);
-            if (line.good) {
-                g2.setColor(Color.GREEN);
-                g2.draw(line.getShape());
+            g2.setColor(Color.GREEN);
+            if (!line.good) {
                 g2.setColor(Color.BLUE);
+                g2.draw(line.getShape());
+                g2.setColor(Color.GREEN);
+            } else if (line.nodeSelected) {
+                g2.setColor(Color.YELLOW);
+                g2.draw(line.getShape());
+                g2.setColor(Color.GREEN);
             } else {
                 g2.draw(line.getShape());
             }

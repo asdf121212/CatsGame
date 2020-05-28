@@ -13,6 +13,7 @@ public class NiceLine extends NiceShape {
     private Line2D line;
 
     public boolean good = false;
+    public boolean nodeSelected = false;
 
     public NiceLine(Line2D line) {
         this.line = line;

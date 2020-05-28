@@ -20,7 +20,7 @@ public class GenericLevel extends Level {
 
     //public ArrayList<Teleporter> teleporters = new ArrayList<>();
 
-    private ArrayList<IndexedNode> nodeList = new ArrayList<>();
+    public ArrayList<IndexedNode> nodeList = new ArrayList<>();
 
     private HashMap<Enemy, Integer> enemyIndexMap = new HashMap<>();
 
@@ -29,10 +29,18 @@ public class GenericLevel extends Level {
     public boolean pigMouseWaiting = false;
     public int pigMouseWaitTicks = 0;
     public int elapsedWaitTicks = 0;
-    public int pigMouseX_0 = 0;
-    public int pigMouseY_0 = 0;
-    public int respawnPigMouseX_0 = 0;
-    public int respawnPigMouseY_0 = 0;
+    //public int pigMouseX_0 = 0;
+    //public int pigMouseY_0 = 0;
+    //public int respawnPigMouseX_0 = 0;
+    //public int respawnPigMouseY_0 = 0;
+
+    //public SpawnPoint nextPigSpawn;
+    //public SpawnPoint respawnPoint;
+    public int pigRespawnX;
+    public int pigRespawnY;
+    public int nextPigSpawnX;
+    public int nextPigSpawnY;
+
     public PigMouse pigMouse;
 
     private LevelConfigObj2 configObj;
@@ -184,7 +192,10 @@ public class GenericLevel extends Level {
         if (pigMouseWaiting) {
             if (elapsedWaitTicks >= pigMouseWaitTicks) {
                 pigMouseWaiting = false;
-                pigMouse = new PigMouse(pigMouseX_0, pigMouseY_0);
+                pigMouse = new PigMouse(nextPigSpawnX, nextPigSpawnY);
+                //respawnPoint = nextPigSpawn;
+                pigRespawnX = nextPigSpawnX;
+                pigRespawnY = nextPigSpawnY;
                 pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
                 displayList.AddEnemy(pigMouse);
             }
@@ -194,7 +205,7 @@ public class GenericLevel extends Level {
         } else if (pigMouse != null && pigMouse.needsToRespawn) {
             pigMouse.Dispose();
             displayList.removeEnemy(pigMouse);
-            pigMouse = new PigMouse(respawnPigMouseX_0, respawnPigMouseY_0);
+            pigMouse = new PigMouse(pigRespawnX, pigRespawnY);
             pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) floors, nodeList, displayList.cat));
             displayList.AddEnemy(pigMouse);
         }

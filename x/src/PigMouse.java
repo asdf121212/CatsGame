@@ -127,6 +127,11 @@ public class PigMouse extends SolidEnemy {
                 }
                 if (pathClone.size() == 0) { return; }
             }
+            if (levelInfo.getCatFloor() != null && currentFloor != null && currentFloor == levelInfo.getCatFloor()) {
+
+            } else {
+
+            }
 
             if (nextNode.x >= x + width / 2.0) {
                 xVel = defaultVx;
