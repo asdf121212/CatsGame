@@ -35,7 +35,7 @@ public class Level4 extends Level {
 
         vacuum = new Vacuum(60, 30, 60, 1000);
         vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
-        vacuum.Start();
+        //vacuum.Start();
         displayList.AddEnemy(vacuum);
 
         walls = new RoundRectangle2D[] {

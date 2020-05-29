@@ -51,10 +51,11 @@ public class Cat extends Entity {
 
     private RoundRectangle2D healthBarOutline;
     private Rectangle2D healthBar;
-    private Timer dieTimer;
+    //private Timer dieTimer;
+    private int dieTicks = 0;
 
     private LevelInfo levelInfo;
-    private Timer moveTimer;
+    //private Timer moveTimer;
 
     //private Timer bumpTimer;
     private double bumpVx;
@@ -83,25 +84,34 @@ public class Cat extends Entity {
     public void AddLevelInfo(LevelInfo levelInfo) {
         this.levelInfo = levelInfo;
     }
-    public void enable() {
-        if (levelInfo != null) {
-            if (moveTimer != null) {
-                moveTimer.stop();
-            }
-            moveTimer = new Timer(5, move);
-            moveTimer.start();
-        }
-    }
+//    public void enable() {
+//        if (levelInfo != null) {
+//            if (moveTimer != null) {
+//                moveTimer.stop();
+//            }
+//            moveTimer = new Timer(5, move);
+//            moveTimer.start();
+//        }
+//    }
 
     public void Dispose() {
         //if (bumpTimer != null) {
             //bumpTimer.stop();
         //}
-        if (dieTimer != null) {
-            dieTimer.stop();
-        }
-        if (moveTimer != null) {
-            moveTimer.stop();
+//        if (dieTimer != null) {
+//            dieTimer.stop();
+//        }
+//        if (moveTimer != null) {
+//            moveTimer.stop();
+//        }
+    }
+
+    @Override
+    public void Update() {
+        if (Dying) {
+            die();
+        } else {
+            move();
         }
     }
 
@@ -171,12 +181,12 @@ public class Cat extends Entity {
         Dying = true;///////
         healthBar.setRect(12, 12, 0, 16);
 
-        if (moveTimer != null) {
-            moveTimer.stop();
-        }
+//        if (moveTimer != null) {
+//            moveTimer.stop();
+//        }
 
-        dieTimer = new Timer(30, die);
-        dieTimer.setInitialDelay(30);
+        //dieTimer = new Timer(30, die);
+        //dieTimer.setInitialDelay(30);
 
         if ((state | 110) == 111) {
             popAnimationImages = popBackImages;
@@ -184,7 +194,7 @@ public class Cat extends Entity {
             popAnimationImages = popImages;
         }
         catImage = popAnimationImages[0];////set forwards or backwards;
-        dieTimer.start();
+        //dieTimer.start();
     }
 
     public Rectangle2D getHitBox() {
@@ -193,7 +203,7 @@ public class Cat extends Entity {
     }
 
     public Fluffball generateFluffball() {
-        int vel = (state | 101) == 111 ? 12 + 3 : 12;
+        double vel = (state | 101) == 111 ? 9.5 : 7.5;
         if ((state | 110) == 111) {
             return new Fluffball(x, y + 20, vel, -1);
         } else {
@@ -203,64 +213,122 @@ public class Cat extends Entity {
 
     //public void snapToNearestFloor(int)
 
-    private ActionListener move = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            if (bumping) {
-                bumpTicks++;
-                if (bumpTicks >= 25) {
-                    bumping = false;
-                    bumpTicks = 0;
-                }
-            }
-
-            double floorCheckX1 = x + 20;
-            double floorCheckX2 = x + 55;
-            double wallCheckX1 = x;
-            double wallCheckX2 = x + 75;
-            RoundRectangle2D floor_Rect = null;
-            RoundRectangle2D wall_Rect = null;
-            ///maybe add -- if (currentFloor == null || currentFloor.contains(floorCheckX1))
-            double tempVx = bumping ? bumpVx : Vx;
-            for (RoundRectangle2D floor : levelInfo.floors) {
-                if ((floor.contains(floorCheckX1, y + 51 + Vy)
-                        || floor.contains(floorCheckX2, y + 51 + Vy)) && floor.getY() > y) {
-                    floor_Rect = floor;
-                    break;
-                }
-            }
-            for (RoundRectangle2D wall : levelInfo.walls) {
-                if (wall.contains(wallCheckX1, y + 25) && tempVx < 0) {
-                    wall_Rect = wall;
-                    break;
-                } else if (wall.contains(wallCheckX2, y + 25) && tempVx > 0) {
-                    wall_Rect = wall;
-                    break;
-                }
-            }
-            if (floor_Rect == null || Vy < 0) {
-                state = (byte)(state | 100);
-                Vy += Gravity;
-                //displayList.cat.currentFloor = null;
-            } else {
-                if (Vy >= 0) {
-                    //make sure it's level with floor
-                    y = (int)Math.round(floor_Rect.getY()) - 50;
-                    currentFloor = floor_Rect;
-                }
-                Vy = 0;
-                state = (byte)(state & 011);
-            }
-            if (wall_Rect != null) {
-                tempVx = 0;
-            }
-            ///////////////////////////////////////////////////////////////////////////////////
-            if (!Dying && !Dead) {
-                tryIncrementXY(tempVx, Vy);
+    private void move() {
+        if (levelInfo == null) {
+            return;
+        }
+        if (bumping) {
+            bumpTicks++;
+            if (bumpTicks >= 25) {
+                bumping = false;
+                bumpTicks = 0;
             }
         }
-    };
+
+        double floorCheckX1 = x + 20;
+        double floorCheckX2 = x + 55;
+        double wallCheckX1 = x;
+        double wallCheckX2 = x + 75;
+        RoundRectangle2D floor_Rect = null;
+        RoundRectangle2D wall_Rect = null;
+        ///maybe add -- if (currentFloor == null || currentFloor.contains(floorCheckX1))
+        double tempVx = bumping ? bumpVx : Vx;
+        for (RoundRectangle2D floor : levelInfo.floors) {
+            if ((floor.contains(floorCheckX1, y + 51 + Vy)
+                    || floor.contains(floorCheckX2, y + 51 + Vy)) && floor.getY() > y) {
+                floor_Rect = floor;
+                break;
+            }
+        }
+        for (RoundRectangle2D wall : levelInfo.walls) {
+            if (wall.contains(wallCheckX1, y + 25) && tempVx < 0) {
+                wall_Rect = wall;
+                break;
+            } else if (wall.contains(wallCheckX2, y + 25) && tempVx > 0) {
+                wall_Rect = wall;
+                break;
+            }
+        }
+        if (floor_Rect == null || Vy < 0) {
+            state = (byte)(state | 100);
+            Vy += Gravity;
+            //displayList.cat.currentFloor = null;
+        } else {
+            if (Vy >= 0) {
+                //make sure it's level with floor
+                y = (int)Math.round(floor_Rect.getY()) - 50;
+                currentFloor = floor_Rect;
+            }
+            Vy = 0;
+            state = (byte)(state & 011);
+        }
+        if (wall_Rect != null) {
+            tempVx = 0;
+        }
+        ///////////////////////////////////////////////////////////////////////////////////
+        if (!Dying && !Dead) {
+            tryIncrementXY(tempVx, Vy);
+        }
+    }
+
+//    private ActionListener move = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//
+//            if (bumping) {
+//                bumpTicks++;
+//                if (bumpTicks >= 25) {
+//                    bumping = false;
+//                    bumpTicks = 0;
+//                }
+//            }
+//
+//            double floorCheckX1 = x + 20;
+//            double floorCheckX2 = x + 55;
+//            double wallCheckX1 = x;
+//            double wallCheckX2 = x + 75;
+//            RoundRectangle2D floor_Rect = null;
+//            RoundRectangle2D wall_Rect = null;
+//            ///maybe add -- if (currentFloor == null || currentFloor.contains(floorCheckX1))
+//            double tempVx = bumping ? bumpVx : Vx;
+//            for (RoundRectangle2D floor : levelInfo.floors) {
+//                if ((floor.contains(floorCheckX1, y + 51 + Vy)
+//                        || floor.contains(floorCheckX2, y + 51 + Vy)) && floor.getY() > y) {
+//                    floor_Rect = floor;
+//                    break;
+//                }
+//            }
+//            for (RoundRectangle2D wall : levelInfo.walls) {
+//                if (wall.contains(wallCheckX1, y + 25) && tempVx < 0) {
+//                    wall_Rect = wall;
+//                    break;
+//                } else if (wall.contains(wallCheckX2, y + 25) && tempVx > 0) {
+//                    wall_Rect = wall;
+//                    break;
+//                }
+//            }
+//            if (floor_Rect == null || Vy < 0) {
+//                state = (byte)(state | 100);
+//                Vy += Gravity;
+//                //displayList.cat.currentFloor = null;
+//            } else {
+//                if (Vy >= 0) {
+//                    //make sure it's level with floor
+//                    y = (int)Math.round(floor_Rect.getY()) - 50;
+//                    currentFloor = floor_Rect;
+//                }
+//                Vy = 0;
+//                state = (byte)(state & 011);
+//            }
+//            if (wall_Rect != null) {
+//                tempVx = 0;
+//            }
+//            ///////////////////////////////////////////////////////////////////////////////////
+//            if (!Dying && !Dead) {
+//                tryIncrementXY(tempVx, Vy);
+//            }
+//        }
+//    };
 
     public void tryIncrementXY(double dx, double dy) {
         y += dy;
@@ -305,14 +373,10 @@ public class Cat extends Entity {
         g2.setColor(Color.WHITE);
         g2.draw(healthBarOutline);
 
-//        Line2D check = new Line2D.Double();/////////// for development
-//        check.setLine(x, y, x, y + 48);
-//        g2.draw(check);
     }
 
-    private ActionListener die = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    private void die() {
+        if (dieTicks >= 6) {
             if (popIndex < 5) {
                 x -= 11;
                 y -= 18;
@@ -321,12 +385,33 @@ public class Cat extends Entity {
                 popIndex++;
                 catImage = popAnimationImages[popIndex];
             } else {
-                dieTimer.stop();
+                //dieTimer.stop();
                 Dying = false;
                 Dead = true;
             }
+            dieTicks = 0;
+        } else {
+            dieTicks++;
         }
-    };
+    }
+
+//    private ActionListener die = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if (popIndex < 5) {
+//                x -= 11;
+//                y -= 18;
+//                width += 22;
+//                height += 22;
+//                popIndex++;
+//                catImage = popAnimationImages[popIndex];
+//            } else {
+//                dieTimer.stop();
+//                Dying = false;
+//                Dead = true;
+//            }
+//        }
+//    };
 
     private void setSprite() {
 

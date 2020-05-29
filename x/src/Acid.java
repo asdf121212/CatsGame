@@ -24,6 +24,11 @@ public class Acid extends Enemy {
     }
 
     @Override
+    public void Update() {
+
+    }
+
+    @Override
     public void hitCat() {
 
     }

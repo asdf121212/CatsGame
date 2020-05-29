@@ -18,7 +18,7 @@ public class Vacuum extends Enemy{
     private int rightBound;
     private double xVel;
 
-    private Timer moveTimer;
+    //private Timer moveTimer;
 
     private LevelInfo levelInfo;
 
@@ -50,48 +50,64 @@ public class Vacuum extends Enemy{
         return rightBound;
     }
 
-    public void Start() {
-        if (levelInfo != null) {
-            moveTimer = new Timer(5, move);
-            moveTimer.start();
-        }
-    }
+    //public void Start() {
+//        if (levelInfo != null) {
+//            moveTimer = new Timer(5, move);
+//            moveTimer.start();
+//        }
+    //}
 
     public void addLevelInfo(LevelInfo levelInfo) {
         this.levelInfo = levelInfo;
     }
 
-    private ActionListener move = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (x <= leftBound) {
-                image = vacuumR;
-                xVel = 1;
-            } else if (x + width >= rightBound) {
-                image = vacuumL;
-                xVel = -1;
-            }
-            x += xVel;
+    @Override
+    public void Update() {
+        if (x <= leftBound) {
+            image = vacuumR;
+            xVel = 1;
+        } else if (x + width >= rightBound) {
+            image = vacuumL;
+            xVel = -1;
         }
-    };
+        x += xVel;
+    }
+
+//    private ActionListener move = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if (x <= leftBound) {
+//                image = vacuumR;
+//                xVel = 1;
+//            } else if (x + width >= rightBound) {
+//                image = vacuumL;
+//                xVel = -1;
+//            }
+//            x += xVel;
+//        }
+//    };
 
     public Ball generateBall() {
-        blast.Start();
-        double x0 = x + (width / 2.0);
-        double y0 = y + height - 10;
-        double xDist = levelInfo.getCatX() + 20 - x0;
-        double yDist = levelInfo.getCatY() + 15 - y0;
-        double hyp = Math.sqrt(xDist * xDist + yDist * yDist);
-        double delta_t = hyp / 5;
-        double ballVx = xDist / delta_t;
-        double ballVy = yDist / delta_t;
-        return new Ball(x0, y0, 25, ballVx, ballVy);
+        if (levelInfo != null) {
+            blast.Start();
+            double x0 = x + (width / 2.0);
+            double y0 = y + height - 10;
+            double xDist = levelInfo.getCatX() + 20 - x0;
+            double yDist = levelInfo.getCatY() + 15 - y0;
+            double hyp = Math.sqrt(xDist * xDist + yDist * yDist);
+            double delta_t = hyp / 5;
+            double ballVx = xDist / delta_t;
+            double ballVy = yDist / delta_t;
+            return new Ball(x0, y0, 25, ballVx, ballVy);
+        } else {
+            return new Ball(x + (width / 2.0), y + height - 10, 25, 0, 4);
+        }
     }
 
     public void Dispose() {
-        if (moveTimer != null) {
-            moveTimer.stop();
-        }
+//        if (moveTimer != null) {
+//            moveTimer.stop();
+//        }
     }
 
     @Override

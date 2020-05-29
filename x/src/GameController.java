@@ -85,7 +85,7 @@ public class GameController {
         cat = displayList.cat;
 
         cat.AddLevelInfo(new LevelInfo(currentLevel.floors, currentLevel.walls, null));
-        cat.enable();
+        //cat.enable();
 
         updateTimer = new Timer(5, updateListener);
         updateTimer.setInitialDelay(1);

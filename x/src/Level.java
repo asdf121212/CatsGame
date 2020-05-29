@@ -49,10 +49,12 @@ public abstract class Level extends JPanel {
 
     public void update() {
         ////check if fluffballs hit enemies, remove dead enemies--
+        displayList.cat.Update();
         if (displayList.cat.GetY() > 800) {
             displayList.cat.entityHit(200);
         }
         for (Enemy enemy : displayList.getEnemies()) {
+            enemy.Update();
             if (enemy.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
                 continue;
@@ -61,7 +63,7 @@ public abstract class Level extends JPanel {
             }
             for (Fluffball fluffball : displayList.getFluffballs()) {
                 if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
-                    fluffball.stop();
+                    //fluffball.stop();
                     SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                     SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
                 }
@@ -77,12 +79,13 @@ public abstract class Level extends JPanel {
         }
         //check if fluffballs are dead or hit a wall
         for (Fluffball fluffball : displayList.getFluffballs()) {
+            fluffball.Update();
             if (fluffball.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
             } else {
                 for (RoundRectangle2D wall : walls) {
                     if (fluffball.getHitBox().intersects(wall.getFrame())) {
-                        fluffball.stop();
+                        //fluffball.stop();
                         SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                     }
                 }

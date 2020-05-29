@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +61,7 @@ public class GenericLevel extends Level {
             vacuumList.add(vacuum);
             displayList.AddEnemy(vacuum);
             vacuum.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
-            vacuum.Start();
+            //vacuum.Start();
             enemyIndexMap.put(vacuum, index);
             index++;
         }
@@ -80,7 +78,7 @@ public class GenericLevel extends Level {
             TinyMouse tinyMouse = new TinyMouse(tinyMouseConfig.x, tinyMouseConfig.optionalRangeOrBound, tinyMouseConfig.y);
             tinyMouseList.add(tinyMouse);
             displayList.AddEnemy(tinyMouse);
-            tinyMouse.Start();
+            //tinyMouse.Start();
             enemyIndexMap.put(tinyMouse, index);
             index++;
         }
@@ -175,12 +173,12 @@ public class GenericLevel extends Level {
         }
         for (Squirrel squirrel : squirrelList) {
             if (squirrel != null && !squirrel.Dying && !squirrel.Dead) {
-                if (squirrel.ticks == 220) {
+                if (squirrel.shootTicks == 220) {
                     Ball ball = squirrel.generateBall(-2.5);
                     SwingUtilities.invokeLater(() -> displayList.AddEnemy(ball));
-                    squirrel.ticks = 0;
+                    squirrel.shootTicks = 0;
                 } else {
-                    squirrel.ticks++;
+                    squirrel.shootTicks++;
                 }
             }
         }
@@ -234,10 +232,12 @@ public class GenericLevel extends Level {
         }
 
 
+        displayList.cat.Update();
         if (displayList.cat.GetY() > 800) {
             displayList.cat.entityHit(200);
         }
         for (Enemy enemy : displayList.getEnemies()) {
+            enemy.Update();
             if (enemy.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeEnemy(enemy));
                 SwingUtilities.invokeLater(() -> removeFromConfigObj(enemy));
@@ -247,7 +247,7 @@ public class GenericLevel extends Level {
             }
             for (Fluffball fluffball : displayList.getFluffballs()) {
                 if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
-                    fluffball.stop();
+                    //fluffball.stop();
                     SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                     SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
                 }
@@ -263,12 +263,13 @@ public class GenericLevel extends Level {
         }
         //check if fluffballs are dead or hit a wall
         for (Fluffball fluffball : displayList.getFluffballs()) {
+            fluffball.Update();
             if (fluffball.Dead) {
                 SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
             } else {
                 for (RoundRectangle2D wall : walls) {
                     if (fluffball.getHitBox().intersects(wall.getFrame())) {
-                        fluffball.stop();
+                        //fluffball.stop();
                         SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
                     }
                 }

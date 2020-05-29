@@ -7,7 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class PigMouse extends SolidEnemy {
+public class PigMouse extends Enemy {
 
     private BufferedImage pigMouse1 = Entity.getBufferedImage("sprites/pigMouse/pigMouse.png", 100, 100);
     private BufferedImage pigMouseHot1 = Entity.getBufferedImage("sprites/pigMouse/pigMouseHot1.png", 100, 100);
@@ -27,8 +27,8 @@ public class PigMouse extends SolidEnemy {
 
     private LevelInfo levelInfo;
     private ArrayList<Node> path;
-    private Timer planTimer;
-    private Timer traverseTimer;
+    //private Timer planTimer;
+    //private Timer traverseTimer;
 
     private Node nextNode;
     private NodeFloor currentFloor;
@@ -43,7 +43,8 @@ public class PigMouse extends SolidEnemy {
     private boolean fall = false;
     public boolean needsToRespawn = false;
 
-    private Timer initialFallTimer;
+    //private Timer initialFallTimer;
+    private boolean initialFalling;
 
     public PigMouse(int x, int y) {
         width = 59;
@@ -54,53 +55,70 @@ public class PigMouse extends SolidEnemy {
         this.y = y;
         imageIndex = 0;
         hittable = false;
-        initialFallTimer = new Timer(5, initialFall);
-        initialFallTimer.start();
+        //initialFallTimer = new Timer(5, initialFall);
+        //initialFallTimer.start();
+        initialFalling = true;
     }
 
-    private ActionListener initialFall = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            while (levelInfo == null) {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }
-            }
-            if (x > 1300 || x < -200 || y > 900 || y < -1000) {
-                needsToRespawn = true;
-            }
-            NodeFloor floor = null;
-            for (NodeFloor rect : levelInfo.nodeFloors) {
-                if (rect.contains(x + width / 2.0 + xVel, y + height + 1 + yVel)) {
-                    floor = rect;
-                    break;
-                }
-            }
-            if (floor == null) {
-                y += yVel;
-                yVel += grav;
-            } else {
-                yVel = 0;
-                y = floor.y - height;
-                currentFloor = floor;
 
-                initialFallTimer.stop();
+    //private ActionListener initialFall = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    @Override
+    public void Update() {
+        if (initialFalling) {
+            initialFall();
+        } else {
+            plan();
+            traverse();
+        }
+    }
 
-                planTimer = new Timer(5, plan);
-                traverseTimer = new Timer(5, traverse);
-                planTimer.start();
-                traverseTimer.setInitialDelay(200);
-                traverseTimer.start();
 
+    public void initialFall() {
+        while (levelInfo == null) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
             }
         }
-    };
+        if (x > 1300 || x < -200 || y > 900 || y < -1000) {
+            needsToRespawn = true;
+        }
+        NodeFloor floor = null;
+        for (NodeFloor rect : levelInfo.nodeFloors) {
+            if (rect.contains(x + width / 2.0 + xVel, y + height + 1 + yVel)) {
+                floor = rect;
+                break;
+            }
+        }
+        if (floor == null) {
+            y += yVel;
+            yVel += grav;
+        } else {
+            yVel = 0;
+            y = floor.y - height;
+            currentFloor = floor;
 
-    private ActionListener plan = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+            initialFalling = false;
+
+//            initialFallTimer.stop();
+//            planTimer = new Timer(5, plan);
+//            traverseTimer = new Timer(5, traverse);
+//            planTimer.start();
+//            traverseTimer.setInitialDelay(200);
+//            traverseTimer.start();
+
+        }
+    }
+        //}
+    //};
+
+    //private ActionListener plan = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    private void plan() {
             if (getHitBox().contains(levelInfo.getCatX(), levelInfo.getCatY())) {
                 return;
             }
@@ -110,13 +128,14 @@ public class PigMouse extends SolidEnemy {
             path = currentFloor.getShortestPath(x, y, levelInfo.getCatX(),
                     levelInfo.getCatY(), (NodeFloor)levelInfo.getCatFloor(), levelInfo.nodes);
         }
-    };
-    private ActionListener traverse = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    //};
+    //private ActionListener traverse = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    private void traverse() {
             if (x > 1300 || x < -200 || y > 900 || y < -1000) {
-                planTimer.stop();
-                traverseTimer.stop();
+                //planTimer.stop();
+                //traverseTimer.stop();
                 needsToRespawn = true;
             }
             if (path == null) {
@@ -225,7 +244,7 @@ public class PigMouse extends SolidEnemy {
             }
             x += xVel;
         }
-    };
+    //};
 
 
     public void addLevelInfo(LevelInfo levelInfo) {
@@ -233,15 +252,15 @@ public class PigMouse extends SolidEnemy {
     }
 
     public void Dispose() {
-        if (planTimer != null) {
-            planTimer.stop();
-        }
-        if (traverseTimer != null) {
-            traverseTimer.stop();
-        }
-        if (initialFallTimer != null) {
-            initialFallTimer.stop();
-        }
+//        if (planTimer != null) {
+//            planTimer.stop();
+//        }
+//        if (traverseTimer != null) {
+//            traverseTimer.stop();
+//        }
+//        if (initialFallTimer != null) {
+//            initialFallTimer.stop();
+//        }
     }
 
     @Override

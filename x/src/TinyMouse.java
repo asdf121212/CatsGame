@@ -22,8 +22,13 @@ public class TinyMouse extends Enemy {
     private double xVel;
     private int right_xBound;
     private int left_xBound;
-    private Timer moveTimer;
-    private Timer hitTimer;
+    //private Timer moveTimer;
+    //private Timer hitTimer;
+
+    private int hitTicks = 0;
+    private int tickLimit = 0;
+    private boolean hitting = false;
+
     private BufferedImage image;
     int cooldownTicks = 0;
 
@@ -38,11 +43,39 @@ public class TinyMouse extends Enemy {
         height = 25;
     }
 
-    public void Start() {
-        Dispose();
-        moveTimer = new Timer(5, move);
-        moveTimer.start();
+    @Override
+    public void Update() {
+        if (hitting) {
+            if (hitTicks >= tickLimit) {
+                if (image.equals(mouseImageHit2_L)) {
+                    image = mouseImageHit1_L;
+                    tickLimit = 30;
+                    hitTicks = 0;
+                } else if (image.equals(mouseImageHit2_R)) {
+                    image = mouseImageHit1_R;
+                    tickLimit = 30;
+                    hitTicks = 0;
+                } else if (image.equals(mouseImageHit1_L)) {
+                    image = mouseImage_L;
+                    //hitTimer.stop();
+                    hitting = false;
+                } else if (image.equals(mouseImageHit1_R)) {
+                    image = mouseImage_R;
+                    //hitTimer.stop();
+                    hitting = false;
+                }
+            } else {
+                hitTicks++;
+            }
+        }
+        move();
     }
+
+//    public void Start() {
+//        Dispose();
+//        moveTimer = new Timer(5, move);
+//        moveTimer.start();
+//    }
 
     public void setLeft_xBound(int left_xBound) {
         this.left_xBound = left_xBound;
@@ -55,17 +88,18 @@ public class TinyMouse extends Enemy {
     }
 
     public void Dispose() {
-        if (hitTimer != null) {
-            hitTimer.stop();
-        }
-        if (moveTimer != null) {
-            moveTimer.stop();
-        }
+//        if (hitTimer != null) {
+//            hitTimer.stop();
+//        }
+//        if (moveTimer != null) {
+//            moveTimer.stop();
+//        }
     }
 
-    public ActionListener move = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    //public ActionListener move = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    private void move() {
             if (cooldownTicks > 0) {
                 cooldownTicks--;
                 if (cooldownTicks == 0) {
@@ -81,7 +115,7 @@ public class TinyMouse extends Enemy {
             }
             x += xVel;
         }
-    };
+    //};
 //    public void update() {
 //
 //    }
@@ -98,14 +132,17 @@ public class TinyMouse extends Enemy {
     public void hitCat() {
         if (cooldownTicks <= 0) {
             //hitSound.Start();
-            hitTimer = new Timer(150, hit);
-            hitTimer.setInitialDelay(180);
+            //hitTimer = new Timer(150, hit);
+            //hitTimer.setInitialDelay(180);
             if (xVel < 0) {
                 image = mouseImageHit2_L;
             } else {
                 image = mouseImageHit2_R;
             }
-            hitTimer.start();
+            //hitTimer.start();
+            hitting = true;
+            hitTicks = 0;
+            tickLimit = 36;
             hitCoolingDown = true;
             cooldownTicks = 80;
         }
@@ -124,22 +161,22 @@ public class TinyMouse extends Enemy {
 
     }
 
-    private ActionListener hit = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (image.equals(mouseImageHit1_L)) {
-                image = mouseImageHit2_L;
-            } else if (image.equals(mouseImageHit1_R)) {
-                image = mouseImageHit2_R;
-            } else if (image.equals(mouseImageHit2_L)) {
-                image = mouseImage_L;
-                hitTimer.stop();
-            } else if (image.equals(mouseImageHit2_R)) {
-                image = mouseImage_R;
-                hitTimer.stop();
-            }
-        }
-    };
+//    private ActionListener hit = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if (image.equals(mouseImageHit1_L)) {
+//                image = mouseImageHit2_L;
+//            } else if (image.equals(mouseImageHit1_R)) {
+//                image = mouseImageHit2_R;
+//            } else if (image.equals(mouseImageHit2_L)) {
+//                image = mouseImage_L;
+//                hitTimer.stop();
+//            } else if (image.equals(mouseImageHit2_R)) {
+//                image = mouseImage_R;
+//                hitTimer.stop();
+//            }
+//        }
+//    };
 
     @Override
     public void paintComponent(Graphics g) {

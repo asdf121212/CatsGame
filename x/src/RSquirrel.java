@@ -16,6 +16,7 @@ public class RSquirrel extends Squirrel {
         squirrelExp3 = getBufferedImage("sprites/squirrel/R_squirrel/r_squirrelExp3.png", 100, 100);
     }
 
+
     @Override
     public Ball generateBall(double xVelocity) {
         generateBallClip.Start();

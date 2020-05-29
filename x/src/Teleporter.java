@@ -16,6 +16,11 @@ public class Teleporter extends Entity {
     }
 
     @Override
+    public void Update() {
+
+    }
+
+    @Override
     public void paintComponent(Graphics g) {
 
     }

@@ -9,11 +9,11 @@ public class Level3 extends Level {
     private RoundRectangle2D rightFloor = new RoundRectangle2D.Double(900, 400, 320, 60, 10, 10);
     private RoundRectangle2D hiddenFloor = new RoundRectangle2D.Double(750, 900, 550, 60, 10, 10);
 
-    private DaisyEnemy daisy = new DaisyEnemy(new Rectangle2D.Double(70, 650, 620, 60), rightFloor.getFrame());
+    //private DaisyEnemy daisy = new DaisyEnemy(new Rectangle2D.Double(70, 650, 620, 60), rightFloor.getFrame());
 
     private ZinzanLife extraLife = new ZinzanLife(850, 870, 30, 21);
 
-    private boolean floorRaising = false;
+    private boolean floorRaising = true;
 
     public Level3() {
 
@@ -28,7 +28,7 @@ public class Level3 extends Level {
 //                new ZinzanLife(64, 10),
 //        };
 
-        displayList.AddEnemy(daisy);
+        //displayList.AddEnemy(daisy);
         displayList.AddExtraLive(extraLife);
 
         walls = new RoundRectangle2D[] {
@@ -42,7 +42,7 @@ public class Level3 extends Level {
                 hiddenFloor
         };
 
-        daisy.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
+        //daisy.addLevelInfo(new LevelInfo(floors, walls, displayList.cat));
 
     }
 
@@ -50,9 +50,9 @@ public class Level3 extends Level {
     @Override
     public void update() {
         ///update any enemies and stuff that need updating
-        if (daisy.Dead) {
-            floorRaising = true;
-        }
+        //if (daisy.Dead) {
+            //floorRaising = true;
+        //}
         if (floorRaising) {
             if (hiddenFloor.getY() > 650) {
                 extraLife.y--;

@@ -16,6 +16,11 @@ public class ZinzanLife extends Entity {
     }
 
     @Override
+    public void Update() {
+
+    }
+
+    @Override
     public void Dispose() {
     }
 

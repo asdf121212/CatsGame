@@ -16,9 +16,13 @@ public class Yarnball extends Enemy {
     private AutoResetSound pantherRoar = new AutoResetSound("SoundFiles/panther-roar2-2.wav");
 
     private int imageChangeTicks = 0;
-    private Timer attackTimer;
-    private Timer dieTimer;
-    private Timer flashTimer;
+    //private Timer attackTimer;
+    //private Timer dieTimer;
+    //private Timer flashTimer;
+    private boolean attacking = false;
+    private boolean flashing = false;
+    private int flashTicks = 0;
+
     private BufferedImage image = yarnball0;
     private double Range;
     //private boolean active = false;
@@ -42,14 +46,32 @@ public class Yarnball extends Enemy {
     }
 
     public void Dispose() {
-        if (attackTimer != null) {
-            attackTimer.stop();
+//        if (attackTimer != null) {
+//            attackTimer.stop();
+//        }
+//        if (dieTimer != null) {
+//            dieTimer.stop();
+//        }
+//        if (flashTimer != null) {
+//            flashTimer.stop();
+//        }
+    }
+
+    @Override
+    public void Update() {
+        if (flashing) {
+            if (flashTicks >= 15) {
+                flashing = false;
+                image = yarnball2;
+                flashTicks = 0;
+            } else {
+                flashTicks++;
+            }
         }
-        if (dieTimer != null) {
-            dieTimer.stop();
-        }
-        if (flashTimer != null) {
-            flashTimer.stop();
+        if (attacking) {
+            attack();
+        } else if (Dying) {
+            die();
         }
     }
 
@@ -58,17 +80,22 @@ public class Yarnball extends Enemy {
     }
 
     public void Start() {
-        attackTimer = new Timer(5, attack);
-        attackTimer.start();
+        //attackTimer = new Timer(5, attack);
+        //attackTimer.start();
         image = yarnball1;
+        attacking = true;
         //active = true;
         pantherRoar.Start();
     }
 
     public boolean enteredAttackZone(double xCoord, double yCoord) {
-        if ((attackTimer != null && attackTimer.isRunning()) || Dead || Dying) {
+//        if ((attackTimer != null && attackTimer.isRunning()) || Dead || Dying) {
+//            return false;
+//        }
+        if (attacking || Dead || Dying) {
             return false;
-        } else {
+        }
+        else {
             return x - xCoord < Range && x - xCoord > -10 && yCoord <= y + width + 10 && yCoord >= y - 10;
         }
     }
@@ -79,12 +106,13 @@ public class Yarnball extends Enemy {
 
     public void startDying() {
         Dying = true;
-        dieTimer = new Timer(5, die);
+        attacking = false;
+        //dieTimer = new Timer(5, die);
         pantherRoar.Stop();
         //dieTimer.setInitialDelay(90);
         image = yarnball2Flash;
         imageChangeTicks = 0;
-        dieTimer.start();
+        //dieTimer.start();
         yarnballDieSound.Start();
     }
 
@@ -95,18 +123,22 @@ public class Yarnball extends Enemy {
 //        }
         health -= damage;
         if (health <= 0) {
-            if (attackTimer != null) {
-                attackTimer.stop();
-            }
+//            if (attackTimer != null) {
+//                attackTimer.stop();
+//            }
+            //flashing = false;
+            //attacking = false;
             startDying();
         } else {
-            if (flashTimer != null && flashTimer.isRunning()) {
-                flashTimer.stop();
-            }
-            flashTimer = new Timer(0, flashListener);
-            flashTimer.setInitialDelay(75);
+//            if (flashTimer != null && flashTimer.isRunning()) {
+//                flashTimer.stop();
+//            }
+//            flashTimer = new Timer(0, flashListener);
+//            flashTimer.setInitialDelay(75);
             image = yarnball2Flash;
-            flashTimer.start();
+            flashing = true;
+            flashTicks = 0;
+            //flashTimer.start();
         }
     }
 
@@ -121,17 +153,18 @@ public class Yarnball extends Enemy {
         return new Rectangle2D.Double(x + 18, y + 15, width - 28, height - 25);
     }
 
-    private ActionListener flashListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            image = yarnball2;
-            flashTimer.stop();
-        }
-    };
+//    private ActionListener flashListener = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            image = yarnball2;
+//            flashTimer.stop();
+//        }
+//    };
 
-    private ActionListener die = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    //private ActionListener die = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    private void die() {
             if (imageChangeTicks < 15) {
                 imageChangeTicks++;
             } else if (imageChangeTicks == 15) {
@@ -143,19 +176,20 @@ public class Yarnball extends Enemy {
             yVel += 0.1;
             if (x < -70 || y > 720) {
                 Dead = true;
-                if (attackTimer != null) {
-                    attackTimer.stop();
-                }
-                if (dieTimer != null) {
-                    dieTimer.stop();
-                }
+//                if (attackTimer != null) {
+//                    attackTimer.stop();
+//                }
+//                if (dieTimer != null) {
+//                    dieTimer.stop();
+//                }
             }
         }
-    };
+    //};
 
-    private ActionListener attack = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    //private ActionListener attack = new ActionListener() {
+        //@Override
+        //public void actionPerformed(ActionEvent e) {
+    private void attack() {
             if (imageChangeTicks < 7) {
                 imageChangeTicks++;
             } else if (imageChangeTicks == 7) {
@@ -172,7 +206,7 @@ public class Yarnball extends Enemy {
 //                }
 //            }
         }
-    };
+    //};
 
 
 }

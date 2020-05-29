@@ -1,7 +1,8 @@
 public class FirstLevels extends LevelSet {
 
     public int levelIndex = 0;
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
+    //private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
+    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level4.class };
 
     public FirstLevels() {
 

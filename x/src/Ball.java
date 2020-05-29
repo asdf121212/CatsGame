@@ -7,12 +7,14 @@ import java.awt.image.BufferedImage;
 
 public class Ball extends Enemy {
 
-    private static BufferedImage ballImage = getBufferedImage("sprites/ball/ball.png", 50, 50);
-    private static BufferedImage ballHit1 = getBufferedImage("sprites/ball/ballHit1.png", 50, 50);
-    private static BufferedImage ballHit2 = getBufferedImage("sprites/ball/ballHit2.png", 50, 50);
+    private static final BufferedImage ballImage = getBufferedImage("sprites/ball/ball.png", 50, 50);
+    private static final BufferedImage ballHit1 = getBufferedImage("sprites/ball/ballHit1.png", 50, 50);
+    private static final BufferedImage ballHit2 = getBufferedImage("sprites/ball/ballHit2.png", 50, 50);
     private BufferedImage image;
-    private Timer moveTimer;
-    private Timer deathTimer;
+    //private Timer moveTimer;
+    private int dieTicks = 0;
+    private int tickLimit = 24;
+    //private Timer deathTimer;
     private final double xVel;
     private final double yVel;
     private int leftBound = -60;
@@ -27,17 +29,17 @@ public class Ball extends Enemy {
         this.xVel = xVel;
         this.yVel = yVel;
         image = ballImage;
-        moveTimer = new Timer(5, move);
-        moveTimer.start();
+        //moveTimer = new Timer(5, move);
+        //moveTimer.start();
     }
 
     public void Dispose() {
-        if (moveTimer != null) {
-            moveTimer.stop();
-        }
-        if (deathTimer != null) {
-            deathTimer.stop();
-        }
+//        if (moveTimer != null) {
+//            moveTimer.stop();
+//        }
+//        if (deathTimer != null) {
+//            deathTimer.stop();
+//        }
     }
 
     public int getContactDamage() {
@@ -57,18 +59,48 @@ public class Ball extends Enemy {
 
     public void entityHit(int damage) {
     }
+
     public void hitCat() {
         startDying();
     }
 
     @Override
+    public void Update() {
+        if (Dying) {
+            if (dieTicks >= tickLimit) {
+                if (image.equals(ballHit1)) {
+                    image = ballHit2;
+                    tickLimit = 16;
+                } else {
+                    Dead = true;
+                }
+                dieTicks = 0;
+            } else {
+                dieTicks++;
+            }
+        } else {
+            x += xVel;
+            if (x < leftBound || x > rightBound) {
+                Dead = true;
+                //moveTimer.stop();
+            }
+            y += yVel;
+            if (y < -10 - height || y > 710 + height) {
+                Dead = true;
+                //moveTimer.stop();
+            }
+        }
+    }
+
+    @Override
     public void startDying() {
-        moveTimer.stop();
+        //moveTimer.stop();
         image = ballHit1;
         Dying = true;
-        deathTimer = new Timer(80, die);
-        deathTimer.setInitialDelay(120);
-        deathTimer.start();
+        tickLimit = 24;
+        //deathTimer = new Timer(80, die);
+        //deathTimer.setInitialDelay(120);
+        //deathTimer.start();
     }
 
     private ActionListener move = new ActionListener() {
@@ -77,26 +109,26 @@ public class Ball extends Enemy {
             x += xVel;
             if (x < leftBound || x > rightBound) {
                 Dead = true;
-                moveTimer.stop();
+                //moveTimer.stop();
             }
             y += yVel;
             if (y < -10 - height || y > 710 + height) {
                 Dead = true;
-                moveTimer.stop();
+                //moveTimer.stop();
             }
         }
     };
-    private ActionListener die = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (image.equals(ballHit1)) {
-                image = ballHit2;
-            } else {
-                moveTimer.stop();
-                deathTimer.stop();
-                Dead = true;
-            }
-        }
-    };
+//    private ActionListener die = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            if (image.equals(ballHit1)) {
+//                image = ballHit2;
+//            } else {
+//                moveTimer.stop();
+//                deathTimer.stop();
+//                Dead = true;
+//            }
+//        }
+//    };
 
 }
