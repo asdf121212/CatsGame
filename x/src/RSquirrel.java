@@ -1,3 +1,4 @@
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class RSquirrel extends Squirrel {
@@ -19,6 +20,11 @@ public class RSquirrel extends Squirrel {
     public Ball generateBall(double xVelocity) {
         generateBallClip.Start();
         return new Ball(x + width - 20, y + 65, 40, 2.5, 0);
+    }
+
+    @Override
+    public Rectangle2D getHitBox() {
+        return new Rectangle2D.Double(x + 45, y + 56, 90, 50);
     }
 
 

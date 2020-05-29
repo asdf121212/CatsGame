@@ -8,20 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/GenericLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GenericLevel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/MazeLevels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/MazeLevels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_1.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_1.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/2_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/newLevels/5_0.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenericLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PigMouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PigMouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/2_6.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/2_6.level" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newLevels/5_0.level" beforeDir="false" afterPath="$PROJECT_DIR$/src/newLevels/5_0.level" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RSquirrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RSquirrel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
