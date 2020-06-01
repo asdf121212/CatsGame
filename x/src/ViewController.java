@@ -21,7 +21,7 @@ public class ViewController {
         frame = new JFrame();
         Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(screenDimensions.width / 2 - 600, screenDimensions.height / 2 - 350);
-        frame.setSize(800, 500);
+        frame.setSize(1200, 700);
         frame.setBackground(Color.BLACK);
         frame.setVisible(true);
         frame.setResizable(false);

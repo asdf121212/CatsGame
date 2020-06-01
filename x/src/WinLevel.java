@@ -6,13 +6,16 @@ public class WinLevel extends Level {
     public WinLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));
         displayList = new DisplayList();
-        setBackground(Color.BLACK);
+        setBackground(Level.backGroundColor);
         setFocusable(true);
         displayList.cat.SetXY(600, 0);
         floors = new RoundRectangle2D[] {
                 new RoundRectangle2D.Double(-10, 650, 1220, 60, 10, 10)
         };
-        walls = new RoundRectangle2D[0];
+        walls = new RoundRectangle2D[] {
+                new RoundRectangle2D.Double(-10, 0, 15, 750, 0, 0),
+                new RoundRectangle2D.Double(1195, 0, 15, 750, 0, 0)
+        };
     }
 
     @Override

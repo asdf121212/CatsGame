@@ -144,7 +144,7 @@ public class PigMouse extends Enemy {
 
             double xDist = Math.abs(levelInfo.getCatX() - x);
             double yDist = Math.abs(levelInfo.getCatY() - y);
-            if (xDist >= 150 || yDist > 100) {
+            if (xDist >= 200 || yDist > 100) {
                 imageIndex = 0;
                 if (heating) {
                     heating = false;

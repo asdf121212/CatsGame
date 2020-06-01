@@ -1,23 +1,32 @@
-import java.awt.*;
 //import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class DisplayList {
 
     public Cat cat;
-    private ArrayList<Fluffball> fluffballs;
+    private ArrayList<catProjectile> catProjectiles;
     private ArrayList<Enemy> enemies;
     private ArrayList<ZinzanLife> extraLives;
 
+    public static Class<? extends Cat> catClass;
+
     public DisplayList() {
-        fluffballs = new ArrayList<>();
+        catProjectiles = new ArrayList<>();
         enemies = new ArrayList<>();
         extraLives = new ArrayList<>();
-        cat = new Cat();
+        try {
+            cat = catClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void AddFluffball(Fluffball fluffball) {
-        fluffballs.add(fluffball);
+//    public void addCat(Cat cat) {
+//        this.cat = cat;
+//    }
+
+    public void AddCatProjectile(catProjectile catProjectile) {
+        catProjectiles.add(catProjectile);
     }
     public void AddEnemy(Enemy enemy) {
         enemies.add(enemy);
@@ -25,16 +34,16 @@ public class DisplayList {
     public void AddExtraLive(ZinzanLife life) { extraLives.add(life); }
 
 
-    public ArrayList<Fluffball> getFluffballs() {
-        return fluffballs;
+    public ArrayList<catProjectile> getCatProjectiles() {
+        return catProjectiles;
     }
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
     public ArrayList<ZinzanLife> getExtraLives() { return extraLives; }
 
-    public void removeFluffball(Fluffball fluffball) {
-        fluffballs.remove(fluffball);
+    public void removeCatProjectile(catProjectile catProjectile) {
+        catProjectiles.remove(catProjectile);
     }
     public void removeEnemy(Entity enemy) {
         enemies.remove(enemy);

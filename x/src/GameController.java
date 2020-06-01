@@ -1,11 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.RoundRectangle2D;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 public class GameController {
 
@@ -23,6 +19,8 @@ public class GameController {
     private int songIndex = 0;
 
     protected KeyAdapter keyAdapter;
+    protected MouseMotionListener mouseMotionListener;
+    protected MouseListener mouseListener;
 
     protected Timer updateTimer;
 
@@ -34,9 +32,20 @@ public class GameController {
 
     private int dieWaitTicks = 0;
 
+    private Class catClass;
+
     public GameController() {
+        ////////////////////////////////////////////////////////
+        DisplayList.catClass = Zinzan.class;
+        //DisplayList.catClass = Pheobe.class;
+        //DisplayList.catClass = Daisy.class;
+        //GenericLevel.floorColor = Color.gray;
+        //Level.backGroundColor = Color.GRAY;
+        Level.backGroundColor = Color.BLACK;
+        ////////////////////////////////////////////////////////
         //currentLevelSet = new FirstLevels();
-        currentLevelSet = new MazeLevels();
+        //currentLevelSet = new MazeLevels();
+        currentLevelSet = new MainMenus();
         Level startLevel = currentLevelSet.getFirstLevel();
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
@@ -73,87 +82,125 @@ public class GameController {
             }
         }
     };
+    ActionListener menuUpdateListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            currentLevel.repaint();
+            if (((Menu)currentLevel).transition()) {
+                advance_levels();
+            }
+        }
+    };
 
     protected void InitializeLevel(Level level) {
+        if (updateTimer != null) {
+            updateTimer.stop();
+        }
         if (currentLevel != null) {
             currentLevel.Dispose();
         }
         viewController.changeLevel(level);
         currentLevel = level;
-        //currentLevel.addMouseListener(mouseAdapter);/////////////////////////for development only
-        displayList = currentLevel.displayList;
-        cat = displayList.cat;
 
-        cat.AddLevelInfo(new LevelInfo(currentLevel.floors, currentLevel.walls, null));
-        //cat.enable();
+        if (!(currentLevel instanceof Menu)) {
+            displayList = currentLevel.displayList;
+            cat = displayList.cat;
+            cat.AddLevelInfo(new LevelInfo(currentLevel.floors, currentLevel.walls, null));
+            catProjectile f = cat.generateProjectile();
+            f = null;
+            Ball b = new Ball(0, 0, 50, 0, 0);
+            b = null;
 
-        updateTimer = new Timer(5, updateListener);
-        updateTimer.setInitialDelay(1);
-        keyAdapter = new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
+            keyAdapter = new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
 
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    if (cat.Vy == 0) {
-                        cat.Vy = -6;
-                        cat.state = (byte)(cat.state | 100);
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        if (cat.Vy == 0) {
+                            cat.Vy = -6;
+                            cat.state = (byte)(cat.state | 100);
+                        }
                     }
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                         cat.Vx = -2;//////
                         cat.state = (byte)(cat.state | 011);
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         cat.Vx = 2;
                         cat.state = (byte)((cat.state & 110) | 010);
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE && spaceReleased) {
-                    spaceReleased = false;
-                    displayList.AddFluffball(cat.generateFluffball());
+                    } else if (e.getKeyCode() == KeyEvent.VK_SPACE && spaceReleased) {
+                        spaceReleased = false;
+                        displayList.AddCatProjectile(cat.generateProjectile());
+                    }
                 }
-            }
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    if (cat.Vx < 0) {
-                        cat.Vx = 0;
-                        cat.state = (byte)(cat.state & 101);
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        if (cat.Vx < 0) {
+                            cat.Vx = 0;
+                            cat.state = (byte)(cat.state & 101);
+                        }
+                    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        if (cat.Vx > 0) {
+                            cat.Vx = 0;
+                            cat.state = (byte)(cat.state & 101);
+                        }
+                    } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        spaceReleased = true;
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    if (cat.Vx > 0) {
-                        cat.Vx = 0;
-                        cat.state = (byte)(cat.state & 101);
-                    }
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    spaceReleased = true;
                 }
-            }
-        };
-        Fluffball f = cat.generateFluffball();
-        f = null;
-        Ball b = new Ball(0, 0, 50, 0, 0);
-        b = null;
-        currentLevel.addKeyListener(keyAdapter);
+            };
+
+            updateTimer = new Timer(5, updateListener);
+            updateTimer.setInitialDelay(1);
+            currentLevel.addKeyListener(keyAdapter);
+            updateTimer.start();
+        } else {
+            mouseMotionListener = new MouseAdapter() {
+                @Override
+                public void mouseMoved(MouseEvent e) {
+                    ((Menu)currentLevel).mouseMove(e.getX(), e.getY());
+                }
+            };
+            mouseListener = new MouseInputAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    ((Menu)currentLevel).mouseClick(e.getX(), e.getY());
+                }
+            };
+            currentLevel.addMouseMotionListener(mouseMotionListener);
+            currentLevel.addMouseListener(mouseListener);
+            updateTimer = new Timer(5, menuUpdateListener);
+            updateTimer.start();
+        }
         currentLevel.requestFocus();
         //viewController.StartRepaintTimer();
-        updateTimer.start();
         viewController.revalidateFrame();
     }
 
     protected void advance_levels() {
         if (!currentLevelSet.lastLevel()) {
             try {
-                int health = cat.getHealth();
-                currentLevel.removeKeyListener(keyAdapter);
+                Level nextLevel = currentLevelSet.getNextLevel();;
+                if (!currentLevelSet.isMenu) {
+                    int health = cat.getHealth();
+                    currentLevel.removeKeyListener(keyAdapter);
+                    nextLevel.displayList.cat.setHealth(health);
+                } else {
+                    currentLevel.removeMouseMotionListener(mouseMotionListener);
+                    currentLevel.removeMouseListener(mouseListener);
+                }
                 updateTimer.stop();
-                Level nextLevel = currentLevelSet.getNextLevel();
-                nextLevel.displayList.cat.setHealth(health);
                 InitializeLevel(nextLevel);
             }
-            catch (Exception ex) {
+            catch (NullPointerException ex) {
                 System.out.println(ex.getMessage() + " GameController: advance levels error");
             }
         } else {
-            return;
+            if (currentLevelSet.getNextLevelSet() != null) {
+                currentLevelSet = currentLevelSet.getNextLevelSet();
+                InitializeLevel(currentLevelSet.getFirstLevel());
+            }
         }
     }
 
@@ -162,7 +209,7 @@ public class GameController {
     protected void cat_die() {
         currentLevel.removeKeyListener(keyAdapter);
         updateTimer.stop();
-        cat = null;
+        //cat = null;
 
         if (Level.numLives <= 0) {
             currentLevel.Dispose();

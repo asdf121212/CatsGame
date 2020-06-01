@@ -30,7 +30,6 @@ public class MazeLevels extends LevelSet {
     private int mazeIndex_i = 0;
     private int mazeIndex_j = 0;
 
-
     public MazeLevels() {
         mazeIndex_i = 0;
         mazeIndex_j = 3;
@@ -243,6 +242,11 @@ public class MazeLevels extends LevelSet {
         catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public LevelSet getNextLevelSet() {
+        return null;
     }
 
     public void load49LevelConfigObjects() throws IOException, ClassNotFoundException {

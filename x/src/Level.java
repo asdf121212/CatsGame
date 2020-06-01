@@ -4,6 +4,8 @@ import java.awt.geom.RoundRectangle2D;
 
 public abstract class Level extends JPanel {
 
+    public static Color backGroundColor = Color.BLACK;
+
     protected int GroundLevel;
     protected DisplayList displayList;
     protected ZinzanLife[] zinzanLives = new ZinzanLife[] {
@@ -42,8 +44,8 @@ public abstract class Level extends JPanel {
         for (Enemy enemy : displayList.getEnemies()) {
             enemy.Dispose();
         }
-        for (Fluffball fluffball : displayList.getFluffballs()) {
-            fluffball.Dispose();
+        for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+            catProjectile.Dispose();
         }
     }
 
@@ -61,11 +63,11 @@ public abstract class Level extends JPanel {
             } else if (enemy.Dying) {
                 continue;
             }
-            for (Fluffball fluffball : displayList.getFluffballs()) {
-                if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
+            for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+                if (catProjectile.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
                     //fluffball.stop();
-                    SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
-                    SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
+                    SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
+                    SwingUtilities.invokeLater(() -> enemy.entityHit(catProjectile.fluffballDamage()));
                 }
             }
             if (enemy.getHitBox().intersects(displayList.cat.getHitBox()) && !enemy.hitCoolingDown) {
@@ -78,15 +80,15 @@ public abstract class Level extends JPanel {
             }
         }
         //check if fluffballs are dead or hit a wall
-        for (Fluffball fluffball : displayList.getFluffballs()) {
-            fluffball.Update();
-            if (fluffball.Dead) {
-                SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+        for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+            catProjectile.Update();
+            if (catProjectile.Dead) {
+                SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
             } else {
                 for (RoundRectangle2D wall : walls) {
-                    if (fluffball.getHitBox().intersects(wall.getFrame())) {
+                    if (catProjectile.getHitBox().intersects(wall.getFrame())) {
                         //fluffball.stop();
-                        SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                        SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
                     }
                 }
             }
@@ -122,8 +124,8 @@ public abstract class Level extends JPanel {
         for (Entity enemy : displayList.getEnemies()) {
             enemy.paintComponent(g2);
         }
-        for (Fluffball fluffball : displayList.getFluffballs()) {
-            fluffball.paintComponent(g2);
+        for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+            catProjectile.paintComponent(g2);
         }
         if (displayList.cat != null && !displayList.cat.Dead) {
             displayList.cat.paintComponent(g2);

@@ -37,10 +37,12 @@ public class GenericLevel extends Level {
 
     private LevelConfigObj2 configObj;
 
+    public static Color floorColor = Color.ORANGE;
+
     public GenericLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));
         displayList = new DisplayList();
-        setBackground(Color.BLACK);
+        setBackground(backGroundColor);
         setFocusable(true);
 
         //floors = new IndexedNodeFloor[0];
@@ -245,11 +247,11 @@ public class GenericLevel extends Level {
             } else if (enemy.Dying) {
                 continue;
             }
-            for (Fluffball fluffball : displayList.getFluffballs()) {
-                if (fluffball.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
+            for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+                if (catProjectile.getHitBox().intersects(enemy.getHitBox()) && enemy.hittable) {
                     //fluffball.stop();
-                    SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
-                    SwingUtilities.invokeLater(() -> enemy.entityHit(fluffball.fluffballDamage()));
+                    SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
+                    SwingUtilities.invokeLater(() -> enemy.entityHit(catProjectile.fluffballDamage()));
                 }
             }
             if (enemy.getHitBox().intersects(displayList.cat.getHitBox()) && !enemy.hitCoolingDown) {
@@ -262,15 +264,15 @@ public class GenericLevel extends Level {
             }
         }
         //check if fluffballs are dead or hit a wall
-        for (Fluffball fluffball : displayList.getFluffballs()) {
-            fluffball.Update();
-            if (fluffball.Dead) {
-                SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+        for (catProjectile catProjectile : displayList.getCatProjectiles()) {
+            catProjectile.Update();
+            if (catProjectile.Dead) {
+                SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
             } else {
                 for (RoundRectangle2D wall : walls) {
-                    if (fluffball.getHitBox().intersects(wall.getFrame())) {
+                    if (catProjectile.getHitBox().intersects(wall.getFrame())) {
                         //fluffball.stop();
-                        SwingUtilities.invokeLater(() -> displayList.removeFluffball(fluffball));
+                        SwingUtilities.invokeLater(() -> displayList.removeCatProjectile(catProjectile));
                     }
                 }
             }
@@ -307,7 +309,7 @@ public class GenericLevel extends Level {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.ORANGE);
+        g2.setColor(floorColor);
 
         //walls are all floors too.
 //        for (RoundRectangle2D rect : walls) {
