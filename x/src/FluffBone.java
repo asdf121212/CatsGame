@@ -47,7 +47,7 @@ public class FluffBone extends catProjectile {
     }
 
     public Rectangle2D getHitBox() {
-        return new Rectangle2D.Double(x + 2, y + 2, 14, 15);
+        return new Rectangle2D.Double(x, y, width, height);
     }
 
     @Override

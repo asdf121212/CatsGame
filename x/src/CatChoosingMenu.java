@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -18,7 +17,7 @@ public class CatChoosingMenu extends Menu {
 
     private BufferedImage zinzan = Entity.getBufferedImage("sprites/zinzan/zinzanStill.png", 100, 100);
     private BufferedImage daisy = Entity.getBufferedImage("sprites/daisyEnemy/d2R.png", 100, 100);
-    private BufferedImage pheobe = Entity.getBufferedImage("sprites/pheobe/phebStillR.png", 100, 100);
+    private BufferedImage phoebe = Entity.getBufferedImage("sprites/pheobe/phebStillR.png", 100, 100);
     private RoundRectangle2D zinzanRect = new RoundRectangle2D.Double(345, 195, 110, 76, 10, 10);
     private RoundRectangle2D daisyRect = new RoundRectangle2D.Double(545, 195, 90, 76, 10, 10);
     private RoundRectangle2D pheobeRect = new RoundRectangle2D.Double(745, 195, 110, 76, 10, 10);
@@ -67,7 +66,7 @@ public class CatChoosingMenu extends Menu {
             Level.backGroundColor = Color.GRAY;
         } else if (pheobeRect.contains(x, y)) {
             catChosen = true;
-            selectedCatClass = Pheobe.class;
+            selectedCatClass = Phoebe.class;
             Level.backGroundColor = Color.GRAY;
         }
 //        else if (backbutton) {
@@ -87,18 +86,26 @@ public class CatChoosingMenu extends Menu {
         g2.setColor(Color.DARK_GRAY);
         g2.fill(borderRect2);
 
-        g2.setColor(Color.WHITE);
+        g2.setColor(Color.MAGENTA);
         if (drawZinzanRect) {
-            g2.draw(zinzanRect);
+            g2.fill(zinzanRect);
         } else if (drawDasiyRect) {
-            g2.draw(daisyRect);
+            g2.fill(daisyRect);
         } else if (drawPheobeRect) {
-            g2.draw(pheobeRect);
+            g2.fill(pheobeRect);
         }
+        g2.setColor(Color.WHITE);
+        g2.draw(zinzanRect);
+        g2.draw(daisyRect);
+        g2.draw(pheobeRect);
 
         g2.drawImage(zinzan, 350, 200, 100, 66, null);
         g2.drawImage(daisy, 550, 200, 80, 66, null);
-        g2.drawImage(pheobe, 750, 200, 100, 66, null);
+        g2.drawImage(phoebe, 750, 200, 100, 66, null);
+        g2.setFont(new Font("times", 0, 12));
+        g2.drawString("Zinzan", 380, 285);
+        g2.drawString("Daisy", 580, 285);
+        g2.drawString("Phoebe", 780, 285);
 
     }
 }

@@ -15,8 +15,9 @@ public class Level2 extends Level {
     private RoundRectangle2D topLeftWall = new RoundRectangle2D.Double(-10, -5, 4, 155, 0, 0);
 
     private Yarnball topYarnball = new Yarnball(1070, 30, 455);
-    private Yarnball bottomYarnball = new Yarnball(1200, 520, 465);
+    private Yarnball bottomYarnball = new Yarnball(1130, 520, 600);
     private TinyMouse tinyMouse = new TinyMouse(150, 1000, 375);
+    private Acid acid = new Acid(540, 655, 100, 50);
 
     public Level2() {
 
@@ -34,6 +35,7 @@ public class Level2 extends Level {
         displayList.AddEnemy(topYarnball);
         displayList.AddEnemy(bottomYarnball);
         displayList.AddEnemy(tinyMouse);
+        displayList.AddEnemy(acid);
 
         walls = new RoundRectangle2D[] {
                 middleSideWall,
@@ -77,7 +79,7 @@ public class Level2 extends Level {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        g2.setColor(Color.GREEN);
+        g2.setColor(Color.CYAN);
         for (RoundRectangle2D rect : walls) {
             g2.fill(rect);
         }

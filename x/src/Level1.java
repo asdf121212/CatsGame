@@ -20,7 +20,7 @@ public class Level1 extends Level {
         displayList = new DisplayList();
         setBackground(Color.BLACK);
         ground = new RoundRectangle2D.Double(0, GroundLevel + 50, 1250, 300, 0, 0);
-        displayList.cat.SetXY(150, 350);
+        displayList.cat.SetXY(0, 350);
         squirrel = new Squirrel(1000, 280);
         //squirrel.x = 1000;
         //squirrel.y = 280;
@@ -37,7 +37,7 @@ public class Level1 extends Level {
                 ground
         };
         walls = new RoundRectangle2D[] {
-
+                new RoundRectangle2D.Double(-10, 0, 10, 710, 0, 0)
         };
 
     }

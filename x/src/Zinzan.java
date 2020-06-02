@@ -40,9 +40,9 @@ public class Zinzan extends Cat {
     public catProjectile generateProjectile() {
         double vel = (state | 101) == 111 ? 9.5 : 7.5;
         if ((state | 110) == 111) {
-            return new Fluffball(x, y + 20, vel, -1);
+            return new FishSkelly(x, y + 20, vel, -1);
         } else {
-            return new Fluffball(x + 70, y + 20, vel, 1);
+            return new FishSkelly(x + 70, y + 20, vel, 1);
         }
     }
 

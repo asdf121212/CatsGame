@@ -5,17 +5,17 @@ import java.awt.geom.RoundRectangle2D;
 public class Level4 extends Level {
 
     private RoundRectangle2D bottomFloor = new RoundRectangle2D.Double(-10, 650, 110, 60, 10, 10);
-    private RoundRectangle2D jumpPad1 = new RoundRectangle2D.Double(170, 600, 60, 20, 10, 10);
-    private RoundRectangle2D jumpPad2 = new RoundRectangle2D.Double(300, 560, 60, 20, 10, 10);
-    private RoundRectangle2D jumpPad3 = new RoundRectangle2D.Double(430, 520, 60, 20, 10, 10);
-    private RoundRectangle2D jumpPad4 = new RoundRectangle2D.Double(300, 430, 60, 20, 10, 10);
+    private RoundRectangle2D jumpPad1 = new RoundRectangle2D.Double(160, 600, 80, 20, 10, 10);
+    private RoundRectangle2D jumpPad2 = new RoundRectangle2D.Double(290, 560, 80, 20, 10, 10);
+    private RoundRectangle2D jumpPad3 = new RoundRectangle2D.Double(420, 520, 80, 20, 10, 10);
+    private RoundRectangle2D jumpPad4 = new RoundRectangle2D.Double(290, 430, 80, 20, 10, 10);
     //private RoundRectangle2D jumpPad5 = new RoundRectangle2D.Double(140, 430, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad6 = new RoundRectangle2D.Double(-10, 340, 240, 20, 10, 10);
     private RoundRectangle2D jumpPad7 = new RoundRectangle2D.Double(900, 200, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad8 = new RoundRectangle2D.Double(1000, 145, 60, 20, 10, 10);
     private RoundRectangle2D jumpPad9 = new RoundRectangle2D.Double(1100, 90, 110, 50, 10, 10);
 
-    private MovingRectangle movePad1 = new MovingRectangle(280, 280, 120, 20, 280, 1000, 2);
+    private MovingRectangle movePad1 = new MovingRectangle(220, 290, 120, 20, 220, 1000, 2);
 
     private Vacuum vacuum;
     private int shootTicks = 200;
@@ -73,7 +73,7 @@ public class Level4 extends Level {
             shootTicks = 0;
             displayList.AddEnemy(vacuum.generateBall());
         }
-        if (displayList.cat.x > 1185 && displayList.cat.y < 90) {
+        if (displayList.cat.x > 1170 && displayList.cat.y < 90) {
             reachedNextLevel = true;
         }
         super.update();

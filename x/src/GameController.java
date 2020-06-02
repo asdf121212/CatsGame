@@ -164,7 +164,7 @@ public class GameController {
             };
             mouseListener = new MouseInputAdapter() {
                 @Override
-                public void mouseClicked(MouseEvent e) {
+                public void mousePressed(MouseEvent e) {
                     ((Menu)currentLevel).mouseClick(e.getX(), e.getY());
                 }
             };
@@ -215,7 +215,9 @@ public class GameController {
             currentLevel.Dispose();
             GameOver();
         } else {
-            Level.numLives--;
+            if (!(currentLevelSet instanceof TutorialLevels)) {
+                Level.numLives--;
+            }
             try {
                 updateTimer.stop();
                 Level level = currentLevelSet.getSameLevel();

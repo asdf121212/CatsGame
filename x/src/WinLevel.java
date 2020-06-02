@@ -24,9 +24,9 @@ public class WinLevel extends Level {
         Graphics2D g2 = (Graphics2D)g;
 
         g2.setColor(Color.BLUE);
-        for (RoundRectangle2D rect : walls) {
-            g2.fill(rect);
-        }
+        //for (RoundRectangle2D rect : walls) {
+            //g2.fill(rect);
+        //}
         for (RoundRectangle2D rect : floors) {
             g2.fill(rect);
         }

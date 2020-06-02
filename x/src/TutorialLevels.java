@@ -2,7 +2,7 @@ public class TutorialLevels extends LevelSet {
 
     public int levelIndex = 0;
     //private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level3.class, Level4.class, Level5.class };
-    private Class[] levelClasses = new Class[] { Level1.class, Level2.class, Level4.class };
+    private Class[] levelClasses = new Class[] { TutorialLevel1.class, Level1.class, Level2.class, Level4.class };
 
     public TutorialLevels() {
 
@@ -19,7 +19,7 @@ public class TutorialLevels extends LevelSet {
 
     @Override
     public boolean lastLevel() {
-        return levelIndex >= 2;
+        return levelIndex >= levelClasses.length - 1;
     }
 
     @Override
@@ -34,6 +34,7 @@ public class TutorialLevels extends LevelSet {
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+        nextLevel.setNumLives(3);
         return nextLevel;
     }
 
