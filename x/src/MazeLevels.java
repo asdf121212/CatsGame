@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 public class MazeLevels extends LevelSet {
 
     private LevelConfigObj2[][] mazeLevels = new LevelConfigObj2[7][7];
+    //private StartLevel startLevel;
+    private LevelConfigObj2 startConfigObj;
     //private LevelConfigurationObject testMazeLevel;
     private GenericLevel currentLevel;
     private SpawnPoint currentSpawnPoint;
@@ -164,7 +166,7 @@ public class MazeLevels extends LevelSet {
         return lvl;
     }
 
-    ///return getFirstLevel --- the maze starts over buddy
+
     @Override
     public Level getSameLevel() {
         if (currentSpawnPoint.isFallTrap) {
@@ -177,58 +179,68 @@ public class MazeLevels extends LevelSet {
             //currentLevel = (GenericLevel) getFirstLevel();
             //return currentLevel;
         }
-        GenericLevel lvl = new GenericLevel();
-        lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
-        currentLevel = lvl;
-        currentLevel.displayList.cat.x = currentSpawnPoint.x;
-        currentLevel.displayList.cat.y = currentSpawnPoint.y;
-        currentLevel.pigMouseWaiting = true;
-        currentLevel.pigMouseWaitTicks = 400;
+        if (currentLevel instanceof StartLevel) {
+            currentLevel = (StartLevel)getFirstLevel();
+            return currentLevel;
+        }
+        else {
+            GenericLevel lvl = new GenericLevel();
+            lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
+            currentLevel = lvl;
+            currentLevel.displayList.cat.x = currentSpawnPoint.x;
+            currentLevel.displayList.cat.y = currentSpawnPoint.y;
+            currentLevel.pigMouseWaiting = true;
+            currentLevel.pigMouseWaitTicks = 400;
 
-        //might need to set these to the respawn point?? or set
-        lvl.nextPigSpawnX = nextPigSpawnX;
-        lvl.nextPigSpawnY = nextPigSpawnY;
+            //might need to set these to the respawn point?? or set
+            lvl.nextPigSpawnX = nextPigSpawnX;
+            lvl.nextPigSpawnY = nextPigSpawnY;
 
-        lvl.pigRespawnX = pigRespawnX;
-        lvl.pigRespawnY = pigRespawnY;
-        return lvl;
+            lvl.pigRespawnX = pigRespawnX;
+            lvl.pigRespawnY = pigRespawnY;
+            return lvl;
+        }
     }
 
     @Override
     public Level getFirstLevel() {
-        GenericLevel lvl = new GenericLevel();
-        mazeIndex_i = 0;
+        //GenericLevel lvl = new GenericLevel();
+        GenericLevel lvl = new StartLevel();
+        lvl.ConfigureLevel(startConfigObj);
+        mazeIndex_i = -1;
         mazeIndex_j = 3;
         //prevMazeIndex_i = 0;
         //prevMazeIndex_j = 3;
 
-        lvl.ConfigureLevel(mazeLevels[0][3]);
+        //lvl.ConfigureLevel(mazeLevels[0][3]);
         //lvl.ConfigureLevel(mazeLevels[6][2]);/////////////////////////development
 
         currentLevel = lvl;
 
-        currentSpawnPoint = lvl.topSpawn;
+        //currentSpawnPoint = lvl.topSpawn;
         //currentSpawnPoint = lvl.leftSpawn;//////////////////////development
+        currentSpawnPoint = lvl.rightSpawn;
 
-        currentLevel.displayList.cat.x = currentSpawnPoint.x;
-        currentLevel.displayList.cat.y = currentSpawnPoint.y;
-        currentLevel.pigMouseWaiting = true;
-        currentLevel.pigMouseWaitTicks = 400;
-        //currentLevel.pigMouseX_0 = currentSpawnPoint.x;
-        //currentLevel.pigMouseY_0 = currentSpawnPoint.y;
-        pig_i = 0;
+        currentLevel.displayList.cat.x = lvl.leftSpawn.x;
+        currentLevel.displayList.cat.y = lvl.rightSpawn.y;
+        //currentLevel.pigMouseWaiting = true;
+        currentLevel.pigMouseWaiting = false;
+        currentLevel.pigMouseWaitTicks = 0;
+        pig_i = -1;
         pig_j = 3;
         pigX = currentSpawnPoint.x;
         pigY = currentSpawnPoint.y;
-        //nextPigSpawnPoint = currentSpawnPoint;
+
+        lvl.pigMouse = new PigMouse(pigX, pigY);
+        lvl.pigMouse.addLevelInfo(new LevelInfo((IndexedNodeFloor[]) lvl.floors, lvl.nodeList, lvl.displayList.cat));
+        lvl.displayList.AddEnemy(lvl.pigMouse);
+
         nextPigSpawnX = currentSpawnPoint.x;
         nextPigSpawnY = currentSpawnPoint.y;
-        //pigRespawnPoint = currentSpawnPoint;
         pigRespawnX = currentSpawnPoint.x;
         pigRespawnY = currentSpawnPoint.y;
         lvl.nextPigSpawnX = nextPigSpawnX;
         lvl.nextPigSpawnY = nextPigSpawnY;
-        //lvl.respawnPoint = pigRespawnPoint;
         lvl.pigRespawnX = pigRespawnX;
         lvl.pigRespawnY = pigRespawnY;
         return lvl;
@@ -258,19 +270,16 @@ public class MazeLevels extends LevelSet {
                 mazeLevels[i][j] = configObj;
                 oStream.close();
                 fStream.close();
-
-//                if (i == 1 && j == 2) {
-//                    System.out.println("");
-//                }
             }
         }
+        InputStream fStream = MazeLevels.class.getResourceAsStream(String.format("otherLevels/startLevel.level"));
+        ObjectInputStream oStream = new ObjectInputStream(fStream);
+        LevelConfigObj2 configObj = (LevelConfigObj2) oStream.readObject();
+        //startLevel = new StartLevel();
+        //startLevel.ConfigureLevel(configObj);
+        startConfigObj = configObj;
+        oStream.close();
+        fStream.close();
     }
-//    public void load1TestLevelConfigObj() throws IOException, ClassNotFoundException {
-//        URL levelName = MazeLevels.class.getResource(String.format("Levels/%d_%d.lvl", 0, 0));
-//        FileInputStream fStream = new FileInputStream(levelName.getPath());
-//        ObjectInputStream oStream = new ObjectInputStream(fStream);
-//        testMazeLevel = (LevelConfigurationObject) oStream.readObject();
-//    }
-
 
 }

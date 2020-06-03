@@ -6,6 +6,7 @@ public class TutorialLevel1 extends Level {
 
     private BufferedImage keyboardImage = Entity.getBufferedImage("sprites/keyboardLayout/keys.png", 800, 400);
 
+
     public TutorialLevel1() {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(levelWidth, levelHeight));

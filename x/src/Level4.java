@@ -93,9 +93,9 @@ public class Level4 extends Level {
             g2.fill(rect);
         }
 
-//        for (int i = 0; i < numLives; i++) {
-//            zinzanLives[i].paintComponent(g2);
-//        }
+        g2.setColor(Color.GREEN);
+        g2.setFont(new Font("times", 0, 14));
+        g2.drawString("try not to get hit by the lasers from the flying vacuum cleaner", 500, 600);
 
         paintDisplayList(g2);
 

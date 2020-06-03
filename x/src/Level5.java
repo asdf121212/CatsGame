@@ -108,17 +108,7 @@ public class Level5 extends Level {
         if (displayList.cat.x > 1170) {
             reachedNextLevel = true;
         }
-//        g2.setColor(Color.blue);
-//        for (Node node : nodeList) {
-//            g2.fill(new Ellipse2D.Double(node.x - 5, node.y - 5, 10, 10));
-//            for (Node neighbor : node.neighbors.keySet()) {
-//                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
-//            }
-//        }
 
-//        for (int i = 0; i < numLives; i++) {
-//            zinzanLives[i].paintComponent(g2);
-//        }
 
         paintDisplayList(g2);
 

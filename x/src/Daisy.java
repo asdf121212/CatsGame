@@ -21,6 +21,7 @@ public class Daisy extends Cat {
     private BufferedImage[] walkImages;
 
     private int walkIndex = 0;
+    private int dieTicks = 0;
 
     public Daisy() {
         x = 150;
@@ -29,10 +30,16 @@ public class Daisy extends Cat {
         height = 50;
 
         popImages = new BufferedImage[] {
-                daisyWalkR[1]
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode1R.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode2R.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode3R.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode4R.png", 80, 80)
         };
         popBackImages = new BufferedImage[] {
-                daisyWalkL[1]
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode1L.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode2L.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode3L.png", 80, 80),
+                Entity.getBufferedImage("sprites/daisyEnemy/explode/explode4L.png", 80, 80)
         };
 
         catImage = daisyWalkR[1];
@@ -55,7 +62,23 @@ public class Daisy extends Cat {
 
     @Override
     protected void die() {
-        Dead = true;
+        if (dieTicks >= 6) {
+            if (popIndex < 3) {
+                x -= 11;
+                y -= 18;
+                width += 22;
+                height += 22;
+                popIndex++;
+                catImage = popAnimationImages[popIndex];
+            } else {
+                //dieTimer.stop();
+                Dying = false;
+                Dead = true;
+            }
+            dieTicks = 0;
+        } else {
+            dieTicks++;
+        }
     }
 
     @Override

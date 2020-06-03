@@ -74,10 +74,9 @@ public class Level1 extends Level {
         g2.setColor(Color.MAGENTA);
         g2.fill(ground);
 
-
-//        for (int i = 0; i < numLives; i++) {
-//            zinzanLives[i].paintComponent(g);
-//        }
+        g2.setColor(Color.GREEN);
+        g2.setFont(new Font("times", 0, 14));
+        g2.drawString("jump over the projectiles and destroy the toy squirrel", 400, 200);
 
         paintDisplayList(g2);
 

@@ -15,9 +15,12 @@ public class Level2 extends Level {
     private RoundRectangle2D topLeftWall = new RoundRectangle2D.Double(-10, -5, 4, 155, 0, 0);
 
     private Yarnball topYarnball = new Yarnball(1070, 30, 455);
-    private Yarnball bottomYarnball = new Yarnball(1130, 520, 600);
+    private Yarnball bottomYarnball = new Yarnball(1130, 520, 670);
     private TinyMouse tinyMouse = new TinyMouse(150, 1000, 375);
     private Acid acid = new Acid(540, 655, 100, 50);
+
+    private boolean showText1 = false;
+    private boolean showText2 = false;
 
     public Level2() {
 
@@ -32,10 +35,10 @@ public class Level2 extends Level {
 //                new ZinzanLife(64, 10),
 //        };
 
+        displayList.AddEnemy(acid);
         displayList.AddEnemy(topYarnball);
         displayList.AddEnemy(bottomYarnball);
         displayList.AddEnemy(tinyMouse);
-        displayList.AddEnemy(acid);
 
         walls = new RoundRectangle2D[] {
                 middleSideWall,
@@ -67,6 +70,14 @@ public class Level2 extends Level {
         }
         //tinyMouse.update();
 
+        if (displayList.cat. x > 30 && displayList.cat.y < 160) {
+            showText1 = true;
+            showText2 = false;
+        } else if (displayList.cat.x > 100 && displayList.cat.y > 590) {
+            showText1 = false;
+            showText2 = true;
+        }
+
         if (displayList.cat.GetX() >= 1170 && displayList.cat.GetY() >= 600) {
             reachedNextLevel = true;
         }
@@ -85,6 +96,15 @@ public class Level2 extends Level {
         }
         for (RoundRectangle2D rect : floors) {
             g2.fill(rect);
+        }
+
+        g2.setColor(Color.GREEN);
+        g2.setFont(new Font("times", 0, 14));
+        if (showText1) {
+            g2.drawString("watch out for surprise attacks from the yarnball monsters", 300, 100);
+        }
+        if (showText2) {
+            g2.drawString("don't fall in the acid", 300, 600);
         }
 
 //        for (int i = 0; i < numLives; i++) {

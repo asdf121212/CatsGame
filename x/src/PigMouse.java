@@ -37,7 +37,7 @@ public class PigMouse extends Enemy {
     private final double grav = 0.2;
     private final double jump_yVel = -6.5;
 
-    private final double defaultVx = 1.2;
+    private final double defaultVx = 1.4;
 
     private boolean jumping = false;
     private boolean fall = false;

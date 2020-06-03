@@ -40,7 +40,7 @@ public class TutorialLevels extends LevelSet {
 
     @Override
     public Level getFirstLevel() {
-        //levelIndex = 4;//////////////////testing
+        //levelIndex = 2;//////////////////testing
         levelIndex = 0;
         Level nextLevel = null;
         try {
