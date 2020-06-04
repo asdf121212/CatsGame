@@ -8,7 +8,7 @@ public class MazeLevels extends LevelSet {
     //private StartLevel startLevel;
     private LevelConfigObj2 startConfigObj;
     //private LevelConfigurationObject testMazeLevel;
-    private GenericLevel currentLevel;
+    private GenericMazeLevel currentLevel;
     private SpawnPoint currentSpawnPoint;
     private SpawnPoint preTrapSpawnPoint;
 
@@ -75,7 +75,7 @@ public class MazeLevels extends LevelSet {
         if (mazeIndex_i == 7 && mazeIndex_j == 3) {
             return new WinLevel();
         }
-        GenericLevel lvl = new GenericLevel();
+        GenericMazeLevel lvl = new GenericMazeLevel();
         lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
         //byte catState = currentLevel.displayList.cat.state;
         //double cat_yVel = currentLevel.displayList.cat.Vy;
@@ -184,7 +184,7 @@ public class MazeLevels extends LevelSet {
             return currentLevel;
         }
         else {
-            GenericLevel lvl = new GenericLevel();
+            GenericMazeLevel lvl = new GenericMazeLevel();
             lvl.ConfigureLevel(mazeLevels[mazeIndex_i][mazeIndex_j]);
             currentLevel = lvl;
             currentLevel.displayList.cat.x = currentSpawnPoint.x;
@@ -205,7 +205,7 @@ public class MazeLevels extends LevelSet {
     @Override
     public Level getFirstLevel() {
         //GenericLevel lvl = new GenericLevel();
-        GenericLevel lvl = new StartLevel();
+        GenericMazeLevel lvl = new StartLevel();
         lvl.ConfigureLevel(startConfigObj);
         mazeIndex_i = -1;
         mazeIndex_j = 3;

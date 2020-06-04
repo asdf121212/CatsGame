@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GenericLevel extends Level {
+public class GenericMazeLevel extends Level {
 
     public ArrayList<Vacuum> vacuumList = new ArrayList<>();
     public ArrayList<Yarnball> yarnballList = new ArrayList<>();
@@ -39,7 +41,11 @@ public class GenericLevel extends Level {
 
     public static Color floorColor = Color.ORANGE;
 
-    public GenericLevel() {
+    private BufferedImage pauseImage = Entity.getBufferedImage("sprites/menuImages/pauseButton.png", 100, 100);
+    private BufferedImage pressedPauseImage = Entity.getBufferedImage("sprites/menuImages/pauseButtonDark.png", 100, 100);
+    private boolean pauseImagePressed = false;
+
+    public GenericMazeLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));
         displayList = new DisplayList();
         setBackground(backGroundColor);
@@ -48,6 +54,11 @@ public class GenericLevel extends Level {
         //floors = new IndexedNodeFloor[0];
         ///just need to set the cat and the pigmouse
 
+    }
+
+    public boolean pauseButtonContains(int x, int y) {
+        Rectangle2D pauseRect = new Rectangle2D.Double(1145, 5, 50, 30);
+        return pauseRect.contains(x, y);
     }
 
     public void ConfigureLevel(LevelConfigObj2 configObj) {
@@ -325,6 +336,12 @@ public class GenericLevel extends Level {
 //                g2.draw(new Line2D.Double(node.x, node.y, neighbor.x, neighbor.y));
 //            }
 //        }
+
+        if (pauseImagePressed) {
+            g2.drawImage(pressedPauseImage, 1145, 5, 50, 30, null);
+        } else {
+            g2.drawImage(pauseImage, 1145, 5, 50, 30, null);
+        }
         paintDisplayList(g2);
     }
 

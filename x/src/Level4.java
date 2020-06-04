@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 public class Level4 extends Level {
 
@@ -16,6 +17,8 @@ public class Level4 extends Level {
     private RoundRectangle2D jumpPad9 = new RoundRectangle2D.Double(1100, 90, 110, 50, 10, 10);
 
     private MovingRectangle movePad1 = new MovingRectangle(220, 290, 120, 20, 220, 1000, 2);
+
+    private BufferedImage rightArrow = Entity.getBufferedImage("sprites/menuImages/rightArrow.png", 300, 100);
 
     private Vacuum vacuum;
     private int shootTicks = 200;
@@ -96,6 +99,9 @@ public class Level4 extends Level {
         g2.setColor(Color.GREEN);
         g2.setFont(new Font("times", 0, 14));
         g2.drawString("try not to get hit by the lasers from the flying vacuum cleaner", 500, 600);
+
+        g2.drawImage(rightArrow, (int)movePad1.x + 30, (int)movePad1.y + 4, 40, 10, null);
+
 
         paintDisplayList(g2);
 

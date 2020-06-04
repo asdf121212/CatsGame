@@ -74,11 +74,11 @@ public class MainMenu extends Menu {
             g2.fill(playTutorialButtonOutline);
         }
         g2.setColor(Color.magenta);
-        g2.setFont(new Font("times", 0, 60));
+        g2.setFont(new Font("times", 0, 55));
         g2.draw(playGameButton);
-        g2.drawString("PLAY GAME", 420, 305);
+        g2.drawString("PLAY GAME", 430, 305);
         g2.draw(playTutorialButton);
-        g2.drawString("PLAY TUTORIAL", 367, 455);
+        g2.drawString("PRACTICE LEVELS", 357, 455);
 
     }
 

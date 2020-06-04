@@ -151,6 +151,7 @@ public class GameController {
                 }
             };
 
+
             updateTimer = new Timer(5, updateListener);
             updateTimer.setInitialDelay(1);
             currentLevel.addKeyListener(keyAdapter);
@@ -245,7 +246,12 @@ public class GameController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (gameOverPanel.clickedQuit(e.getX(), e.getY())) {
-                    System.exit(0);
+                    currentLevelSet = new MainMenus();
+                    Level startLevel = currentLevelSet.getFirstLevel();
+                    SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
+                    Thread songThread = new Thread(GameController.this::playSongs);
+                    play = true;
+                    songThread.start();
                 }else if (gameOverPanel.clickedRetry(e.getX(), e.getY())) {
                     updateTimer.stop();
                     currentLevelSet.ReloadLevels();

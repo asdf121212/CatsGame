@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class TutorialLevel1 extends Level {
 
     private BufferedImage keyboardImage = Entity.getBufferedImage("sprites/keyboardLayout/keys.png", 800, 400);
-
+    private BufferedImage rightArrow = Entity.getBufferedImage("sprites/menuImages/rightArrow.png", 300, 100);
 
     public TutorialLevel1() {
         setBackground(Color.BLACK);
@@ -54,6 +54,7 @@ public class TutorialLevel1 extends Level {
         }
 
         g2.drawImage(keyboardImage, 270, 50, 500, 250, null);
+        g2.drawImage(rightArrow, 600, 550, 220, 50, null);
 
         paintDisplayList(g2);
 

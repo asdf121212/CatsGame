@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class StartLevel extends GenericLevel {
+public class StartLevel extends GenericMazeLevel {
 
 
     @Override

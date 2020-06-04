@@ -3,12 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 public class Level1 extends Level {
 
     private RoundRectangle2D ground;
     private int tickCount = 0;
     private Squirrel squirrel;
+    private BufferedImage rightArrow = Entity.getBufferedImage("sprites/menuImages/rightArrow.png", 300, 100);
 
     public Level1() {
 
@@ -77,6 +79,7 @@ public class Level1 extends Level {
         g2.setColor(Color.GREEN);
         g2.setFont(new Font("times", 0, 14));
         g2.drawString("jump over the projectiles and destroy the toy squirrel", 400, 200);
+        g2.drawImage(rightArrow, 700, 500, 220, 50, null);
 
         paintDisplayList(g2);
 

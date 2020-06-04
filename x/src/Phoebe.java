@@ -22,6 +22,7 @@ public class Phoebe extends Cat {
     private BufferedImage[] walkImages;
 
     private int walkIndex = 0;
+    private int dieTicks = 0;
 
     public Phoebe() {
         x = 150;
@@ -30,10 +31,16 @@ public class Phoebe extends Cat {
         height = 50;
 
         popImages = new BufferedImage[] {
-                pheobeStillR
+                getBufferedImage("sprites/pheobe/explode/phebExp1R.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp2R.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp3R.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp4R.png", 100, 100)
         };
         popBackImages = new BufferedImage[] {
-                pheobeStillL
+                getBufferedImage("sprites/pheobe/explode/phebExp1L.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp2L.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp3L.png", 100, 100),
+                getBufferedImage("sprites/pheobe/explode/phebExp4L.png", 100, 100)
         };
 
         catImage = pheobeStillR;
@@ -41,7 +48,23 @@ public class Phoebe extends Cat {
 
     @Override
     protected void die() {
-        Dead = true;
+        if (dieTicks >= 6) {
+            if (popIndex < 3) {
+                x -= 11;
+                y -= 18;
+                width += 22;
+                height += 22;
+                popIndex++;
+                catImage = popAnimationImages[popIndex];
+            } else {
+                //dieTimer.stop();
+                Dying = false;
+                Dead = true;
+            }
+            dieTicks = 0;
+        } else {
+            dieTicks++;
+        }
     }
 
     public catProjectile generateProjectile() {
