@@ -5,7 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Level1 extends Level {
+public class Level1 extends TutorialLevel {
 
     private RoundRectangle2D ground;
     private int tickCount = 0;
@@ -82,6 +82,12 @@ public class Level1 extends Level {
         g2.drawImage(rightArrow, 700, 500, 220, 50, null);
 
         paintDisplayList(g2);
+
+        if (pauseImagePressed) {
+            g2.drawImage(pressedPauseImage, 1145, 5, 50, 30, null);
+        } else {
+            g2.drawImage(pauseImage, 1145, 5, 50, 30, null);
+        }
 
 
     }

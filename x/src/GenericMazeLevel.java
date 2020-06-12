@@ -43,7 +43,7 @@ public class GenericMazeLevel extends Level {
 
     private BufferedImage pauseImage = Entity.getBufferedImage("sprites/menuImages/pauseButton.png", 100, 100);
     private BufferedImage pressedPauseImage = Entity.getBufferedImage("sprites/menuImages/pauseButtonDark.png", 100, 100);
-    private boolean pauseImagePressed = false;
+    public boolean pauseImagePressed = false;
 
     public GenericMazeLevel() {
         setPreferredSize(new Dimension(levelWidth, levelHeight));

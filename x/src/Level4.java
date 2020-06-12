@@ -3,7 +3,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Level4 extends Level {
+public class Level4 extends TutorialLevel {
 
     private RoundRectangle2D bottomFloor = new RoundRectangle2D.Double(-10, 650, 110, 60, 10, 10);
     private RoundRectangle2D jumpPad1 = new RoundRectangle2D.Double(160, 600, 80, 20, 10, 10);
@@ -102,8 +102,13 @@ public class Level4 extends Level {
 
         g2.drawImage(rightArrow, (int)movePad1.x + 30, (int)movePad1.y + 4, 40, 10, null);
 
-
         paintDisplayList(g2);
+
+        if (pauseImagePressed) {
+            g2.drawImage(pressedPauseImage, 1145, 5, 50, 30, null);
+        } else {
+            g2.drawImage(pauseImage, 1145, 5, 50, 30, null);
+        }
 
     }
 

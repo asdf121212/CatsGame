@@ -206,6 +206,7 @@ public class MazeLevels extends LevelSet {
     public Level getFirstLevel() {
         //GenericLevel lvl = new GenericLevel();
         GenericMazeLevel lvl = new StartLevel();
+        //Level.numLives = 3;
         lvl.ConfigureLevel(startConfigObj);
         mazeIndex_i = -1;
         mazeIndex_j = 3;

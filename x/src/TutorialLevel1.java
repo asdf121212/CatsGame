@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
-public class TutorialLevel1 extends Level {
+public class TutorialLevel1 extends TutorialLevel {
 
     private BufferedImage keyboardImage = Entity.getBufferedImage("sprites/keyboardLayout/keys.png", 800, 400);
     private BufferedImage rightArrow = Entity.getBufferedImage("sprites/menuImages/rightArrow.png", 300, 100);
@@ -57,6 +57,12 @@ public class TutorialLevel1 extends Level {
         g2.drawImage(rightArrow, 600, 550, 220, 50, null);
 
         paintDisplayList(g2);
+
+        if (pauseImagePressed) {
+            g2.drawImage(pressedPauseImage, 1145, 5, 50, 30, null);
+        } else {
+            g2.drawImage(pauseImage, 1145, 5, 50, 30, null);
+        }
 
     }
 

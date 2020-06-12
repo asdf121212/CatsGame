@@ -3,7 +3,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
-public class Level2 extends Level {
+public class Level2 extends TutorialLevel {
 
     private RoundRectangle2D upperLeftRect = new RoundRectangle2D.Double(-10, 155, 750, 95, 10, 10);
     private RoundRectangle2D upperRightRect = new RoundRectangle2D.Double(1050, 155, 160, 95, 10, 10);
@@ -112,6 +112,12 @@ public class Level2 extends Level {
 //        }
 
         paintDisplayList(g2);
+
+        if (pauseImagePressed) {
+            g2.drawImage(pressedPauseImage, 1145, 5, 50, 30, null);
+        } else {
+            g2.drawImage(pauseImage, 1145, 5, 50, 30, null);
+        }
 
     }
 

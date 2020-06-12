@@ -21,6 +21,8 @@ public class GameController {
     protected KeyAdapter keyAdapter;
     protected MouseMotionListener mouseMotionListener;
     protected MouseListener mouseListener;
+    private boolean pressedInsidePauseButton = false;
+    private Level pausedLevel;
 
     protected Timer updateTimer;
 
@@ -46,6 +48,7 @@ public class GameController {
         //currentLevelSet = new FirstLevels();
         //currentLevelSet = new MazeLevels();
         currentLevelSet = new MainMenus();
+        //currentLevelSet = new PauseLevelSet();
         Level startLevel = currentLevelSet.getFirstLevel();
         viewController = new ViewController();
         SwingUtilities.invokeLater(() -> InitializeLevel(startLevel));
@@ -86,8 +89,28 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             currentLevel.repaint();
-            if (((Menu)currentLevel).transition()) {
-                advance_levels();
+            if (currentLevel instanceof PauseMenu) {
+                PauseMenu pauseMenu = (PauseMenu)currentLevel;
+                if (pauseMenu.transition()) {
+                    if (pauseMenu.clickedResume()) {
+                        InitializeLevel(pausedLevel);
+                    } else if (pauseMenu.clickedChangeCat()) {
+                        //currentLevelSet = new MainMenus();
+                    } else if (pauseMenu.clickedRestart()) {
+                        currentLevelSet.ReloadLevels();
+                        Level.numLives = 3;
+                        InitializeLevel(currentLevelSet.getFirstLevel());
+                    } else if (pauseMenu.clickedMainMenu()) {
+                        currentLevelSet = new MainMenus();
+                        Level.numLives = 3;
+                        InitializeLevel(currentLevelSet.getFirstLevel());
+                    }
+                }
+            }
+            else {
+                if (((Menu) currentLevel).transition()) {
+                    advance_levels();
+                }
             }
         }
     };
@@ -111,6 +134,55 @@ public class GameController {
             Ball b = new Ball(0, 0, 50, 0, 0);
             b = null;
 
+            if (currentLevel instanceof GenericMazeLevel) {
+                GenericMazeLevel lvl = (GenericMazeLevel)currentLevel;
+                mouseListener = new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (lvl.pauseButtonContains(e.getX(), e.getY())) {
+                            lvl.pauseImagePressed = true;
+                            pressedInsidePauseButton = true;
+                        }
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        if (pressedInsidePauseButton && lvl.pauseButtonContains(e.getX(), e.getY())) {
+                            pauseGame();
+                            pressedInsidePauseButton = false;
+                            lvl.pauseImagePressed = false;
+                        } else {
+                            pressedInsidePauseButton = false;
+                            lvl.pauseImagePressed = false;
+                        }
+                    }
+                };
+                lvl.addMouseListener(mouseListener);
+            } else if (currentLevel instanceof TutorialLevel) {
+                TutorialLevel lvl = (TutorialLevel)currentLevel;
+                mouseListener = new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (lvl.pauseButtonContains(e.getX(), e.getY())) {
+                            lvl.pauseImagePressed = true;
+                            pressedInsidePauseButton = true;
+                        }
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        if (pressedInsidePauseButton && lvl.pauseButtonContains(e.getX(), e.getY())) {
+                            pauseGame();
+                            pressedInsidePauseButton = false;
+                            lvl.pauseImagePressed = false;
+                        } else {
+                            pressedInsidePauseButton = false;
+                            lvl.pauseImagePressed = false;
+                        }
+                    }
+                };
+                lvl.addMouseListener(mouseListener);
+            }
             keyAdapter = new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
@@ -178,6 +250,18 @@ public class GameController {
         //viewController.StartRepaintTimer();
         viewController.revalidateFrame();
     }
+
+
+    private void pauseGame() {
+        updateTimer.stop();
+        pausedLevel = currentLevel;
+        boolean showChangeCat = !(currentLevelSet instanceof TutorialLevels);
+        PauseMenu pauseMenu = new PauseMenu(showChangeCat);
+        InitializeLevel(pauseMenu);
+    }
+//    private void unPauseGame() {
+//        InitializeLevel(pausedLevel);
+//    }
 
     protected void advance_levels() {
         if (!currentLevelSet.lastLevel()) {
