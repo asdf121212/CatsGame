@@ -58,4 +58,14 @@ public class MainMenus extends LevelSet {
             return null;
         }
     }
+
+    @Override
+    public Level goToSelectCat() {
+        return null;
+    }
+
+    @Override
+    public Level returnFromSelectCat() {
+        return null;
+    }
 }

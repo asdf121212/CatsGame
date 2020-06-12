@@ -8,6 +8,16 @@ public class TutorialLevels extends LevelSet {
 
     }
 
+    @Override
+    public Level goToSelectCat() {
+        return null;
+    }
+
+    @Override
+    public Level returnFromSelectCat() {
+        return null;
+    }
+
     public void ReloadLevels() {
 
     }

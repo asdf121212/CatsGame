@@ -36,4 +36,14 @@ public class ChangeCatInGameLevels extends LevelSet {
     public LevelSet getNextLevelSet() {
         return null;
     }
+
+    @Override
+    public Level goToSelectCat() {
+        return null;
+    }
+
+    @Override
+    public Level returnFromSelectCat() {
+        return null;
+    }
 }

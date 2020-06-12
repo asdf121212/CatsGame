@@ -9,4 +9,7 @@ public abstract class LevelSet {
     public abstract void ReloadLevels();
     public abstract LevelSet getNextLevelSet();
 
+    public abstract Level goToSelectCat();
+    public abstract Level returnFromSelectCat();
+
 }

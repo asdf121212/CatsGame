@@ -32,6 +32,11 @@ public class MazeLevels extends LevelSet {
     private int mazeIndex_i = 0;
     private int mazeIndex_j = 0;
 
+
+    private CatChoosingMenu catSelectionMenu;
+    private GenericMazeLevel pausedLevel;
+    private boolean selectingCat = false;
+
     public MazeLevels() {
         mazeIndex_i = 0;
         mazeIndex_j = 3;
@@ -43,6 +48,36 @@ public class MazeLevels extends LevelSet {
             ex.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Level goToSelectCat() {
+        pausedLevel = currentLevel;
+        catSelectionMenu = new CatChoosingMenu();
+        return catSelectionMenu;
+    }
+    @Override
+    public Level returnFromSelectCat() {
+        if (pausedLevel != null) {
+            try {
+                Cat cat = DisplayList.catClass.newInstance();
+                cat.x = currentLevel.displayList.cat.x;
+                cat.y = currentLevel.displayList.cat.y;
+                cat.Vy = currentLevel.displayList.cat.Vy;
+                cat.Vx = currentLevel.displayList.cat.Vx;
+                cat.Dying = currentLevel.displayList.cat.Dying;
+                cat.state = currentLevel.displayList.cat.state;
+                cat.AddLevelInfo(currentLevel.displayList.cat.getLevelInfo());
+                currentLevel.displayList.cat = cat;
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            currentLevel = pausedLevel;
+            pausedLevel = null;
+            return currentLevel;
+        } else {
+            return null;
+        }
     }
 
     @Override

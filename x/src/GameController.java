@@ -23,6 +23,7 @@ public class GameController {
     protected MouseListener mouseListener;
     private boolean pressedInsidePauseButton = false;
     private Level pausedLevel;
+    private boolean changingCatFromLevel = false;
 
     protected Timer updateTimer;
 
@@ -95,7 +96,8 @@ public class GameController {
                     if (pauseMenu.clickedResume()) {
                         InitializeLevel(pausedLevel);
                     } else if (pauseMenu.clickedChangeCat()) {
-                        //currentLevelSet = new MainMenus();
+                        changingCatFromLevel = true;
+                        InitializeLevel(currentLevelSet.goToSelectCat());
                     } else if (pauseMenu.clickedRestart()) {
                         currentLevelSet.ReloadLevels();
                         Level.numLives = 3;
@@ -121,7 +123,17 @@ public class GameController {
         }
         if (currentLevel != null) {
             currentLevel.Dispose();
+            for (MouseListener mListener : currentLevel.getMouseListeners()) {
+                currentLevel.removeMouseListener(mListener);
+            }
+            for (MouseMotionListener mListener : currentLevel.getMouseMotionListeners()) {
+                currentLevel.removeMouseMotionListener(mListener);
+            }
+            for (KeyListener kListener : currentLevel.getKeyListeners()) {
+                currentLevel.removeKeyListener(kListener);
+            }
         }
+
         viewController.changeLevel(level);
         currentLevel = level;
 
@@ -266,17 +278,24 @@ public class GameController {
     protected void advance_levels() {
         if (!currentLevelSet.lastLevel()) {
             try {
-                Level nextLevel = currentLevelSet.getNextLevel();;
-                if (!currentLevelSet.isMenu) {
-                    int health = cat.getHealth();
-                    currentLevel.removeKeyListener(keyAdapter);
-                    nextLevel.displayList.cat.setHealth(health);
+                if (changingCatFromLevel) {
+                    updateTimer.stop();
+                    changingCatFromLevel = false;
+                    DisplayList.catClass = ((CatChoosingMenu) currentLevel).selectedCatClass;
+                    InitializeLevel(currentLevelSet.returnFromSelectCat());
                 } else {
-                    currentLevel.removeMouseMotionListener(mouseMotionListener);
-                    currentLevel.removeMouseListener(mouseListener);
+                    Level nextLevel = currentLevelSet.getNextLevel();;
+                    if (!currentLevelSet.isMenu) {
+                        int health = cat.getHealth();
+                        currentLevel.removeKeyListener(keyAdapter);
+                        nextLevel.displayList.cat.setHealth(health);
+                    } else {
+                        currentLevel.removeMouseMotionListener(mouseMotionListener);
+                        currentLevel.removeMouseListener(mouseListener);
+                    }
+                    updateTimer.stop();
+                    InitializeLevel(nextLevel);
                 }
-                updateTimer.stop();
-                InitializeLevel(nextLevel);
             }
             catch (NullPointerException ex) {
                 System.out.println(ex.getMessage() + " GameController: advance levels error");

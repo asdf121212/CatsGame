@@ -60,7 +60,9 @@ public abstract class Cat extends Entity {
     public void AddLevelInfo(LevelInfo levelInfo) {
         this.levelInfo = levelInfo;
     }
-
+    public LevelInfo getLevelInfo() {
+        return this.levelInfo;
+    }
 
     public void Dispose() {
     }
