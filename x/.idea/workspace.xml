@@ -8,6 +8,196 @@
   <component name="ChangeListManager">
     <list default="true" id="42691528-489f-47a3-b77d-5002b4ab9357" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/x_jar/x.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Acid 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Cat 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Cat 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/FluffBone 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$2 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$2 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$3 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$3 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$4 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$4 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$5 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$5 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$6 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$6 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameController$7 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/GameController$7 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GameOverPanel 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/GenericLevel 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level1 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Level1 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Level5 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/LevelSet 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/LevelSet 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/META-INF/MANIFEST 3.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/META-INF/x.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/MainMenu 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/MazeLevels 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/MazeLevels 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/MovingRectangle 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Phoebe 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/Phoebe 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/PigMouse 2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/x/PigMouse 2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Song 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Explosion 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Ganymede 3.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/Sand edit 3.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/ancalagon 3.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/Songs/trinoculars2 3.aif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/ballShoot 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/gameOver 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/panther-roar2-2 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/pop 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundFiles/yarnballdie 3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/SoundTrack$1 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Teleporter 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/TutorialLevel1 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/TutorialLevels 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/Vacuum 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/ViewController 2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/0_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/1_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/2_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/3_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/4_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/5_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_0 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_1 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_2 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_3 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_4 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_5 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/newLevels/6_6 3.level" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/acid/acid 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ball 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ballHit1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/ball/ballHit2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d1L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d1R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d2L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d2R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d3L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/d3R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/daisyFly 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/daisyFlyR 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode1L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode1R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode2L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode2R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode3L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode3R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode4L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/explode/explode4R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d1LFlash 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d1RFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d2LFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d2RFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d3LFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/daisyEnemy/flashes/d3RFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skelly 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skellyDisappear1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skellyDisappear1L 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skellyDisappear2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skellyDisappear2L 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fishSkelly/skellyL 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball-A1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffball/fluffball-A2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffbone/bone 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffbone/boneDisappear1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/fluffbone/boneDisappear2 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/QuitDark 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/QuitLight 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/TryAgainDark 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/gameOverButtons/TryAgainLight 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/keyboardLayout/keys 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/menuTitle/title 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebJumpL 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebJumpR 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebStillL 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebStillR 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk1L 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk1R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk2L 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk2R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk3L 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pheobe/phebWalk3R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pigMouse/pigMouse 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pigMouse/pigMouseHot1 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pigMouse/pigMouseHot2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/pigMouse/pigMouseHot3 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/R_squirrel/r_squirrel 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/R_squirrel/r_squirrelExp1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/R_squirrel/r_squirrelExp2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/R_squirrel/r_squirrelExp3 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/R_squirrel/r_squirrelFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrel 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelExp3 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/squirrel/squirrelFlash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouse1_L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouse1_R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouseHit1_L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouseHit1_R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouseHit2_L 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/tinyMouse/tinyMouseHit2_R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/vacuum/vacuumBlast1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/vacuum/vacuumBlast1R 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/yarnBall/yarnBall-0 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/yarnBall/yarnBall-1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/yarnBall/yarnBall-2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/yarnBall/yarnBall-2-Flash 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop1Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop2Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop3 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop3Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop4 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop4Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop5 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop5Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop6 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/pop/zinzanPop6Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanStill 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanStillBack 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk1 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk1Back 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk2 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/x/sprites/zinzan/zinzanWalk2Back 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
