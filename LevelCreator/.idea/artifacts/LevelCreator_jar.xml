@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LevelCreator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LevelCreator_jar</output-path>
+    <root id="archive" name="LevelCreator.jar">
+      <element id="module-output" name="LevelCreator" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../CatRepo/CatsGame/x/out/artifacts/x_jar/x.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
